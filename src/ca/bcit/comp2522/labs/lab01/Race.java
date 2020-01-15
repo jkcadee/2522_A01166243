@@ -14,9 +14,9 @@ public class Race {
     private int clockTicks;
     private int hareWins;
     private int tortoiseWins;
+    private Random randomNumber;
     Hare hare;
     Tortoise tortoise;
-    Random randomNumber;
 
     /**
      * Constructs a new Race object with a specified length attribute and instantiates a new Hare, Tortoise and Random
@@ -50,6 +50,16 @@ public class Race {
 
     final public int getTortoiseWins() {
         return this.tortoiseWins;
+    }
+
+    /**
+     * Gets the value of the attribute clockTicks.
+     *
+     * @return The integer type attribute clockTicks specific to the instance of the object.
+     */
+
+    final public int getClockTicks() {
+        return this.clockTicks;
     }
 
     /**
@@ -90,11 +100,11 @@ public class Race {
 
         if (tortoise.getPosition() >= length) {
             tortoiseWins++;
-            return String.format("Tortoise wins at position %d and in %d clock ticks.", tortoise.getPosition(), clockTicks);
+            return "Tortoise";
         }
         else {
             hareWins++;
-            return String.format("Hare wins at position %d and in %d clock ticks.", hare.getPosition(), clockTicks);
+            return "Hare";
         }
     }
 

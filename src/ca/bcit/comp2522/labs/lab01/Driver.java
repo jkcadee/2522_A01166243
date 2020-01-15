@@ -35,6 +35,20 @@ public class Driver {
      */
 
     public static void main(String[] args) {
+        Race oneRace = new Race(100);
+
+        String resultOneRace = oneRace.simulateRace();
+
+        if (resultOneRace.equals("Tortoise")) {
+            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
+                    + oneRace.tortoise.getPosition() + ".";
+        }
+        else {
+            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
+                    + oneRace.hare.getPosition() + ".";
+        }
+
+        System.out.println(resultOneRace);
         System.out.println(simulateRaces(100, 100));
         System.out.println(simulateRaces(1000, 100));
     }
