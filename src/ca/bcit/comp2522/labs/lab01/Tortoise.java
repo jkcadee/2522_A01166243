@@ -8,7 +8,6 @@ public class Tortoise {
 
     final public void setPosition(int position) {
         this.position = position;
-        randomNumber = new Random();
     }
 
     final public int getPosition() {
@@ -16,6 +15,7 @@ public class Tortoise {
     }
 
     final public int move() {
+        randomNumber = new Random();
         int generateRandomNum = randomNumber.nextInt(101);
 
         if (generateRandomNum <= 50) {
@@ -29,14 +29,22 @@ public class Tortoise {
         }
     }
 
-    public String toString() {
-        return Integer.toString(position);
+    final public String toString() {
+        return "Tortoise's position is: " + position;
     }
 
-    public boolean equals(Tortoise obj) {
-        if (obj.getPosition() == this.position) {
+    final public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Tortoise object = (Tortoise) obj;
+
+        if (object.getPosition() == this.position) {
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
     }
 }

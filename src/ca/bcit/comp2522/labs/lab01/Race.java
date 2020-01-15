@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class Race {
     private int length;
+    private int clockTicks;
+    private int hareWins;
+    private int tortoiseWins;
     Hare hare;
     Tortoise tortoise;
     Random randomNumber;
@@ -13,6 +16,14 @@ public class Race {
         hare = new Hare();
         tortoise = new Tortoise();
         randomNumber = new Random();
+    }
+
+    final public int getHareWins() {
+        return this.hareWins;
+    }
+
+    final public int getTortoiseWins() {
+        return this.tortoiseWins;
     }
 
     final public void reset() {
@@ -32,14 +43,17 @@ public class Race {
                 tortoise.move();
                 hare.move();
             }
+            clockTicks++;
 
         } while (tortoise.getPosition() < length && hare.getPosition() < length);
 
         if (tortoise.getPosition() >= length) {
-            return "Tortoise wins!";
+            tortoiseWins++;
+            return String.format("Tortoise wins at position %d and in %d clock ticks.", tortoise.getPosition(), clockTicks);
         }
         else {
-            return "Hare wins!";
+            hareWins++;
+            return String.format("Hare wins at position %d and in %d clock ticks.", hare.getPosition(), clockTicks);
         }
     }
 

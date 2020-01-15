@@ -8,7 +8,6 @@ public class Hare {
 
     final public void setPosition(int position) {
         this.position = position;
-        randomNumber = new Random();
     }
 
     final public int getPosition() {
@@ -16,6 +15,7 @@ public class Hare {
     }
 
     final public int move() {
+        randomNumber = new Random();
         int generateRandomNum = randomNumber.nextInt(101);
 
         if (generateRandomNum <= 20) {
@@ -36,14 +36,21 @@ public class Hare {
     }
 
     public String toString() {
-        return Integer.toString(position);
+        return "Hare's position is: " + position;
     }
 
-    public boolean equals(Hare obj) {
-        if (obj.getPosition() == this.position) {
+    public boolean equals(Object obj) {
+        if(obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Hare object = (Hare) obj;
+
+        if (object.getPosition() == this.position) {
             return true;
         }
-        return false;
+        else {
+            return false;
+        }
     }
-
 }
