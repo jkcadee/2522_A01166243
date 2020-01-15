@@ -33,5 +33,7 @@
 //        this.identificationNumber = numberOfGuppiesBorn;
 //    }
 //
-//    public Guppy(String newGenus, )
+//    public Guppy(String newGenus, String newSpecies, int newAgeInWeeks, ) {
+//
+//    }
 //}
