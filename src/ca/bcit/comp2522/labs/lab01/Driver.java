@@ -25,7 +25,7 @@ public class Driver {
         for (int races = 0; races < numOfRaces; races++) {
             race.simulateRace();
         }
-        return String.format("Hare won %d times.\nTortoise won %d times.", race.getHareWins(), race.getTortoiseWins());
+        return String.format("Hare won %d time(s).\nTortoise won %d times.", race.getHareWins(), race.getTortoiseWins());
     }
 
     /**
@@ -41,10 +41,12 @@ public class Driver {
 
         if (resultOneRace.equals("Tortoise")) {
             resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
-                    + oneRace.tortoise.getPosition() + ".";
+                    + oneRace.tortoise.getPosition() + "." + " Hare was at position " + oneRace.hare.getPosition()
+                    + ".";
         } else {
             resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
-                    + oneRace.hare.getPosition() + ".";
+                    + oneRace.hare.getPosition() + "." + " Tortoise was at position " + oneRace.tortoise.getPosition()
+                    + ".";
         }
 
         System.out.println(resultOneRace);
