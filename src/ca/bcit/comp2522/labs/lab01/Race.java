@@ -38,7 +38,7 @@ public class Race {
      * @return The integer type attribute hareWins specific to the instance of the object.
      */
 
-    final public int getHareWins() {
+    public final int getHareWins() {
         return this.hareWins;
     }
 
@@ -48,7 +48,7 @@ public class Race {
      * @return The integer type attribute tortoiseWins specific to the instance of the object.
      */
 
-    final public int getTortoiseWins() {
+    public final int getTortoiseWins() {
         return this.tortoiseWins;
     }
 
@@ -58,7 +58,7 @@ public class Race {
      * @return The integer type attribute clockTicks specific to the instance of the object.
      */
 
-    final public int getClockTicks() {
+    public final int getClockTicks() {
         return this.clockTicks;
     }
 
@@ -66,7 +66,7 @@ public class Race {
      * Resets the positions of the Hare and Tortoise objects to 0.
      */
 
-    final public void reset() {
+    public final void reset() {
         hare.setPosition(0);
         tortoise.setPosition(0);
     }
@@ -89,8 +89,7 @@ public class Race {
             if (generateRandomNum <= 50) {
                 hare.move();
                 tortoise.move();
-            }
-            else if (generateRandomNum <= 100) {
+            } else if (generateRandomNum <= 100) {
                 tortoise.move();
                 hare.move();
             }
@@ -101,8 +100,7 @@ public class Race {
         if (tortoise.getPosition() >= length) {
             tortoiseWins++;
             return "Tortoise";
-        }
-        else {
+        } else {
             hareWins++;
             return "Hare";
         }
@@ -115,7 +113,7 @@ public class Race {
      * @return A String representation of the winner of the race.
      */
 
-    final public String simulateRace() {
+    public final String simulateRace() {
         reset();
         return race();
     }

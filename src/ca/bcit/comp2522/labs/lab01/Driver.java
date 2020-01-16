@@ -22,7 +22,7 @@ public class Driver {
     public static String simulateRaces(int numOfRaces, int lengthOfRace) {
         Race race = new Race(lengthOfRace);
 
-        for(int races = 0; races < numOfRaces; races++) {
+        for (int races = 0; races < numOfRaces; races++) {
             race.simulateRace();
         }
         return String.format("Hare won %d times.\nTortoise won %d times.", race.getHareWins(), race.getTortoiseWins());
@@ -42,8 +42,7 @@ public class Driver {
         if (resultOneRace.equals("Tortoise")) {
             resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
                     + oneRace.tortoise.getPosition() + ".";
-        }
-        else {
+        } else {
             resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
                     + oneRace.hare.getPosition() + ".";
         }

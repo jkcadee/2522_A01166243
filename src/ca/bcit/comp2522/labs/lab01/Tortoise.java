@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Tortoise {
     private int position;
-    Random randomNumber;
+    Random randomNumber = new Random();
 
     /**
      * Sets the value of the attribute position.
@@ -20,7 +20,7 @@ public class Tortoise {
      * @param position The only parameter for this method. It is an integer type value.
      */
 
-    final public void setPosition(int position) {
+    public final void setPosition(int position) {
         this.position = position;
     }
 
@@ -30,7 +30,7 @@ public class Tortoise {
      * @return The integer type attribute position specific to the instance of the object.
      */
 
-    final public int getPosition() {
+    public final int getPosition() {
         return this.position;
     }
 
@@ -40,17 +40,18 @@ public class Tortoise {
      * @return The integer type attribute position.
      */
 
-    final public int move() {
-        randomNumber = new Random();
+    public final int move() {
+        if (randomNumber == null) {
+            randomNumber = new Random();
+        }
+
         int generateRandomNum = randomNumber.nextInt(101);
 
         if (generateRandomNum <= 50) {
             return position += 3;
-        }
-        else if (generateRandomNum <= 70) {
+        } else if (generateRandomNum <= 70) {
             return position -= 6;
-        }
-        else {
+        } else {
             return position += 1;
         }
     }
@@ -62,7 +63,7 @@ public class Tortoise {
      */
 
     @Override
-    final public String toString() {
+    public final String toString() {
         return "Tortoise's position is: " + position;
     }
 
@@ -74,7 +75,7 @@ public class Tortoise {
      */
 
     @Override
-    final public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
@@ -83,8 +84,7 @@ public class Tortoise {
 
         if (object.getPosition() == this.position) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
