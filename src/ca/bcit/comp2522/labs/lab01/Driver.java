@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.labs.lab01;
 
 /**
- * Simulates the races by running them in the main method of the program.
+ * Simulates the races by running them in the main method of the program. Tortoise wins most often.
  *
  * @author Janelle Kwok
  * @author BCIT
