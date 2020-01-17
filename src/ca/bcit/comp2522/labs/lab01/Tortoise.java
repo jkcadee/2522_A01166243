@@ -3,8 +3,8 @@ package ca.bcit.comp2522.labs.lab01;
 import java.util.Random;
 
 /**
- * Creates a Tortoise object with an integer type position attribute and ability to call a move() method to modify the
- * attribute position.
+ * Creates a Tortoise object with an integer type position attribute and
+ * ability to call a move() method to modify the attribute position.
  *
  * @author Janelle Kwok
  * @author BCIT
@@ -35,7 +35,8 @@ public class Tortoise {
     }
 
     /**
-     * Moves the Tortoise object by increasing or decreasing the position attribute by random chance.
+     * Moves the Tortoise object by increasing or decreasing the
+     * position attribute by random chance.
      *
      * @return The integer type attribute position.
      */
@@ -57,14 +58,22 @@ public class Tortoise {
     }
 
     /**
-     * Checks if the object passed into the method is: 1. Not null 2. The same object type 3. Has the same values within.
+     * Checks if the object passed into the method is:
+     * 1. Not null.
+     * 2. Same object (Address-wise).
+     * 3. The same object type.
+     * 4. Has the same values within.
      *
      * @param obj The only parameter for this method. It is an Object type value.
-     * @return A boolean signifying if the object passed into method is the same as what it being checked against.
+     * @return A boolean signifying if the object passed into method is the
+     * same as what it being checked against.
      */
 
     @Override
     public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
@@ -79,7 +88,8 @@ public class Tortoise {
     }
 
     /**
-     * Converts the attributes in the class into a String object and displays them in a informative manner.
+     * Converts the attributes in the class into a String object
+     * and displays them in a informative manner.
      *
      * @return The integer type attribute position.
      */

@@ -3,8 +3,8 @@ package ca.bcit.comp2522.labs.lab01;
 import java.util.Random;
 
 /**
- * Creates a Hare object with an integer type position attribute and ability to call a move() method to modify the
- * attribute position.
+ * Creates a Hare object with an integer type position attribute and ability to
+ * call a move() method to modify the attribute position.
  *
  * @author Janelle Kwok
  * @author BCIT
@@ -61,14 +61,22 @@ public class Hare {
     }
 
     /**
-     * Checks if the object passed into the method is: 1. Not null 2. The same object type 3. Has the same values within.
+     * Checks if the object passed into the method is:
+     * 1. Not null.
+     * 2. Same object (Address-wise).
+     * 3. The same object type.
+     * 4. Has the same values within.
      *
      * @param obj The only parameter for this method. It is an Object type value.
-     * @return A boolean signifying if the object passed into method is the same as what it being checked against.
+     * @return A boolean signifying if the object passed into method is the
+     * same as what it being checked against.
      */
 
     @Override
     public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }

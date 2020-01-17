@@ -40,13 +40,13 @@ public class Driver {
         String resultOneRace = oneRace.simulateRace();
 
         if (resultOneRace.equals("Tortoise")) {
-            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
-                    + oneRace.getTortoise().getPosition() + "." + " Hare was at position " + oneRace.getHare().getPosition()
-                    + ".";
+            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks()
+                    + " clock ticks at position " + oneRace.getTortoise().getPosition()
+                    + "." + " Hare was at position " + oneRace.getHare().getPosition() + ".";
         } else {
-            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks() + " clock ticks at position "
-                    + oneRace.getHare().getPosition() + "." + " Tortoise was at position " + oneRace.getTortoise().getPosition()
-                    + ".";
+            resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks()
+                    + " clock ticks at position " + oneRace.getHare().getPosition()
+                    + "." + " Tortoise was at position " + oneRace.getTortoise().getPosition() + ".";
         }
 
         System.out.println(resultOneRace);
