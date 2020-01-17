@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Hare {
     private int position;
-    Random randomNumber = new Random();
+    private Random randomNumber = new Random();
 
     /**
      * Sets the value of the attribute position.
@@ -61,17 +61,6 @@ public class Hare {
     }
 
     /**
-     * Converts the attributes in the class into a String object and displays them in a informative manner.
-     *
-     * @return The integer type attribute position.
-     */
-
-    @Override
-    public final String toString() {
-        return "Hare's position is: " + position;
-    }
-
-    /**
      * Checks if the object passed into the method is: 1. Not null 2. The same object type 3. Has the same values within.
      *
      * @param obj The only parameter for this method. It is an Object type value.
@@ -91,5 +80,16 @@ public class Hare {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Converts the attributes in the class into a String object and displays them in a informative manner.
+     *
+     * @return The integer type attribute position.
+     */
+
+    @Override
+    public final String toString() {
+        return "Hare's position is: " + position;
     }
 }

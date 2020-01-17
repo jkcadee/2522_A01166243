@@ -15,8 +15,8 @@ public class Race {
     private int hareWins;
     private int tortoiseWins;
     private Random randomNumber;
-    Hare hare;
-    Tortoise tortoise;
+    private Hare hare;
+    private Tortoise tortoise;
 
     /**
      * Constructs a new Race object with a specified length attribute and instantiates a new Hare, Tortoise and Random
@@ -30,6 +30,14 @@ public class Race {
         hare = new Hare();
         tortoise = new Tortoise();
         randomNumber = new Random();
+    }
+
+    public final Hare getHare() {
+        return this.hare;
+    }
+
+    public final Tortoise getTortoise() {
+        return this.tortoise;
     }
 
     /**

@@ -1,6 +1,15 @@
 package ca.bcit.comp2522.quizzes.quiz01;
 
 public class AlarmClock {
+
+    /**
+     * Finds the amount of bars contained within the valid numbers for each digit.
+     *
+     * @param numbers The first parameter. It is an array of integer type values.
+     * @param sizeOfArray The second parameter. It is an integer type value.
+     * @return Returns the highest amount of bars at the specified digit.
+     */
+
     public static int numberFinderBar(int numbers[], int sizeOfArray) {
         for (int i = 0; i < sizeOfArray; i++) {
             boolean isHighest = true;
@@ -17,6 +26,14 @@ public class AlarmClock {
         return 0;
     }
 
+    /**
+     * Finds the highest digit corresponding to the highest amount of bars.
+     *
+     * @param numbers The first parameter. It is an array of integer type values.
+     * @param sizeOfArray The second parameter. It is an integer type value.
+     * @return Returns the highest digit at the specified digit.
+     */
+
     public static int numberFinderDigit(int numbers[], int sizeOfArray) {
         for (int i = 0; i < sizeOfArray; i++) {
             boolean isHighest = true;
@@ -32,6 +49,12 @@ public class AlarmClock {
         }
         return 0;
     }
+
+    /**
+     * Finds the highest clock time (24 hr) and the highest amount of bars.
+     *
+     * @param args Not used.
+     */
 
     public static void main(String[] args) {
         int numbers[] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
