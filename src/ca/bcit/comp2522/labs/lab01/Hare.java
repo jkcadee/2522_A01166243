@@ -11,6 +11,14 @@ import java.util.Random;
  * @version 2020
  */
 public class Hare {
+    private static final int RANGE = 101;
+    private static final int TWENTY_PERCENT = 20;
+    private static final int TEN_PERCENT_ONE = 30;
+    private static final int TEN_PERCENT_TWO = 40;
+    private static final int THIRTY_PERCENT = 70;
+    private static final int NINE = 9;
+    private static final int TWELVE = 12;
+
     private int position;
     private Random randomNumber = new Random();
 
@@ -45,18 +53,22 @@ public class Hare {
             randomNumber = new Random();
         }
 
-        int generateRandomNum = randomNumber.nextInt(101);
+        int generateRandomNum = randomNumber.nextInt(RANGE);
 
-        if (generateRandomNum <= 20) {
+        if (generateRandomNum <= TWENTY_PERCENT) {
             return position;
-        } else if (generateRandomNum <= 30) {
-            return position += 9;
-        } else if (generateRandomNum <= 40) {
-            return position -= 12;
-        } else if (generateRandomNum <= 70) {
-            return position += 1;
+        } else if (generateRandomNum <= TEN_PERCENT_ONE) {
+            position += NINE;
+            return position;
+        } else if (generateRandomNum <= TEN_PERCENT_TWO) {
+            position -= TWELVE;
+            return position;
+        } else if (generateRandomNum <= THIRTY_PERCENT) {
+            position += 1;
+            return position;
         } else {
-            return position -= 2;
+            position -= 2;
+            return position;
         }
     }
 
@@ -83,15 +95,12 @@ public class Hare {
 
         Hare object = (Hare) obj;
 
-        if (object.getPosition() == this.position) {
-            return true;
-        } else {
-            return false;
-        }
+        return object.getPosition() == this.position;
     }
 
     /**
-     * Converts the attributes in the class into a String object and displays them in a informative manner.
+     * Converts the attributes in the class into a String object and
+     * displays them in a informative manner.
      *
      * @return The integer type attribute position.
      */

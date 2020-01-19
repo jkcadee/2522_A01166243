@@ -12,11 +12,14 @@ public class Driver {
     /**
      * Simulates multiple races between the Hare and Tortoise objects.
      *
-     * @param numOfRaces The first parameter for this method. It specifies the number of races done.
+     * @param numOfRaces The first parameter for this method.
+     *                   It specifies the number of races done.
      *                   It is an integer type value.
-     * @param lengthOfRace The second parameter for this method. It specifies the length of the race.
+     * @param lengthOfRace The second parameter for this method.
+     *                     It specifies the length of the race.
      *                     It is an integer type value.
-     * @return A formatted String object stating the amount of times the Hare and Tortoise objects won the race.
+     * @return A formatted String object stating the amount of times
+     * the Hare and Tortoise objects won the race.
      */
 
     public static String simulateRaces(int numOfRaces, int lengthOfRace) {
@@ -25,7 +28,8 @@ public class Driver {
         for (int races = 0; races < numOfRaces; races++) {
             race.simulateRace();
         }
-        return String.format("Hare won %d time(s).\nTortoise won %d times.", race.getHareWins(), race.getTortoiseWins());
+        return String.format("Hare won %d time(s).\nTortoise won %d times.",
+                race.getHareWins(), race.getTortoiseWins());
     }
 
     /**
@@ -46,7 +50,8 @@ public class Driver {
         } else {
             resultOneRace = resultOneRace + " wins in " + oneRace.getClockTicks()
                     + " clock ticks at position " + oneRace.getHare().getPosition()
-                    + "." + " Tortoise was at position " + oneRace.getTortoise().getPosition() + ".";
+                    + "." + " Tortoise was at position "
+                    + oneRace.getTortoise().getPosition() + ".";
         }
 
         System.out.println(resultOneRace);

@@ -11,6 +11,12 @@ import java.util.Random;
  * @version 2020
  */
 public class Tortoise {
+    private static final int RANGE = 101;
+    private static final int FIFTY_PERCENT = 50;
+    private static final int TWENTY_PERCENT = 70;
+    private static final int THREE = 3;
+    private static final int SIX = 6;
+
     private int position;
     private Random randomNumber = new Random();
 
@@ -46,14 +52,17 @@ public class Tortoise {
             randomNumber = new Random();
         }
 
-        int generateRandomNum = randomNumber.nextInt(101);
+        int generateRandomNum = randomNumber.nextInt(RANGE);
 
-        if (generateRandomNum <= 50) {
-            return position += 3;
-        } else if (generateRandomNum <= 70) {
-            return position -= 6;
+        if (generateRandomNum <= FIFTY_PERCENT) {
+            position += THREE;
+            return position;
+        } else if (generateRandomNum <= TWENTY_PERCENT) {
+            position -= SIX;
+            return position;
         } else {
-            return position += 1;
+            position += 1;
+            return position;
         }
     }
 
@@ -80,11 +89,7 @@ public class Tortoise {
 
         Tortoise object = (Tortoise) obj;
 
-        if (object.getPosition() == this.position) {
-            return true;
-        } else {
-            return false;
-        }
+        return object.getPosition() == this.position;
     }
 
     /**

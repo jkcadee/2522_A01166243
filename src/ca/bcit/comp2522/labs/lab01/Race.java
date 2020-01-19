@@ -11,6 +11,9 @@ import java.util.Random;
  * @version 2020
  */
 public class Race {
+    private static final int RANGE = 101;
+    private static final int FIFTY_PERCENT_ONE = 50;
+
     private int length;
     private int clockTicks;
     private int hareWins;
@@ -96,12 +99,12 @@ public class Race {
 
     private String race() {
         do {
-            int generateRandomNum = randomNumber.nextInt(101);
+            int generateRandomNum = randomNumber.nextInt(RANGE);
 
-            if (generateRandomNum <= 50) {
+            if (generateRandomNum <= FIFTY_PERCENT_ONE) {
                 hare.move();
                 tortoise.move();
-            } else if (generateRandomNum <= 100) {
+            } else {
                 tortoise.move();
                 hare.move();
             }
