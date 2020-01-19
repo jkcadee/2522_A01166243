@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.assignments.a1;
 
-import ca.bcit.comp2522.labs.lab01.Hare;
-
 public class Guppy {
     final static int YOUNG_FISH_AGE_IN_WEEKS = 10;
     final static int MATURE_FISH_AGE_IN_WEEKS = 30;
@@ -32,19 +30,21 @@ public class Guppy {
         this.isFemale = true;
         this.isAlive = true;
         this.healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
-        this.identificationNumber = numberOfGuppiesBorn+1;
+        numberOfGuppiesBorn++;
+        this.identificationNumber = numberOfGuppiesBorn;
     }
-
+    
     public Guppy(String newGenus, String newSpecies, int newAgeInWeeks, boolean newIsFemale, int newGenerationNumber, double newHealthCoefficient) {
-        this.genus = newGenus.substring(0, 1).toUpperCase() + newGenus.substring(1).toLowerCase();
-        this.species = newSpecies.toLowerCase();
+        if (newGenus == null || newGenus.trim().isEmpty() || newSpecies == null || newSpecies.trim().isEmpty()
+                || newAgeInWeeks < 0 || newAgeInWeeks >= 50 || newGenerationNumber < 0 || newHealthCoefficient < 0.0
+                || newHealthCoefficient > 1.0) {
+            throw new IllegalArgumentException("Value is invalid.");
+        }
+        this.genus = newGenus.trim().substring(0, 1).toUpperCase() + newGenus.trim().substring(1).toLowerCase();
+        this.species = newSpecies.trim().toLowerCase();
         this.ageInWeeks = Math.max(newAgeInWeeks, 0);
         this.isFemale = newIsFemale;
-        if (newGenerationNumber < 0) {
-            this.generationNumber = 1;
-        } else {
-            this.generationNumber = newGenerationNumber;
-        }
+        this.generationNumber = newGenerationNumber;
         if (newHealthCoefficient > MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = Double.min(newHealthCoefficient, MAXIMUM_HEALTH_COEFFICIENT);
         } else if (newHealthCoefficient < MINIMUM_HEALTH_COEFFICIENT) {
@@ -53,7 +53,8 @@ public class Guppy {
             this.healthCoefficient = newHealthCoefficient;
         }
         this.isAlive = true;
-        this.identificationNumber = numberOfGuppiesBorn+1;
+        numberOfGuppiesBorn++;
+        this.identificationNumber = numberOfGuppiesBorn;
     }
 
     public void incrementAge(){
@@ -75,7 +76,7 @@ public class Guppy {
         return this.ageInWeeks;
     }
 
-    public boolean isFemale() {
+    public boolean getIsFemale() {
         return this.isFemale;
     }
 
@@ -83,7 +84,7 @@ public class Guppy {
         return this.generationNumber;
     }
 
-    public boolean isAlive() {
+    public boolean getIsAlive() {
         return this.isAlive;
     }
 
@@ -128,7 +129,7 @@ public class Guppy {
             return MINIMUM_WATER_VOLUME_ML;
         } else if (this.ageInWeeks <= 30) {
             return  MINIMUM_WATER_VOLUME_ML * ageInWeeks / YOUNG_FISH_AGE_IN_WEEKS;
-        } else if (this.ageInWeeks < 50) {
+        } else if (this.ageInWeeks <= 50) {
             return MINIMUM_WATER_VOLUME_ML * 1.5;
         } else {
             return 0.0;
@@ -164,14 +165,14 @@ public class Guppy {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-
         Guppy object = (Guppy) obj;
-
         if (object.getAgeInWeeks() == this.getAgeInWeeks() &&
                 object.getGenerationNumber() == this.generationNumber &&
                 object.getGenus().equals(this.genus) &&
                 object.getHealthCoefficient() == this.healthCoefficient &&
-                object.getSpecies().equals(this.species)) {
+                object.getSpecies().equals(this.species) &&
+                object.getIsFemale() == this.isFemale &&
+                object.getIsAlive() == this.isAlive) {
             return true;
         } else {
             return false;
@@ -183,7 +184,7 @@ public class Guppy {
 class Driver {
     public static void main(String[] args) {
         Guppy newGuppy = new Guppy();
-        Guppy newGuppy2 = new Guppy("gUppy", "GUPPY", 5, false, 30, 1.0);
+        Guppy newGuppy2 = new Guppy("  poECILIA    ", "  ELEgans   ", 5, false, 30, 1.0);
         System.out.println(newGuppy2.getGenus());
         System.out.println(newGuppy2.getSpecies());
         newGuppy.changeHealthCoefficient(0.2);
