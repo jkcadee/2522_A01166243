@@ -16,8 +16,8 @@ public class Hare {
     private static final int TEN_PERCENT_ONE = 30;
     private static final int TEN_PERCENT_TWO = 40;
     private static final int THIRTY_PERCENT = 70;
-    private static final int NINE = 9;
-    private static final int TWELVE = 12;
+    private static final int BIG_HOP = 9;
+    private static final int BIG_SLIP = 12;
 
     private int position;
     private Random randomNumber = new Random();
@@ -58,10 +58,10 @@ public class Hare {
         if (generateRandomNum <= TWENTY_PERCENT) {
             return position;
         } else if (generateRandomNum <= TEN_PERCENT_ONE) {
-            position += NINE;
+            position += BIG_HOP;
             return position;
         } else if (generateRandomNum <= TEN_PERCENT_TWO) {
-            position -= TWELVE;
+            position -= BIG_SLIP;
             return position;
         } else if (generateRandomNum <= THIRTY_PERCENT) {
             position += 1;

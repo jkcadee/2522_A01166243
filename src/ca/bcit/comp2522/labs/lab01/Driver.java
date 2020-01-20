@@ -8,6 +8,9 @@ package ca.bcit.comp2522.labs.lab01;
  * @version 2020
  */
 public class Driver {
+    private static final int LENGTH_100 = 100;
+    private static final int NUMBER_OF_RACES_1000 = 1000;
+    private static final int NUMBER_OF_RACES = 100;
 
     /**
      * Simulates multiple races between the Hare and Tortoise objects.
@@ -39,7 +42,7 @@ public class Driver {
      */
 
     public static void main(String[] args) {
-        Race oneRace = new Race(100);
+        Race oneRace = new Race(LENGTH_100);
 
         String resultOneRace = oneRace.simulateRace();
 
@@ -55,7 +58,7 @@ public class Driver {
         }
 
         System.out.println(resultOneRace);
-        System.out.println(simulateRaces(100, 100));
-        System.out.println(simulateRaces(1000, 100));
+        System.out.println(simulateRaces(NUMBER_OF_RACES, LENGTH_100));
+        System.out.println(simulateRaces(NUMBER_OF_RACES_1000, LENGTH_100));
     }
 }

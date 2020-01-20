@@ -14,8 +14,8 @@ public class Tortoise {
     private static final int RANGE = 101;
     private static final int FIFTY_PERCENT = 50;
     private static final int TWENTY_PERCENT = 70;
-    private static final int THREE = 3;
-    private static final int SIX = 6;
+    private static final int SMALL_TROT = 3;
+    private static final int BIG_SLIP = 6;
 
     private int position;
     private Random randomNumber = new Random();
@@ -55,10 +55,10 @@ public class Tortoise {
         int generateRandomNum = randomNumber.nextInt(RANGE);
 
         if (generateRandomNum <= FIFTY_PERCENT) {
-            position += THREE;
+            position += SMALL_TROT;
             return position;
         } else if (generateRandomNum <= TWENTY_PERCENT) {
-            position -= SIX;
+            position -= BIG_SLIP;
             return position;
         } else {
             position += 1;
