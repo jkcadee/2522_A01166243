@@ -16,6 +16,8 @@ public class Hare {
     private static final int TEN_PERCENT_ONE = 30;
     private static final int TEN_PERCENT_TWO = 40;
     private static final int THIRTY_PERCENT = 70;
+    private static final int SMALL_HOP = 1;
+    private static final int SMALL_SLIP = 2;
     private static final int BIG_HOP = 9;
     private static final int BIG_SLIP = 12;
 
@@ -64,10 +66,10 @@ public class Hare {
             position -= BIG_SLIP;
             return position;
         } else if (generateRandomNum <= THIRTY_PERCENT) {
-            position += 1;
+            position += SMALL_HOP;
             return position;
         } else {
-            position -= 2;
+            position -= SMALL_SLIP;
             return position;
         }
     }
@@ -102,7 +104,7 @@ public class Hare {
      * Converts the attributes in the class into a String object and
      * displays them in a informative manner.
      *
-     * @return The integer type attribute position.
+     * @return A String representation of the attributes within Hare.
      */
 
     @Override

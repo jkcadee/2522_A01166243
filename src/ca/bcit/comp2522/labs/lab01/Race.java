@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Race {
     private static final int RANGE = 101;
-    private static final int FIFTY_PERCENT_ONE = 50;
+    private static final int FIFTY_PERCENT = 50;
 
     private int length;
     private int clockTicks;
@@ -101,7 +101,7 @@ public class Race {
         do {
             int generateRandomNum = randomNumber.nextInt(RANGE);
 
-            if (generateRandomNum <= FIFTY_PERCENT_ONE) {
+            if (generateRandomNum <= FIFTY_PERCENT) {
                 hare.move();
                 tortoise.move();
             } else {

@@ -14,6 +14,7 @@ public class Tortoise {
     private static final int RANGE = 101;
     private static final int FIFTY_PERCENT = 50;
     private static final int TWENTY_PERCENT = 70;
+    private static final int TINY_TROT = 1;
     private static final int SMALL_TROT = 3;
     private static final int BIG_SLIP = 6;
 
@@ -61,7 +62,7 @@ public class Tortoise {
             position -= BIG_SLIP;
             return position;
         } else {
-            position += 1;
+            position += TINY_TROT;
             return position;
         }
     }
@@ -96,7 +97,7 @@ public class Tortoise {
      * Converts the attributes in the class into a String object
      * and displays them in a informative manner.
      *
-     * @return The integer type attribute position.
+     * @return A String representation of the attributes within Tortoise.
      */
 
     @Override
