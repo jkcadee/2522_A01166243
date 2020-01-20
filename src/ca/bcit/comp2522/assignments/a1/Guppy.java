@@ -48,6 +48,10 @@ public class Guppy {
      * Constant signifying the number 1.5.
      */
     static final double ONE_POINT_FIVE = 1.5;
+    /**
+     * Constant signifying the amount of water a dead Guppy needs.
+     */
+    static final double DEAD_GUPPY_WATER_VOL = 0.0;
 
     private static int numberOfGuppiesBorn;
 
@@ -284,7 +288,7 @@ public class Guppy {
         } else if (this.ageInWeeks <= MAXIMUM_AGE_IN_WEEKS) {
             return MINIMUM_WATER_VOLUME_ML * ONE_POINT_FIVE;
         } else {
-            return 0.0;
+            return DEAD_GUPPY_WATER_VOL;
         }
     }
 
