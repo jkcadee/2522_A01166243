@@ -78,8 +78,7 @@ public class Guppy {
         this.isFemale = true;
         this.isAlive = true;
         this.healthCoefficient = DEFAULT_HEALTH_COEFFICIENT;
-        numberOfGuppiesBorn++;
-        this.identificationNumber = numberOfGuppiesBorn;
+        this.identificationNumber = ++numberOfGuppiesBorn;
     }
 
     /**
@@ -120,8 +119,7 @@ public class Guppy {
             this.healthCoefficient = newHealthCoefficient;
         }
         this.isAlive = true;
-        numberOfGuppiesBorn++;
-        this.identificationNumber = numberOfGuppiesBorn;
+        this.identificationNumber = ++numberOfGuppiesBorn;
     }
 
     /**
