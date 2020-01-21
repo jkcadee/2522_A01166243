@@ -96,8 +96,9 @@ public class Guppy {
      *
      */
 
-    public Guppy(String newGenus, String newSpecies, int newAgeInWeeks,
-                 boolean newIsFemale, int newGenerationNumber, double newHealthCoefficient) {
+    public Guppy(final String newGenus, final String newSpecies, final int newAgeInWeeks,
+                 final boolean newIsFemale, final int newGenerationNumber,
+                 final double newHealthCoefficient) {
         if (newGenus == null || newGenus.trim().isEmpty()
                 || newSpecies == null || newSpecies.trim().isEmpty()
                 || newAgeInWeeks < 0 || newAgeInWeeks >= MAXIMUM_AGE_IN_WEEKS
@@ -121,19 +122,6 @@ public class Guppy {
         this.isAlive = true;
         numberOfGuppiesBorn++;
         this.identificationNumber = numberOfGuppiesBorn;
-    }
-
-    /**
-     * Increments the value in the attribute ageInWeeks.
-     * If the value at ageInWeeks is greater than MAXIMUM_AGE_IN_WEEKS,
-     * isAlive will be made false.
-     */
-
-    public final void incrementAge() {
-        this.ageInWeeks++;
-        if (this.ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
-            this.isAlive = false;
-        }
     }
 
     /**
@@ -234,7 +222,7 @@ public class Guppy {
      * @param ageInWeeks The only parameter for this method. It is an integer type value.
      */
 
-    public final void setAgeInWeeks(int ageInWeeks) {
+    public final void setAgeInWeeks(final int ageInWeeks) {
         if (ageInWeeks < 0) {
             this.ageInWeeks = Math.max(this.ageInWeeks, ageInWeeks);
         } else if (ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
@@ -263,13 +251,26 @@ public class Guppy {
      * @param healthCoefficient The only parameter for this method. It is an double type value.
      */
 
-    public final void setHealthCoefficient(double healthCoefficient) {
+    public final void setHealthCoefficient(final double healthCoefficient) {
         if (healthCoefficient < MINIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = Double.max(this.healthCoefficient, healthCoefficient);
         } else if (healthCoefficient > MAXIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = Double.min(this.healthCoefficient, healthCoefficient);
         } else {
             this.healthCoefficient = healthCoefficient;
+        }
+    }
+
+    /**
+     * Increments the value in the attribute ageInWeeks.
+     * If the value at ageInWeeks is greater than MAXIMUM_AGE_IN_WEEKS,
+     * isAlive will be made false.
+     */
+
+    public final void incrementAge() {
+        this.ageInWeeks++;
+        if (this.ageInWeeks > MAXIMUM_AGE_IN_WEEKS) {
+            this.isAlive = false;
         }
     }
 
@@ -302,7 +303,7 @@ public class Guppy {
      * @param delta The only parameter for this method. It is an double type value.
      */
 
-    public final void changeHealthCoefficient(double delta) {
+    public final void changeHealthCoefficient(final double delta) {
         this.healthCoefficient += delta;
         if (this.healthCoefficient <= MINIMUM_HEALTH_COEFFICIENT) {
             this.healthCoefficient = MINIMUM_HEALTH_COEFFICIENT;
@@ -320,7 +321,7 @@ public class Guppy {
      * 3. The same object type.
      * 4. Has the same values within.
      *
-     * @param obj The only parameter for this method. It is an Object type value.
+     * @param obj The value being compared with. It is an Object type value.
      * @return A boolean signifying if the object passed into method is the
      * same as what it being checked against.
      */

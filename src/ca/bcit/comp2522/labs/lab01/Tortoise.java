@@ -24,10 +24,10 @@ public class Tortoise {
     /**
      * Sets the value of the attribute position.
      *
-     * @param position The only parameter for this method. It is an integer type value.
+     * @param position The position of the Tortoise. It is an integer type value.
      */
 
-    public final void setPosition(int position) {
+    public final void setPosition(final int position) {
         this.position = position;
     }
 
@@ -74,13 +74,13 @@ public class Tortoise {
      * 3. The same object type.
      * 4. Has the same values within.
      *
-     * @param obj The only parameter for this method. It is an Object type value.
+     * @param obj The value being compared with. It is an Object type value.
      * @return A boolean signifying if the object passed into method is the
      * same as what it being checked against.
      */
 
     @Override
-    public final boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

@@ -25,7 +25,7 @@ public class Driver {
      * the Hare and Tortoise objects won the race.
      */
 
-    public static String simulateRaces(int numOfRaces, int lengthOfRace) {
+    public static String simulateRaces(final int numOfRaces, final int lengthOfRace) {
         Race race = new Race(lengthOfRace);
 
         for (int races = 0; races < numOfRaces; races++) {
