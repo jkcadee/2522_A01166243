@@ -98,6 +98,7 @@ public class Mathematics {
         if (i1 == 0) {
             return 0.0;
         }
+        
         return i / i1;
     }
 
@@ -112,6 +113,7 @@ public class Mathematics {
         if (i < 0) {
             i *= -1;
         }
+
         return i;
     }
 
@@ -209,6 +211,7 @@ public class Mathematics {
                 }
             }
         }
+
         return evenSum;
     }
 
@@ -237,6 +240,7 @@ public class Mathematics {
                 }
             }
         }
+
         return productSum;
     }
 }
