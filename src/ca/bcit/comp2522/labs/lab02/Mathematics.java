@@ -31,90 +31,90 @@ public class Mathematics {
     /**
      * Calculates the area of a circle.
      *
-     * @param v The radius of the circle. It is a double type value.
+     * @param radius The radius of the circle. It is a double type value.
      * @return The area of a circle.
      */
 
-    public double getCircleArea(double v) {
-        return PI * Math.pow(v, 2);
+    public double getCircleArea(double radius) {
+        return PI * Math.pow(radius, 2);
     }
 
     /**
      * Calculates the area of a square.
      *
-     * @param v The length of the sides of the square. It is a double type value.
+     * @param length The length of the sides of the square. It is a double type value.
      * @return The area of the square.
      */
 
-    public double getSquareArea(double v) {
-        return v * v;
+    public double getSquareArea(double length) {
+        return length * length;
     }
 
     /**
      * Adds the two parameters together.
      *
-     * @param v The first number to be added. It is a double type value.
-     * @param v1 The second number to be added. It is a double type value.
+     * @param firstNumber The first number to be added. It is a double type value.
+     * @param secondNumber The second number to be added. It is a double type value.
      * @return The sum of the two parameters.
      */
 
-    public double add(double v, double v1) {
-        return v + v1;
+    public double add(double firstNumber, double secondNumber) {
+        return firstNumber + secondNumber;
     }
 
     /**
      * Multiplies the two parameters together.
      *
-     * @param v The first number to be multiplied. It is a double type value.
-     * @param v1 The second number to be multiplied. It is a double type value.
+     * @param firstNumber The first number to be multiplied. It is a double type value.
+     * @param secondNumber The second number to be multiplied. It is a double type value.
      * @return The product of the two parameters.
      */
 
-    public double multiply(double v, double v1) {
-        return v * v1;
+    public double multiply(double firstNumber, double secondNumber) {
+        return firstNumber * secondNumber;
     }
 
     /**
      * Subtracts the two parameters together.
      *
-     * @param v The first number to be subtracted. It is a double type value.
-     * @param v1 The second number to be subtracted. It is a double type value.
+     * @param firstNumber The first number to be subtracted. It is a double type value.
+     * @param secondNumber The second number to be subtracted. It is a double type value.
      * @return The difference of the two parameters.
      */
 
-    public double subtract(double v, double v1) {
-        return v - v1;
+    public double subtract(double firstNumber, double secondNumber) {
+        return firstNumber - secondNumber;
     }
 
     /**
      * Divides the two parameters together. Will check of the divisor is 0.
      *
-     * @param i The first number to be divided. It is a int type value.
-     * @param i1 The second number to be divided. It is a int type value.
+     * @param firstNumber The first number to be divided. It is a int type value.
+     * @param secondNumber The second number to be divided. It is a int type value.
      * @return The quotient of the two parameters.
      */
 
-    public double divide(double i, double i1) {
-        if (i1 == 0) {
+    public double divide(double firstNumber, double secondNumber) {
+        if (secondNumber == 0) {
             return 0.0;
         }
-        
-        return i / i1;
+
+        return firstNumber / secondNumber;
     }
 
     /**
      * Takes the absolute value of the parameter.
      *
-     * @param i The number passed into method. It is an int type value.
+     * @param number The number passed into method. It is an int type value.
      * @return The parameter's absolute value.
      */
 
-    public int absoluteValue(int i) {
-        if (i < 0) {
-            i *= -1;
+    public int absoluteValue(int number) {
+        if (number < 0) {
+            number *= -1;
         }
 
-        return i;
+        return number;
     }
 
     /**
