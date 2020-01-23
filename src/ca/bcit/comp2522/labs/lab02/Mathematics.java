@@ -35,7 +35,7 @@ public class Mathematics {
      * @return The area of a circle.
      */
 
-    public double getCircleArea(final double radius) {
+    public final double getCircleArea(final double radius) {
         return PI * Math.pow(radius, 2);
     }
 
@@ -46,7 +46,7 @@ public class Mathematics {
      * @return The area of the square.
      */
 
-    public double getSquareArea(final double length) {
+    public final double getSquareArea(final double length) {
         return length * length;
     }
 
@@ -58,7 +58,7 @@ public class Mathematics {
      * @return The sum of the two parameters.
      */
 
-    public double add(final double firstNumber, final double secondNumber) {
+    public final double add(final double firstNumber, final double secondNumber) {
         return firstNumber + secondNumber;
     }
 
@@ -70,7 +70,7 @@ public class Mathematics {
      * @return The product of the two parameters.
      */
 
-    public double multiply(final double firstNumber, final double secondNumber) {
+    public final double multiply(final double firstNumber, final double secondNumber) {
         return firstNumber * secondNumber;
     }
 
@@ -82,7 +82,7 @@ public class Mathematics {
      * @return The difference of the two parameters.
      */
 
-    public double subtract(final double firstNumber, final double secondNumber) {
+    public final double subtract(final double firstNumber, final double secondNumber) {
         return firstNumber - secondNumber;
     }
 
@@ -94,7 +94,7 @@ public class Mathematics {
      * @return The quotient of the two parameters.
      */
 
-    public double divide(final double firstNumber, final double secondNumber) {
+    public final double divide(final double firstNumber, final double secondNumber) {
         if (secondNumber == 0) {
             return 0.0;
         }
@@ -109,7 +109,7 @@ public class Mathematics {
      * @return The parameter's absolute value.
      */
 
-    public int absoluteValue(int number) {
+    public final int absoluteValue(int number) {
         if (number < 0) {
             number *= -1;
         }
@@ -125,7 +125,7 @@ public class Mathematics {
      * not including invalid number.
      */
 
-    public int getRandomNumberBetweenTenAndTwentyButNotFifteen() {
+    public final int getRandomNumberBetweenTenAndTwentyButNotFifteen() {
         final int lowerBound = 10;
         final int invalidNumber = 15;
         final int upperBound = 21;
@@ -145,7 +145,7 @@ public class Mathematics {
      * @return The converted number (in feet) to kilometers.
      */
 
-    public double convertFeetToKilometres(final double feet) {
+    public final double convertFeetToKilometres(final double feet) {
         return ONE_FOOT_TO_KILOMETRE_RATIO * feet;
     }
 
@@ -156,7 +156,7 @@ public class Mathematics {
      * @return The sum of the ints up to and including the parameter.
      */
 
-    public int sumOfInts(final int upperBound) {
+    public final int sumOfInts(final int upperBound) {
         int intSum = 0;
 
         for (int num = 0; num <= upperBound; num++) {
@@ -173,7 +173,7 @@ public class Mathematics {
      * @return A boolean signifying if the argument is positive.
      */
 
-    public boolean isPositive(final int i) {
+    public final boolean isPositive(final int i) {
         return i > 0;
     }
 
@@ -184,7 +184,7 @@ public class Mathematics {
      * @return A boolean signifying if the argument is even.
      */
 
-    public boolean isEven(final int i) {
+    public final boolean isEven(final int i) {
         return i % 2 == 0;
     }
 
@@ -195,7 +195,7 @@ public class Mathematics {
      * @return The sum of the ints up to and including the parameter that are even.
      */
 
-    public int sumOfEvens(final int upperBound) {
+    public final int sumOfEvens(final int upperBound) {
         int evenSum = 0;
 
         if (!isPositive(upperBound)) {
@@ -224,7 +224,7 @@ public class Mathematics {
      * passed in the factors parameter.
      */
 
-    public int sumOfProducts(final int upperBound, final int factor) {
+    public final int sumOfProducts(final int upperBound, final int factor) {
         int productSum = 0;
 
         if (!isPositive(upperBound)) {
