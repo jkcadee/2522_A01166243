@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class Mathematics {
     public static final double PI = 3.14159;
-    public static final double ONE_FOOT_TO_KILOMETRE_RATIO = 0.0003048;
+    public static final double ONE_FOOT_TO_KILOMETER_RATIO = 0.0003048;
     private final Random randomNumber;
 
     public Mathematics() {
@@ -63,7 +63,7 @@ public class Mathematics {
     }
 
     public double convertFeetToKilometres(double v) {
-        return ONE_FOOT_TO_KILOMETRE_RATIO * v;
+        return ONE_FOOT_TO_KILOMETER_RATIO * v;
     }
 
     public int sumOfInts(int i) {

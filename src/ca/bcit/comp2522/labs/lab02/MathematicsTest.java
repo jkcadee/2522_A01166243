@@ -44,7 +44,7 @@ public class MathematicsTest {
      */
     @Test
     public void testFeetToKMRatioValue() {
-        assertEquals(0.0003048, Mathematics.ONE_FOOT_TO_KILOMETRE_RATIO, 0.0000001);
+        assertEquals(0.0003048, Mathematics.ONE_FOOT_TO_KILOMETER_RATIO, 0.0000001);
     }
 
     /**
