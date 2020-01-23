@@ -94,11 +94,11 @@ public class Mathematics {
      * @return The quotient of the two parameters.
      */
 
-    public double divide(int i, int i1) {
+    public double divide(double i, double i1) {
         if (i1 == 0) {
             return 0.0;
         }
-        return Math.floorDiv(i, i1);
+        return i / i1;
     }
 
     /**
