@@ -35,7 +35,7 @@ public class Mathematics {
      * @return The area of a circle.
      */
 
-    public double getCircleArea(double radius) {
+    public double getCircleArea(final double radius) {
         return PI * Math.pow(radius, 2);
     }
 
@@ -46,7 +46,7 @@ public class Mathematics {
      * @return The area of the square.
      */
 
-    public double getSquareArea(double length) {
+    public double getSquareArea(final double length) {
         return length * length;
     }
 
@@ -58,7 +58,7 @@ public class Mathematics {
      * @return The sum of the two parameters.
      */
 
-    public double add(double firstNumber, double secondNumber) {
+    public double add(final double firstNumber, final double secondNumber) {
         return firstNumber + secondNumber;
     }
 
@@ -70,7 +70,7 @@ public class Mathematics {
      * @return The product of the two parameters.
      */
 
-    public double multiply(double firstNumber, double secondNumber) {
+    public double multiply(final double firstNumber, final double secondNumber) {
         return firstNumber * secondNumber;
     }
 
@@ -82,7 +82,7 @@ public class Mathematics {
      * @return The difference of the two parameters.
      */
 
-    public double subtract(double firstNumber, double secondNumber) {
+    public double subtract(final double firstNumber, final double secondNumber) {
         return firstNumber - secondNumber;
     }
 
@@ -94,7 +94,7 @@ public class Mathematics {
      * @return The quotient of the two parameters.
      */
 
-    public double divide(double firstNumber, double secondNumber) {
+    public double divide(final double firstNumber, final double secondNumber) {
         if (secondNumber == 0) {
             return 0.0;
         }
@@ -145,7 +145,7 @@ public class Mathematics {
      * @return The converted number (in feet) to kilometers.
      */
 
-    public double convertFeetToKilometres(double feet) {
+    public double convertFeetToKilometres(final double feet) {
         return ONE_FOOT_TO_KILOMETRE_RATIO * feet;
     }
 
@@ -156,7 +156,7 @@ public class Mathematics {
      * @return The sum of the ints up to and including the parameter.
      */
 
-    public int sumOfInts(int upperBound) {
+    public int sumOfInts(final int upperBound) {
         int intSum = 0;
 
         for (int num = 0; num <= upperBound; num++) {
@@ -173,7 +173,7 @@ public class Mathematics {
      * @return A boolean signifying if the argument is positive.
      */
 
-    public boolean isPositive(int i) {
+    public boolean isPositive(final int i) {
         return i > 0;
     }
 
@@ -184,7 +184,7 @@ public class Mathematics {
      * @return A boolean signifying if the argument is even.
      */
 
-    public boolean isEven(int i) {
+    public boolean isEven(final int i) {
         return i % 2 == 0;
     }
 
@@ -195,7 +195,7 @@ public class Mathematics {
      * @return The sum of the ints up to and including the parameter that are even.
      */
 
-    public int sumOfEvens(int upperBound) {
+    public int sumOfEvens(final int upperBound) {
         int evenSum = 0;
 
         if (!isPositive(upperBound)) {
@@ -224,7 +224,7 @@ public class Mathematics {
      * passed in the factors parameter.
      */
 
-    public int sumOfProducts(int upperBound, int factor) {
+    public int sumOfProducts(final int upperBound, final int factor) {
         int productSum = 0;
 
         if (!isPositive(upperBound)) {
