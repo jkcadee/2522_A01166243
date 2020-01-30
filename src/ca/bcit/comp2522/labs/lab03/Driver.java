@@ -13,7 +13,7 @@ public class Driver {
             numberOfTrees += lotuslandLumber.seed();
         }
 
-        System.out.println(numberOfTrees);
+        System.out.printf("The number of tree planted is: %d.\n", numberOfTrees);
 
         final Scanner scanner = new Scanner(System.in);
 
