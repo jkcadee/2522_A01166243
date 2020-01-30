@@ -24,6 +24,7 @@ public class Plantation {
         final int min = 10;
         final double circumferenceMax = 100.0;
         final double circumferenceMin = 10.0;
+        final int treeTypeValue = 3;
         final Random randomNumber = new Random();
         final int previousSize = farm.size();
 
@@ -31,10 +32,9 @@ public class Plantation {
 
         for (int treesPlanted = 0; treesPlanted < generateRandomNumber; treesPlanted++) {
             Species randomTreeType = null;
-            int generateTreeType = randomNumber.nextInt(3);
-            int generateAge = randomNumber.nextInt(1000);
+            int generateTreeType = randomNumber.nextInt(treeTypeValue);
+            int generateAge = randomNumber.nextInt(max);
             double generateTreeCircumference = circumferenceMin + (circumferenceMax - circumferenceMin + 1) * randomNumber.nextDouble();
-
 
             for (Species treeSpecies : Species.values()) {
                 if (treeSpecies.getValue() == generateTreeType) {
@@ -52,8 +52,8 @@ public class Plantation {
 
     public int harvestCount(double cutOffCircumference) {
         int treesReadyForHarvest = 0;
-        for (int plantationSize = 0; plantationSize < farm.size(); plantationSize++) {
-            if (farm.get(plantationSize).getTrunkCircumference() >= cutOffCircumference) {
+        for (Tree tree : farm) {
+            if (tree.getTrunkCircumference() >= cutOffCircumference) {
                 treesReadyForHarvest++;
             }
         }

@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.labs.lab03;
 
 public class Tree {
-    enum Species {MAPLE(0), ARBUTUS(1), BLUE_SPRUCE(2);
+    enum Species { MAPLE(0), ARBUTUS(1), BLUE_SPRUCE(2);
         private int value;
 
         Species(int value) {
