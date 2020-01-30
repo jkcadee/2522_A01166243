@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.labs.lab03;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import ca.bcit.comp2522.labs.lab03.Tree.Species;
 
@@ -58,5 +59,25 @@ public class Plantation {
             }
         }
         return treesReadyForHarvest;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plantation that = (Plantation) o;
+        return farm.equals(that.farm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(farm);
+    }
+
+    @Override
+    public String toString() {
+        return "Plantation{" +
+                "farm=" + farm +
+                '}';
     }
 }

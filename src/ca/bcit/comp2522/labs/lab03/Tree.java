@@ -1,5 +1,7 @@
 package ca.bcit.comp2522.labs.lab03;
 
+import java.util.Objects;
+
 public class Tree {
     enum Species { MAPLE(0), ARBUTUS(1), BLUE_SPRUCE(2);
         private int value;
@@ -47,5 +49,29 @@ public class Tree {
 
     public double getTrunkCircumference() {
         return trunkCircumference;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tree tree = (Tree) o;
+        return ageInYears == tree.ageInYears &&
+                Double.compare(tree.trunkCircumference, trunkCircumference) == 0 &&
+                treeType == tree.treeType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(treeType, ageInYears, trunkCircumference);
+    }
+
+    @Override
+    public String toString() {
+        return "Tree{" +
+                "treeType=" + treeType +
+                ", ageInYears=" + ageInYears +
+                ", trunkCircumference=" + trunkCircumference +
+                '}';
     }
 }
