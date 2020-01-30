@@ -7,11 +7,11 @@ import ca.bcit.comp2522.labs.lab03.Tree.Species;
 public class Plantation {
     private ArrayList<Tree> farm = new ArrayList<>();
 
-    public int size() {
+    public final int size() {
         return farm.size();
     }
 
-    public int add(Tree tree) {
+    public final int add(Tree tree) {
         if (tree == null) {
             throw new NullPointerException();
         }
