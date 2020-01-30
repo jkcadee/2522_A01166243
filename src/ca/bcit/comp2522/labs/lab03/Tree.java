@@ -68,10 +68,11 @@ public class Tree {
 
     @Override
     public String toString() {
-        return "Tree{" +
-                "treeType=" + treeType +
-                ", ageInYears=" + ageInYears +
-                ", trunkCircumference=" + trunkCircumference +
-                '}';
+        final StringBuilder sb = new StringBuilder("Tree{");
+        sb.append("treeType=").append(treeType);
+        sb.append(", ageInYears=").append(ageInYears);
+        sb.append(", trunkCircumference=").append(trunkCircumference);
+        sb.append('}');
+        return sb.toString();
     }
 }

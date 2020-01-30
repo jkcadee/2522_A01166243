@@ -23,7 +23,7 @@ public class Driver {
         scanner.close();
 
         int treesReadyForHarvest = lotuslandLumber.harvestCount(minimumHarvestCircumference);
-        System.out.printf("The amount of trees ready for harvest is: %d.", treesReadyForHarvest);
+        System.out.printf("The amount of trees ready for harvest is: %d.\n", treesReadyForHarvest);
 
     }
 }

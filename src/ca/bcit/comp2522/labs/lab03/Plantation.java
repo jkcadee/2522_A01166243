@@ -76,8 +76,9 @@ public class Plantation {
 
     @Override
     public String toString() {
-        return "Plantation{" +
-                "farm=" + farm +
-                '}';
+        final StringBuilder sb = new StringBuilder("Plantation{");
+        sb.append("farm=").append(farm);
+        sb.append('}');
+        return sb.toString();
     }
 }
