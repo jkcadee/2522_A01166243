@@ -6,12 +6,18 @@ import ca.bcit.comp2522.labs.lab03.Tree.Species;
 
 public class Plantation {
     private ArrayList<Tree> farm = new ArrayList<>();
+    private static final Random randomNumber = new Random();
+    private static final int max = 1000;
+    private static final int min = 10;
+    private static final double circumferenceMax = 100.0;
+    private static final double circumferenceMin = 10.0;
+    private static final int treeTypeValue = 3;
 
     public final int size() {
         return farm.size();
     }
 
-    public final int add(Tree tree) {
+    public final int add(final Tree tree) {
         if (tree == null) {
             throw new NullPointerException();
         }
@@ -20,12 +26,6 @@ public class Plantation {
     }
 
     public int seed() {
-        final int max = 1000;
-        final int min = 10;
-        final double circumferenceMax = 100.0;
-        final double circumferenceMin = 10.0;
-        final int treeTypeValue = 3;
-        final Random randomNumber = new Random();
         final int previousSize = farm.size();
 
         int generateRandomNumber = randomNumber.nextInt((max - min + 1)) + min;
@@ -45,12 +45,12 @@ public class Plantation {
 
             Tree newTree = new Tree(randomTreeType, generateAge, generateTreeCircumference);
             farm.add(newTree);
-        }
 
+        }
         return farm.size() - previousSize;
     }
 
-    public int harvestCount(double cutOffCircumference) {
+    public int harvestCount(final double cutOffCircumference) {
         int treesReadyForHarvest = 0;
         for (Tree tree : farm) {
             if (tree.getTrunkCircumference() >= cutOffCircumference) {

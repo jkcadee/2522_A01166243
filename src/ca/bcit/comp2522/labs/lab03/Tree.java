@@ -4,7 +4,7 @@ public class Tree {
     enum Species { MAPLE(0), ARBUTUS(1), BLUE_SPRUCE(2);
         private int value;
 
-        Species(int value) {
+        Species(final int value) {
             this.value = value;
         }
 
@@ -17,7 +17,7 @@ public class Tree {
     private int ageInYears;
     private double trunkCircumference;
 
-    public Tree(Species newTreeType, int newAgeInYears, double newTrunkCircumference) {
+    public Tree(final Species newTreeType, final int newAgeInYears, final double newTrunkCircumference) {
         if (newAgeInYears < 0 || newTrunkCircumference < 0.0) {
             throw new IllegalArgumentException();
         }
@@ -27,15 +27,15 @@ public class Tree {
         this.trunkCircumference = newTrunkCircumference;
     }
 
-    public Tree(int newAgeInYears, double newTrunkCircumference) {
+    public Tree(final int newAgeInYears, final double newTrunkCircumference) {
         this(Species.MAPLE, newAgeInYears, newTrunkCircumference);
     }
 
-    public void setAgeInYears(int ageInYears) {
+    public final void setAgeInYears(int ageInYears) {
         this.ageInYears = ++ageInYears;
     }
 
-    public void setTrunkCircumference(double trunkCircumference) {
+    public void setTrunkCircumference(final double trunkCircumference) {
         if (trunkCircumference >= this.trunkCircumference) {
             this.trunkCircumference = trunkCircumference;
         }
