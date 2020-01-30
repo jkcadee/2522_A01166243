@@ -69,7 +69,7 @@ public class Plantation {
             int generateTreeType = RANDOM_NUMBER.nextInt(TREE_TYPE_VALUE);
             int generateAge = RANDOM_NUMBER.nextInt(MAX);
             double generateTreeCircumference = CIRCUMFERENCE_MIN
-                    + (CIRCUMFERENCE_MAX - CIRCUMFERENCE_MIN + 1)
+                    + (CIRCUMFERENCE_MAX - CIRCUMFERENCE_MIN)
                     * RANDOM_NUMBER.nextDouble();
 
             for (Species treeSpecies : Species.values()) {
