@@ -7,6 +7,7 @@ import java.util.Scanner;
  * It also allows the user to specify what is the minimum circumference
  * to determine which trees are ready for harvest.
  * The process is run in the main method.
+ * 
  * @author Janelle Kwok
  * @author BCIT
  * @version 2020
