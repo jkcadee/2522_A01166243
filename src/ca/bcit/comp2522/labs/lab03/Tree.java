@@ -16,23 +16,9 @@ public class Tree {
     public enum Species { MAPLE(0), ARBUTUS(1), BLUE_SPRUCE(2);
         private int value;
 
-        /**
-         * Gives the instance variable value a value when an argument is passed into the parameter.
-         *
-         * @param value The value passed into the constructor, it must be a value from 0 - 2 and
-         *              must be an integer type value.
-         */
-
         Species(final int value) {
             this.value = value;
         }
-
-        /**
-         * Gets the value linked to tree Species type.
-         *
-         * @return The Species value stored at value.
-         */
-
         public int getValue() {
             return this.value;
         }
