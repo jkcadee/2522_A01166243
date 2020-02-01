@@ -323,14 +323,20 @@ public class Guppy {
         }
 
         final int upperbound = 101;
-        final double spawnChance = 0.50;
+        final double randomChance = 0.50;
+        boolean female = true;
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
         double chanceToSpawn = randomNumber.nextDouble();
         int babiesBorn = randomNumber.nextInt(upperbound);
 
-        if (chanceToSpawn <= spawnChance) {
+        if (chanceToSpawn <= randomChance) {
             for (int babies = 0; babies < babiesBorn; babies++) {
-                Guppy baby = new Guppy();
+                final double femaleChance = randomNumber.nextDouble();
+                if (femaleChance <= randomChance) {
+                    female = false;
+                }
+                Guppy baby = new Guppy(this.genus, this.species, 0, female,
+                        this.generationNumber++, ((1.0 + this.healthCoefficient) / 2.0));
                 babyGuppies.add(baby);
             }
         }
