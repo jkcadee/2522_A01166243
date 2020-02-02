@@ -1,6 +1,8 @@
 package ca.bcit.comp2522.assignments.a2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Pool {
@@ -102,7 +104,7 @@ public class Pool {
         } else {
             this.nutrientCoefficient = DEFAULT_NUTRIENT_COEFFICIENT;
         }
-        
+
     }
 
     public String getName() {
@@ -151,4 +153,156 @@ public class Pool {
         return numberOfPools;
     }
 
+    public boolean addGuppy(Guppy guppy) {
+        if (guppy == null) {
+            return false;
+        }
+        guppiesInPool.add(guppy);
+        return true;
+    }
+
+    public int getPopulation() {
+        int numberOfAliveGuppies = 0;
+        for (Guppy aliveGuppy : guppiesInPool) {
+            if (aliveGuppy.getIsAlive()) {
+                numberOfAliveGuppies++;
+            }
+        }
+        return numberOfAliveGuppies;
+    }
+
+    public int applyNutrientCoefficient() {
+        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        int starvedGuppies = 0;
+        while (guppies.hasNext()) {
+            Guppy currentGuppy = guppies.next();
+            double nutrients = randomNumberGenerator.nextDouble();
+            if (nutrients > this.nutrientCoefficient) {
+                currentGuppy.setAlive(false);
+                starvedGuppies++;
+            }
+        }
+        return starvedGuppies;
+    }
+
+    public int removeDeadGuppies() {
+        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        int deadGuppies = 0;
+        while (guppies.hasNext()) {
+            Guppy currentGuppy = guppies.next();
+            if (!currentGuppy.getIsAlive()) {
+                guppiesInPool.remove(currentGuppy);
+                deadGuppies++;
+            }
+        }
+        return deadGuppies;
+    }
+
+    public double getGuppyVolumeRequirementInLitres() {
+        final double oneLitre = 1000.0;
+        double guppyVolumeRequired = 0.0;
+        for (Guppy aliveGuppies : guppiesInPool) {
+            if (aliveGuppies.getIsAlive()) {
+                guppyVolumeRequired += aliveGuppies.getVolumeNeeded();
+                if (guppyVolumeRequired >= oneLitre) {
+                    guppyVolumeRequired /= oneLitre;
+                }
+            }
+        }
+        return guppyVolumeRequired;
+    }
+
+    public double getAverageAgeInWeeks() {
+        double averageAgeInWeeks = 0.0;
+        int guppies = 0;
+        for (Guppy aliveGuppies : guppiesInPool) {
+            if (aliveGuppies.getIsAlive()) {
+                averageAgeInWeeks += aliveGuppies.getAgeInWeeks();
+                guppies++;
+            }
+        }
+        return averageAgeInWeeks / guppies;
+    }
+
+    public double getAverageHealthCoefficient() {
+        double averageHealthCoefficient = 0.0;
+        int guppies = 0;
+        for (Guppy aliveGuppies : guppiesInPool) {
+            if (aliveGuppies.getIsAlive()) {
+                averageHealthCoefficient += aliveGuppies.getHealthCoefficient();
+                guppies++;
+            }
+        }
+        return averageHealthCoefficient / guppies;
+    }
+
+    public double getFemalePercentage() {
+        double averageFemalePercentage = 0;
+        int guppies = 0;
+        for (Guppy aliveGuppies : guppiesInPool) {
+            if (aliveGuppies.getIsAlive() && aliveGuppies.getIsFemale()) {
+                averageFemalePercentage ++;
+                guppies++;
+            }
+        }
+        return averageFemalePercentage / guppies * 100;
+    }
+
+    public double getMedianAge() {
+        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        int aliveGuppies = 0;
+        for (Guppy aliveGup: guppiesInPool) {
+            if (aliveGup.getIsAlive()) {
+                aliveGuppies++;
+            }
+        }
+        int[] guppyAgeArray = new int[aliveGuppies];
+        int guppyAmount = 0;
+        while(guppies.hasNext()) {
+            Guppy currentGuppy = guppies.next();
+            if (currentGuppy.getIsAlive()) {
+                guppyAgeArray[guppyAmount] = currentGuppy.getAgeInWeeks();
+                guppyAmount++;
+            }
+        }
+        Arrays.sort(guppyAgeArray);
+        int medianIndex = (int) Math.ceil(aliveGuppies % 2);
+        return guppyAgeArray[medianIndex];
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Pool{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", volumeLitres=").append(volumeLitres);
+        sb.append(", temperatureCelsius=").append(temperatureCelsius);
+        sb.append(", pH=").append(pH);
+        sb.append(", nutrientCoefficient=").append(nutrientCoefficient);
+        sb.append(", identificationNumber=").append(identificationNumber);
+        sb.append(", guppiesInPool=").append(guppiesInPool);
+        sb.append(", randomNumberGenerator=").append(randomNumberGenerator);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public int spawn() {
+        int addedBabies = 0;
+        for (Guppy currentGuppy : guppiesInPool) {
+            ArrayList<Guppy> newBabies = currentGuppy.spawn();
+            addedBabies += newBabies.size();
+            guppiesInPool.addAll(newBabies);
+        }
+        return addedBabies;
+    }
+
+    public int incrementAges() {
+        int deadGuppies = 0;
+        for (Guppy currentGuppy : guppiesInPool) {
+            currentGuppy.incrementAge();
+            if (!currentGuppy.getIsAlive()) {
+                deadGuppies++;
+            }
+        }
+        return deadGuppies;
+    }
 }
