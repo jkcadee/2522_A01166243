@@ -305,4 +305,17 @@ public class Pool {
         }
         return deadGuppies;
     }
+
+    public int adjustForCrowding() {
+        int crowdedGuppies = 0;
+        if (getGuppyVolumeRequirementInLitres() > volumeLitres) {
+            for (Guppy currentGuppy : guppiesInPool) {
+                if (currentGuppy.getHealthCoefficient() == 0.0) {
+                    guppiesInPool.remove(currentGuppy);
+                    crowdedGuppies++;
+                }
+            }
+        }
+        return crowdedGuppies;
+    }
 }
