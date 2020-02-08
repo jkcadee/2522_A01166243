@@ -28,6 +28,7 @@ public class Tree {
     private int ageInYears;
     private double trunkCircumference;
 
+
     /**
      * Constructs a tree object with a Species type, an age in years and a trunk circumference.
      * Throws an IllegalArgumentException if the values passed into the parameters are invalid.

@@ -89,7 +89,7 @@ public class Pool {
         }
     }
 
-    public void setpH(double pH) {
+    public void setPH(double pH) {
         if (MINIMUM_PH <= pH && pH <= MAXIMUM_PH) {
             this.pH = pH;
         } else {
@@ -119,7 +119,7 @@ public class Pool {
         return temperatureCelsius;
     }
 
-    public double getpH() {
+    public double getPH() {
         return pH;
     }
 
@@ -178,7 +178,7 @@ public class Pool {
             Guppy currentGuppy = guppies.next();
             double nutrients = randomNumberGenerator.nextDouble();
             if (nutrients > this.nutrientCoefficient) {
-                currentGuppy.setAlive(false);
+                currentGuppy.setIsAlive(false);
                 starvedGuppies++;
             }
         }

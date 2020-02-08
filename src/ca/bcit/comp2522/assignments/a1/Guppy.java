@@ -11,47 +11,47 @@ public class Guppy {
     /**
      * Constant signifying a young Guppy's age.
      */
-    static final int YOUNG_FISH_AGE_IN_WEEKS = 10;
+    public static final int YOUNG_FISH_AGE_IN_WEEKS = 10;
     /**
      * Constant signifying a mature Guppy's age.
      */
-    static final int MATURE_FISH_AGE_IN_WEEKS = 30;
+    public static final int MATURE_FISH_AGE_IN_WEEKS = 30;
     /**
      * Constant signifying a Guppy's maximum age.
      */
-    static final int MAXIMUM_AGE_IN_WEEKS = 50;
+    public static final int MAXIMUM_AGE_IN_WEEKS = 50;
     /**
      * Constant signifying the minimum water volume in mL.
      */
-    static final double MINIMUM_WATER_VOLUME_ML = 250.0;
+    public static final double MINIMUM_WATER_VOLUME_ML = 250.0;
     /**
      * Constant signifying a Guppy's default genus.
      */
-    static final String DEFAULT_GENUS = "Poecilia";
+    public static final String DEFAULT_GENUS = "Poecilia";
     /**
      * Constant signifying a Guppy's default species.
      */
-    static final String DEFAULT_SPECIES = "reticulata";
+    public static final String DEFAULT_SPECIES = "reticulata";
     /**
      * Constant signifying a Guppy's default health coefficient.
      */
-    static final double DEFAULT_HEALTH_COEFFICIENT = 0.5;
+    public static final double DEFAULT_HEALTH_COEFFICIENT = 0.5;
     /**
      * Constant signifying a Guppy's minimum health coefficient.
      */
-    static final double MINIMUM_HEALTH_COEFFICIENT = 0.0;
+    public static final double MINIMUM_HEALTH_COEFFICIENT = 0.0;
     /**
      * Constant signifying a Guppy's maximum health coefficient.
      */
-    static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
+    public static final double MAXIMUM_HEALTH_COEFFICIENT = 1.0;
     /**
      * Constant signifying the number 1.5.
      */
-    static final double ONE_POINT_FIVE = 1.5;
+    public static final double ONE_POINT_FIVE = 1.5;
     /**
      * Constant signifying the amount of water a dead Guppy needs.
      */
-    static final double DEAD_GUPPY_WATER_VOL = 0.0;
+    public static final double DEAD_GUPPY_WATER_VOL = 0.0;
 
     private static int numberOfGuppiesBorn;
 

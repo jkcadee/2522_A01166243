@@ -51,8 +51,16 @@ public class Ecosystem {
         final double pH3 = 7.5;
         final double nutcoe3 = 1.0;
 
+        final int maxAmountOfGuppies1 = 300;
+        final int maxAmountOfGuppies2 = 100;
+        final int maxAmountOfGuppies3 = 200;
+
         Pool Skookumchuk = new Pool("Skookumchuk", vol1, temp1, pH1, nutcoe1);
         Pool Squamish = new Pool("Squamish", vol2, temp2, pH2, nutcoe2);
         Pool Semiahmoo = new Pool("Semiahmoo", vol3, temp3, pH3, nutcoe3);
+
+//        for (int guppies = 0; guppies < maxAmountOfGuppies1; guppies++) {
+//            Guppy guppy = new Guppy("Poecilia reticulata", )
+//        }
     }
 }
