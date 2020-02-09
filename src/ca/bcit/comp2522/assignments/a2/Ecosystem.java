@@ -1,13 +1,12 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.util.Iterator;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class Ecosystem {
-    private static final Random randomNumber = new Random();
+    private static final Random RANDOM_NUMBER = new Random();
 
     private ArrayList<Pool> pools;
 
@@ -79,31 +78,34 @@ public class Ecosystem {
         final double healthCoefficientMin3 = 0.0;
         final double healthCoefficientMax3 = 1.0;
 
-        Pool Skookumchuk = new Pool("Skookumchuk", vol1, temp1, pH1, nutcoe1);
-        Pool Squamish = new Pool("Squamish", vol2, temp2, pH2, nutcoe2);
-        Pool Semiahmoo = new Pool("Semiahmoo", vol3, temp3, pH3, nutcoe3);
+        Pool skookumchuk = new Pool("Skookumchuk", vol1, temp1, pH1, nutcoe1);
+        Pool squamish = new Pool("Squamish", vol2, temp2, pH2, nutcoe2);
+        Pool semiahmoo = new Pool("Semiahmoo", vol3, temp3, pH3, nutcoe3);
 
-        this.guppyGenerator(maxAmountOfGuppies1, minWeek1, maxWeek1, healthCoefficientMin1, healthCoefficientMax1,
-                0.75, 1, Skookumchuk);
-        this.guppyGenerator(maxAmountOfGuppies2, minWeek2, maxWeek2, healthCoefficientMin2, healthCoefficientMax2,
-                0.75, 1, Squamish);
-        this.guppyGenerator(maxAmountOfGuppies3, minWeek3, maxWeek3, healthCoefficientMin3, healthCoefficientMax3,
-                0.35, 1, Semiahmoo);
+        this.guppyGenerator(maxAmountOfGuppies1, minWeek1, maxWeek1,
+                healthCoefficientMin1, healthCoefficientMax1,
+                0.75, 1, skookumchuk);
+        this.guppyGenerator(maxAmountOfGuppies2, minWeek2, maxWeek2,
+                healthCoefficientMin2, healthCoefficientMax2,
+                0.75, 1, squamish);
+        this.guppyGenerator(maxAmountOfGuppies3, minWeek3, maxWeek3,
+                healthCoefficientMin3, healthCoefficientMax3,
+                0.35, 1, semiahmoo);
 
-        this.addPool(Skookumchuk);
-        this.addPool(Squamish);
-        this.addPool(Semiahmoo);
+        this.addPool(skookumchuk);
+        this.addPool(squamish);
+        this.addPool(semiahmoo);
     }
 
-    private void guppyGenerator(int guppyAmount, int ageMin, int ageMax, double nutrientCoefficientMin,
-                                double nutrientCoefficientMax, double femalePercentage, int generationNumber, Pool pool) {
+    private void guppyGenerator(int guppyAmount, int ageMin, int ageMax, double healthCoefficientMin,
+                                double healthCoefficientMax, double femalePercentage, int generationNumber, Pool pool) {
         boolean isFemale = false;
         BigDecimal femaleP = new BigDecimal(femalePercentage);
         for (int guppies = 0; guppies < guppyAmount; guppies++) {
-            int generateRandomAge = randomNumber.nextInt((ageMax - ageMin + 1)) + ageMin;
-            double generateRandomNutrientCoefficient = nutrientCoefficientMin
-                    + (nutrientCoefficientMax - nutrientCoefficientMin) * randomNumber.nextDouble();
-            double generateFemaleChance = randomNumber.nextDouble();
+            int generateRandomAge = RANDOM_NUMBER.nextInt((ageMax - ageMin + 1)) + ageMin;
+            double generateRandomNutrientCoefficient = healthCoefficientMin
+                    + (healthCoefficientMax - healthCoefficientMin) * RANDOM_NUMBER.nextDouble();
+            double generateFemaleChance = RANDOM_NUMBER.nextDouble();
             BigDecimal genFemaleP = new BigDecimal(generateFemaleChance);
             if (genFemaleP.compareTo(femaleP) < 0) {
                 isFemale = true;
@@ -112,17 +114,18 @@ public class Ecosystem {
                     isFemale, generationNumber, generateRandomNutrientCoefficient);
             pool.addGuppy(guppy);
             generationNumber++;
+            isFemale = false;
         }
     }
 
-    public void simulate(int numberOfWeeks) {
+    public void simulate(final int numberOfWeeks) {
         this.setupSimulation();
         for (int currentWeek = 1; currentWeek <= numberOfWeeks; currentWeek++) {
             this.simulateOneWeek(currentWeek);
         }
     }
 
-    public void simulateOneWeek(int currentWeek) {
+    public void simulateOneWeek(final int currentWeek) {
         int diedOfOldAge = 0;
         int numberRemoved = 0;
         int starvedToDeath = 0;
@@ -157,6 +160,7 @@ public class Ecosystem {
         displayEcosystem.append("Number of deaths from starvation: ").append(starvedToDeath).append("\n");
         displayEcosystem.append("Number of deaths from overpopulation: ").append(crowdedOut).append("\n");
         displayEcosystem.append("Total number of births: ").append(newFry).append("\n");
+        displayEcosystem.append("Total number of deaths: ").append(numberRemoved).append("\n");
         displayEcosystem.append("Pools: ").append(poolNames).append("\n");
         displayEcosystem.append("Pool populations: ").append(poolPopulations).append("\n");
         displayEcosystem.append("Total Ecosystem population: ").append(this.getGuppyPopulation()).append("\n");
@@ -166,8 +170,12 @@ public class Ecosystem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ecosystem ecosystem = (Ecosystem) o;
         return pools.equals(ecosystem.pools);
     }

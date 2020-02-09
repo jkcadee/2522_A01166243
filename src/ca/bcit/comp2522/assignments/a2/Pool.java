@@ -199,18 +199,12 @@ public class Pool {
     public double getGuppyVolumeRequirementInLitres() {
         final double oneLitre = 1000.0;
         double guppyVolumeRequired = 0.0;
-        int count = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 guppyVolumeRequired += aliveGuppies.getVolumeNeeded();
-                count++;
-                //System.out.println("guppyVolume: " + Double.toString(aliveGuppies.getVolumeNeeded()));
-                //System.out.println(Integer.toString(count) + ": guppyVolumeRequired in loop: " + Double.toString(guppyVolumeRequired));
            }
         }
-        //System.out.println("guppyVolumeRequired before divide: " + Double.toString(guppyVolumeRequired));
         guppyVolumeRequired /= oneLitre;
-        //System.out.println("guppyVolumeRequired after divide: " + Double.toString(guppyVolumeRequired));
         return guppyVolumeRequired;
     }
 
