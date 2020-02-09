@@ -1,9 +1,7 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Random;
+import java.math.BigDecimal;
+import java.util.*;
 
 public class Pool {
     static final String DEFAULT_POOL_NAME = "Unnamed";
@@ -191,7 +189,7 @@ public class Pool {
         while (guppies.hasNext()) {
             Guppy currentGuppy = guppies.next();
             if (!currentGuppy.getIsAlive()) {
-                guppiesInPool.remove(currentGuppy);
+                guppies.remove();
                 deadGuppies++;
             }
         }
@@ -201,14 +199,18 @@ public class Pool {
     public double getGuppyVolumeRequirementInLitres() {
         final double oneLitre = 1000.0;
         double guppyVolumeRequired = 0.0;
+        int count = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 guppyVolumeRequired += aliveGuppies.getVolumeNeeded();
-                if (guppyVolumeRequired >= oneLitre) {
-                    guppyVolumeRequired /= oneLitre;
-                }
-            }
+                count++;
+                //System.out.println("guppyVolume: " + Double.toString(aliveGuppies.getVolumeNeeded()));
+                //System.out.println(Integer.toString(count) + ": guppyVolumeRequired in loop: " + Double.toString(guppyVolumeRequired));
+           }
         }
+        //System.out.println("guppyVolumeRequired before divide: " + Double.toString(guppyVolumeRequired));
+        guppyVolumeRequired /= oneLitre;
+        //System.out.println("guppyVolumeRequired after divide: " + Double.toString(guppyVolumeRequired));
         return guppyVolumeRequired;
     }
 
@@ -287,11 +289,15 @@ public class Pool {
 
     public int spawn() {
         int addedBabies = 0;
+        ArrayList<Guppy> newBabiesArrayList = new ArrayList<>();
         for (Guppy currentGuppy : guppiesInPool) {
             ArrayList<Guppy> newBabies = currentGuppy.spawn();
-            addedBabies += newBabies.size();
-            guppiesInPool.addAll(newBabies);
+            if (newBabies != null) {
+                newBabiesArrayList.addAll(newBabies);
+            }
         }
+        addedBabies += newBabiesArrayList.size();
+        guppiesInPool.addAll(newBabiesArrayList);
         return addedBabies;
     }
 
@@ -307,15 +313,36 @@ public class Pool {
     }
 
     public int adjustForCrowding() {
+        guppiesInPool.sort(Comparator.comparingDouble(Guppy::getHealthCoefficient));
+        Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
         int crowdedGuppies = 0;
-        if (getGuppyVolumeRequirementInLitres() > volumeLitres) {
-            for (Guppy currentGuppy : guppiesInPool) {
-                if (currentGuppy.getHealthCoefficient() == 0.0) {
-                    guppiesInPool.remove(currentGuppy);
-                    crowdedGuppies++;
-                }
+        while (this.getGuppyVolumeRequirementInLitres() >= volumeLitres && killingCrowdedGuppies.hasNext()) {
+            Guppy weakestGuppy = killingCrowdedGuppies.next();
+            if (weakestGuppy.getIsAlive()) {
+                weakestGuppy.setIsAlive(false);
+                crowdedGuppies++;
             }
         }
         return crowdedGuppies;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pool pool = (Pool) o;
+        return Double.compare(pool.volumeLitres, volumeLitres) == 0 &&
+                Double.compare(pool.temperatureCelsius, temperatureCelsius) == 0 &&
+                Double.compare(pool.pH, pH) == 0 &&
+                Double.compare(pool.nutrientCoefficient, nutrientCoefficient) == 0 &&
+                identificationNumber == pool.identificationNumber &&
+                Objects.equals(name, pool.name) &&
+                Objects.equals(guppiesInPool, pool.guppiesInPool) &&
+                Objects.equals(randomNumberGenerator, pool.randomNumberGenerator);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, volumeLitres, temperatureCelsius, pH, nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
     }
 }
