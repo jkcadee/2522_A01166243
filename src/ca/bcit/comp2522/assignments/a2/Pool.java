@@ -54,7 +54,7 @@ public class Pool {
                 && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = temperatureCelsius;
         } else {
-            this.temperatureCelsius = MAXIMUM_POOL_TEMP_CELSIUS;
+            this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
         }
 
         if (MINIMUM_PH <= pH && pH <= MAXIMUM_PH) {
@@ -88,7 +88,7 @@ public class Pool {
                 && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = temperatureCelsius;
         } else {
-            this.temperatureCelsius = MAXIMUM_POOL_TEMP_CELSIUS;
+            this.temperatureCelsius = DEFAULT_POOL_TEMP_CELSIUS;
         }
     }
 
@@ -215,39 +215,47 @@ public class Pool {
 
     public double getAverageAgeInWeeks() {
         double averageAgeInWeeks = 0.0;
-        int guppies = 0;
+        int livingGuppies = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 averageAgeInWeeks += aliveGuppies.getAgeInWeeks();
-                guppies++;
+                livingGuppies++;
             }
         }
-        return averageAgeInWeeks / guppies;
+        if (livingGuppies == 0) {
+            return 0.0;
+        }
+        return averageAgeInWeeks / livingGuppies;
     }
 
     public double getAverageHealthCoefficient() {
         double averageHealthCoefficient = 0.0;
-        int guppies = 0;
+        int livingGuppies = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 averageHealthCoefficient += aliveGuppies.getHealthCoefficient();
-                guppies++;
+                livingGuppies++;
             }
         }
-        return averageHealthCoefficient / guppies;
+        if (livingGuppies == 0) {
+            return 0.0;
+        }
+        return averageHealthCoefficient / livingGuppies;
     }
 
     public double getFemalePercentage() {
-        final int oneHundred = 100;
         double averageFemalePercentage = 0;
-        int guppies = 0;
+        int livingFemaleGuppies = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive() && aliveGuppies.getIsFemale()) {
                 averageFemalePercentage++;
-                guppies++;
+                livingFemaleGuppies++;
             }
         }
-        return averageFemalePercentage / guppies * oneHundred;
+        if (livingFemaleGuppies == 0) {
+            return 0.0;
+        }
+        return averageFemalePercentage / guppiesInPool.size();
     }
 
     public double getMedianAge() {
