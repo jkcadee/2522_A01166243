@@ -266,6 +266,9 @@ public class Pool {
                 aliveGuppies++;
             }
         }
+        if (aliveGuppies == 0) {
+            return 0.0;
+        }
         int[] guppyAgeArray = new int[aliveGuppies];
         int guppyAmount = 0;
         while (guppies.hasNext()) {
@@ -355,6 +358,7 @@ public class Pool {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, volumeLitres, temperatureCelsius, pH, nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
+        return Objects.hash(name, volumeLitres, temperatureCelsius, pH,
+                nutrientCoefficient, identificationNumber, guppiesInPool, randomNumberGenerator);
     }
 }

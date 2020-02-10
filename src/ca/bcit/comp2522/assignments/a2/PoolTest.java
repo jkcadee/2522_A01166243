@@ -443,4 +443,17 @@ public class PoolTest {
         }
         assertEquals((double) females / count, testPool.getFemalePercentage(), 0.05);
     }
+
+    public void spawnRateIsFiftyPercent() {
+
+    }
+
+    public void emptyPoolHasNoMedianAge() {
+
+    }
+
+    public void medianAgeIsCalculatedCorrectly() {
+
+    }
+
 }
