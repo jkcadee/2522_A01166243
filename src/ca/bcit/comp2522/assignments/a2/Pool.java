@@ -272,28 +272,6 @@ public class Pool {
         return guppyAgeArray[medianAgeIndex];
     }
 
-    public double getMedianHealthCoefficient() {
-        Iterator<Guppy> guppies = guppiesInPool.iterator();
-        int aliveGuppies = 0;
-        for (Guppy aliveGuppy: guppiesInPool) {
-            if (aliveGuppy.getIsAlive()) {
-                aliveGuppies++;
-            }
-        }
-        double[] guppyAgeArray = new double[aliveGuppies];
-        int guppyAmount = 0;
-        while (guppies.hasNext()) {
-            Guppy currentGuppy = guppies.next();
-            if (currentGuppy.getIsAlive()) {
-                guppyAgeArray[guppyAmount] = currentGuppy.getHealthCoefficient();
-                guppyAmount++;
-            }
-        }
-        Arrays.sort(guppyAgeArray);
-        int medianHealthIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
-        return guppyAgeArray[medianHealthIndex];
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Pool{");

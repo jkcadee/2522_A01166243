@@ -130,7 +130,6 @@ public class Ecosystem {
         int starvedToDeath = 0;
         int newFry = 0;
         int crowdedOut = 0;
-        double medianHealth = 0.0;
         ArrayList<String> poolNames = new ArrayList<>();
         ArrayList<Integer> poolPopulations = new ArrayList<>();
 
@@ -140,19 +139,14 @@ public class Ecosystem {
             starvedToDeath += pool.applyNutrientCoefficient();
             numberRemoved += pool.removeDeadGuppies();
             newFry += pool.spawn();
-            System.out.println(newFry);
             crowdedOut += pool.adjustForCrowding();
             numberRemoved += pool.removeDeadGuppies();
-            System.out.println(numberRemoved);
             if (!poolNames.contains(pool.getName())) {
                 poolNames.add(pool.getName());
             }
             if (!poolPopulations.contains(pool.getPopulation())) {
                 poolPopulations.add(pool.getPopulation());
             }
-            medianHealth += pool.getMedianHealthCoefficient();
-            System.out.println(medianHealth);
-            medianHealth = 0.0;
         }
 
         if ((diedOfOldAge + starvedToDeath + crowdedOut) != numberRemoved) {
@@ -165,7 +159,6 @@ public class Ecosystem {
         displayEcosystem.append("Number of deaths from starvation: ").append(starvedToDeath).append("\n");
         displayEcosystem.append("Number of deaths from overpopulation: ").append(crowdedOut).append("\n");
         displayEcosystem.append("Total number of births: ").append(newFry).append("\n");
-        displayEcosystem.append("Total number of deaths: ").append(numberRemoved).append("\n");
         displayEcosystem.append("Pools: ").append(poolNames).append("\n");
         displayEcosystem.append("Pool populations: ").append(poolPopulations).append("\n");
         displayEcosystem.append("Total Ecosystem population: ").append(this.getGuppyPopulation()).append("\n");
