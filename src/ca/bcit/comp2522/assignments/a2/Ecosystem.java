@@ -84,13 +84,13 @@ public class Ecosystem {
 
         this.guppyGenerator(maxAmountOfGuppies1, minWeek1, maxWeek1,
                 healthCoefficientMin1, healthCoefficientMax1,
-                0.75, 1, skookumchuk);
+                0.75, skookumchuk);
         this.guppyGenerator(maxAmountOfGuppies2, minWeek2, maxWeek2,
                 healthCoefficientMin2, healthCoefficientMax2,
-                0.75, 1, squamish);
+                0.75, squamish);
         this.guppyGenerator(maxAmountOfGuppies3, minWeek3, maxWeek3,
                 healthCoefficientMin3, healthCoefficientMax3,
-                0.35, 1, semiahmoo);
+                0.35, semiahmoo);
 
         this.addPool(skookumchuk);
         this.addPool(squamish);
@@ -98,7 +98,7 @@ public class Ecosystem {
     }
 
     private void guppyGenerator(int guppyAmount, int ageMin, int ageMax, double healthCoefficientMin,
-                                double healthCoefficientMax, double femalePercentage, int generationNumber, Pool pool) {
+                                double healthCoefficientMax, double femalePercentage, Pool pool) {
         boolean isFemale = false;
         BigDecimal femaleP = new BigDecimal(femalePercentage);
         for (int guppies = 0; guppies < guppyAmount; guppies++) {
@@ -111,9 +111,8 @@ public class Ecosystem {
                 isFemale = true;
             }
             Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS, Guppy.DEFAULT_SPECIES, generateRandomAge,
-                    isFemale, generationNumber, generateRandomNutrientCoefficient);
+                    isFemale, 1, generateRandomNutrientCoefficient);
             pool.addGuppy(guppy);
-            generationNumber++;
             isFemale = false;
         }
     }
@@ -131,6 +130,7 @@ public class Ecosystem {
         int starvedToDeath = 0;
         int newFry = 0;
         int crowdedOut = 0;
+        double medianHealth = 0.0;
         ArrayList<String> poolNames = new ArrayList<>();
         ArrayList<Integer> poolPopulations = new ArrayList<>();
 
@@ -140,14 +140,19 @@ public class Ecosystem {
             starvedToDeath += pool.applyNutrientCoefficient();
             numberRemoved += pool.removeDeadGuppies();
             newFry += pool.spawn();
+            System.out.println(newFry);
             crowdedOut += pool.adjustForCrowding();
             numberRemoved += pool.removeDeadGuppies();
+            System.out.println(numberRemoved);
             if (!poolNames.contains(pool.getName())) {
                 poolNames.add(pool.getName());
             }
             if (!poolPopulations.contains(pool.getPopulation())) {
                 poolPopulations.add(pool.getPopulation());
             }
+            medianHealth += pool.getMedianHealthCoefficient();
+            System.out.println(medianHealth);
+            medianHealth = 0.0;
         }
 
         if ((diedOfOldAge + starvedToDeath + crowdedOut) != numberRemoved) {

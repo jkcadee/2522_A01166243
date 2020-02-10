@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.assignments.a2;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -329,8 +330,10 @@ public class Guppy {
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
         double chanceToSpawn = randomNumber.nextDouble();
         int babiesBorn = randomNumber.nextInt(upperbound);
+        BigDecimal spawnChance = BigDecimal.valueOf(chanceToSpawn);
+        BigDecimal randomChanceBirth = BigDecimal.valueOf(randomChance);
 
-        if (chanceToSpawn <= randomChance) {
+        if (spawnChance.compareTo(randomChanceBirth) < 0) {
             for (int babies = 0; babies < babiesBorn; babies++) {
                 final double femaleChance = randomNumber.nextDouble();
                 if (femaleChance <= randomChance) {
@@ -339,6 +342,7 @@ public class Guppy {
                 Guppy baby = new Guppy(this.genus, this.species, 0, female,
                         this.generationNumber++, ((1.0 + this.healthCoefficient) / 2.0));
                 babyGuppies.add(baby);
+                female = true;
             }
         }
         return babyGuppies;

@@ -1,19 +1,23 @@
 package ca.bcit.comp2522.assignments.a2;
 
-import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Iterator;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.Arrays;
 
 public class Pool {
-    static final String DEFAULT_POOL_NAME = "Unnamed";
-    static final double DEFAULT_POOL_TEMP_CELSIUS = 40.0;
-    static final double MINIMUM_POOL_TEMP_CELSIUS = 0.0;
-    static final double MAXIMUM_POOL_TEMP_CELSIUS = 100.0;
-    static final double NEUTRAL_PH = 7.0;
-    static final double MINIMUM_PH = 0.0;
-    static final double MAXIMUM_PH = 14.0;
-    static final double DEFAULT_NUTRIENT_COEFFICIENT = 0.50;
-    static final double MINIMUM_NUTRIENT_COEFFICIENT = 0.0;
-    static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
+    public static final String DEFAULT_POOL_NAME = "Unnamed";
+    public static final double DEFAULT_POOL_TEMP_CELSIUS = 40.0;
+    public static final double MINIMUM_POOL_TEMP_CELSIUS = 0.0;
+    public static final double MAXIMUM_POOL_TEMP_CELSIUS = 100.0;
+    public static final double NEUTRAL_PH = 7.0;
+    public static final double MINIMUM_PH = 0.0;
+    public static final double MAXIMUM_PH = 14.0;
+    public static final double DEFAULT_NUTRIENT_COEFFICIENT = 0.50;
+    public static final double MINIMUM_NUTRIENT_COEFFICIENT = 0.0;
+    public static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
 
     private static int numberOfPools;
     
@@ -27,7 +31,8 @@ public class Pool {
     private final Random randomNumberGenerator;
     
     public Pool() {
-        this(DEFAULT_POOL_NAME, 0.0, DEFAULT_POOL_TEMP_CELSIUS, NEUTRAL_PH, DEFAULT_NUTRIENT_COEFFICIENT);
+        this(DEFAULT_POOL_NAME, 0.0, DEFAULT_POOL_TEMP_CELSIUS,
+                NEUTRAL_PH, DEFAULT_NUTRIENT_COEFFICIENT);
     }
 
     public Pool(String name, double volumeLitres,
@@ -233,28 +238,29 @@ public class Pool {
     }
 
     public double getFemalePercentage() {
+        final int oneHundred = 100;
         double averageFemalePercentage = 0;
         int guppies = 0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive() && aliveGuppies.getIsFemale()) {
-                averageFemalePercentage ++;
+                averageFemalePercentage++;
                 guppies++;
             }
         }
-        return averageFemalePercentage / guppies * 100;
+        return averageFemalePercentage / guppies * oneHundred;
     }
 
     public double getMedianAge() {
         Iterator<Guppy> guppies = guppiesInPool.iterator();
         int aliveGuppies = 0;
-        for (Guppy aliveGup: guppiesInPool) {
-            if (aliveGup.getIsAlive()) {
+        for (Guppy aliveGuppy: guppiesInPool) {
+            if (aliveGuppy.getIsAlive()) {
                 aliveGuppies++;
             }
         }
         int[] guppyAgeArray = new int[aliveGuppies];
         int guppyAmount = 0;
-        while(guppies.hasNext()) {
+        while (guppies.hasNext()) {
             Guppy currentGuppy = guppies.next();
             if (currentGuppy.getIsAlive()) {
                 guppyAgeArray[guppyAmount] = currentGuppy.getAgeInWeeks();
@@ -262,8 +268,30 @@ public class Pool {
             }
         }
         Arrays.sort(guppyAgeArray);
-        int medianIndex = (int) Math.ceil(aliveGuppies % 2);
-        return guppyAgeArray[medianIndex];
+        int medianAgeIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
+        return guppyAgeArray[medianAgeIndex];
+    }
+
+    public double getMedianHealthCoefficient() {
+        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        int aliveGuppies = 0;
+        for (Guppy aliveGuppy: guppiesInPool) {
+            if (aliveGuppy.getIsAlive()) {
+                aliveGuppies++;
+            }
+        }
+        double[] guppyAgeArray = new double[aliveGuppies];
+        int guppyAmount = 0;
+        while (guppies.hasNext()) {
+            Guppy currentGuppy = guppies.next();
+            if (currentGuppy.getIsAlive()) {
+                guppyAgeArray[guppyAmount] = currentGuppy.getHealthCoefficient();
+                guppyAmount++;
+            }
+        }
+        Arrays.sort(guppyAgeArray);
+        int medianHealthIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
+        return guppyAgeArray[medianHealthIndex];
     }
 
     @Override
@@ -322,17 +350,21 @@ public class Pool {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Pool pool = (Pool) o;
-        return Double.compare(pool.volumeLitres, volumeLitres) == 0 &&
-                Double.compare(pool.temperatureCelsius, temperatureCelsius) == 0 &&
-                Double.compare(pool.pH, pH) == 0 &&
-                Double.compare(pool.nutrientCoefficient, nutrientCoefficient) == 0 &&
-                identificationNumber == pool.identificationNumber &&
-                Objects.equals(name, pool.name) &&
-                Objects.equals(guppiesInPool, pool.guppiesInPool) &&
-                Objects.equals(randomNumberGenerator, pool.randomNumberGenerator);
+        return Double.compare(pool.volumeLitres, volumeLitres) == 0
+                && Double.compare(pool.temperatureCelsius, temperatureCelsius) == 0
+                && Double.compare(pool.pH, pH) == 0
+                && Double.compare(pool.nutrientCoefficient, nutrientCoefficient) == 0
+                && identificationNumber == pool.identificationNumber
+                && Objects.equals(name, pool.name)
+                && Objects.equals(guppiesInPool, pool.guppiesInPool)
+                && Objects.equals(randomNumberGenerator, pool.randomNumberGenerator);
     }
 
     @Override
