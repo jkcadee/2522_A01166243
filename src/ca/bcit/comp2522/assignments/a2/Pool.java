@@ -56,6 +56,8 @@ public class Pool {
      */
     public static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
 
+    private static final double ONE_LITRE = 1000.0;
+
     private static int numberOfPools;
     
     private final String name;
@@ -371,14 +373,13 @@ public class Pool {
      */
 
     public double getGuppyVolumeRequirementInLitres() {
-        final double oneLitre = 1000.0;
         double guppyVolumeRequired = 0.0;
         for (Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 guppyVolumeRequired += aliveGuppies.getVolumeNeeded();
            }
         }
-        guppyVolumeRequired /= oneLitre;
+        guppyVolumeRequired /= ONE_LITRE;
         return guppyVolumeRequired;
     }
 
@@ -558,10 +559,11 @@ public class Pool {
         guppiesInPool.sort(Comparator.comparingDouble(Guppy::getHealthCoefficient));
         Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
         int crowdedGuppies = 0;
-        while (this.getGuppyVolumeRequirementInLitres()
-                >= volumeLitres && killingCrowdedGuppies.hasNext()) {
+        double volumeRequirement = this.getGuppyVolumeRequirementInLitres();
+        while (volumeRequirement >= volumeLitres && killingCrowdedGuppies.hasNext()) {
             Guppy weakestGuppy = killingCrowdedGuppies.next();
             if (weakestGuppy.getIsAlive()) {
+                volumeRequirement -= weakestGuppy.getVolumeNeeded() / ONE_LITRE;
                 weakestGuppy.setIsAlive(false);
                 crowdedGuppies++;
             }
