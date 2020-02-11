@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class Ecosystem {
     private static final Random RANDOM_NUMBER = new Random();
+    private static int currentWeek = 1;
 
     private ArrayList<Pool> pools;
 
@@ -41,21 +42,6 @@ public class Ecosystem {
     }
 
     public void setupSimulation() {
-        final double vol1 = 3000.0;
-        final double temp1 = 42.0;
-        final double pH1 = 7.9;
-        final double nutcoe1 = 0.9;
-
-        final double vol2 = 15000.0;
-        final double temp2 = 39.0;
-        final double pH2 = 7.7;
-        final double nutcoe2 = 0.85;
-
-        final double vol3 = 4500.0;
-        final double temp3 = 37.0;
-        final double pH3 = 7.5;
-        final double nutcoe3 = 1.0;
-
         final int maxAmountOfGuppies1 = 300;
         final int maxAmountOfGuppies2 = 100;
         final int maxAmountOfGuppies3 = 200;
@@ -78,19 +64,23 @@ public class Ecosystem {
         final double healthCoefficientMin3 = 0.0;
         final double healthCoefficientMax3 = 1.0;
 
-        Pool skookumchuk = new Pool("Skookumchuk", vol1, temp1, pH1, nutcoe1);
-        Pool squamish = new Pool("Squamish", vol2, temp2, pH2, nutcoe2);
-        Pool semiahmoo = new Pool("Semiahmoo", vol3, temp3, pH3, nutcoe3);
+        final double femalePercentage1 = 0.75;
+        final double femalePercentage2 = 0.75;
+        final double femalePercentage3 = 0.35;
+
+        final Pool skookumchuk = new Pool("Skookumchuk", 3000.0, 42.0, 7.9, 0.9);
+        final Pool squamish = new Pool("Squamish", 15000.0, 39.0, 7.7, 0.85);
+        final Pool semiahmoo = new Pool("Semiahmoo", 4500.0, 37.0, 7.5, 1.0);
 
         this.guppyGenerator(maxAmountOfGuppies1, minWeek1, maxWeek1,
                 healthCoefficientMin1, healthCoefficientMax1,
-                0.75, skookumchuk);
+                femalePercentage1, skookumchuk);
         this.guppyGenerator(maxAmountOfGuppies2, minWeek2, maxWeek2,
                 healthCoefficientMin2, healthCoefficientMax2,
-                0.75, squamish);
+                femalePercentage2, squamish);
         this.guppyGenerator(maxAmountOfGuppies3, minWeek3, maxWeek3,
                 healthCoefficientMin3, healthCoefficientMax3,
-                0.35, semiahmoo);
+                femalePercentage3, semiahmoo);
 
         this.addPool(skookumchuk);
         this.addPool(squamish);
@@ -119,12 +109,12 @@ public class Ecosystem {
 
     public void simulate(final int numberOfWeeks) {
         this.setupSimulation();
-        for (int currentWeek = 1; currentWeek <= numberOfWeeks; currentWeek++) {
-            this.simulateOneWeek(currentWeek);
+        for (int week = 0; week < numberOfWeeks; week++) {
+            this.simulateOneWeek();
         }
     }
 
-    public void simulateOneWeek(final int currentWeek) {
+    public void simulateOneWeek() {
         int diedOfOldAge = 0;
         int numberRemoved = 0;
         int starvedToDeath = 0;
@@ -164,7 +154,20 @@ public class Ecosystem {
         displayEcosystem.append("Total Ecosystem population: ").append(this.getGuppyPopulation()).append("\n");
 
         System.out.println(displayEcosystem);
+        currentWeek++;
     }
+
+    /**
+     * Checks if the object passed into the method is:
+     * 1. Not null.
+     * 2. Same object (Address-wise).
+     * 3. The same object type.
+     * 4. Has the same values within.
+     *
+     * @param o The value being compared with. It is an Object type value.
+     * @return A boolean signifying if the object passed into method is the
+     * same as what it being checked against.
+     */
 
     @Override
     public boolean equals(Object o) {
@@ -178,10 +181,24 @@ public class Ecosystem {
         return pools.equals(ecosystem.pools);
     }
 
+    /**
+     * Creates the hashcode for each instantiated object.
+     * This hashcode will be based on the attributes in the object.
+     *
+     * @return The hashcode for the current object.
+     */
+
     @Override
     public int hashCode() {
         return Objects.hash(pools);
     }
+
+    /**
+     * Converts the attributes in the class into a String object and
+     * displays them in a informative manner.
+     *
+     * @return A String representation of the attributes within Ecosystem.
+     */
 
     @Override
     public String toString() {

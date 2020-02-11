@@ -8,15 +8,45 @@ import java.util.Objects;
 import java.util.Arrays;
 
 public class Pool {
+    /**
+     * Default constant for pool name.
+     */
     public static final String DEFAULT_POOL_NAME = "Unnamed";
+    /**
+     * Default constant for pool temperature.
+     */
     public static final double DEFAULT_POOL_TEMP_CELSIUS = 40.0;
+    /**
+     * Minimum constant for pool temperature.
+     */
     public static final double MINIMUM_POOL_TEMP_CELSIUS = 0.0;
+    /**
+     * Maximum constant for pool temperature.
+     */
     public static final double MAXIMUM_POOL_TEMP_CELSIUS = 100.0;
+    /**
+     * Neutral constant for pH.
+     */
     public static final double NEUTRAL_PH = 7.0;
+    /**
+     * Minimum constant for pH.
+     */
     public static final double MINIMUM_PH = 0.0;
+    /**
+     * Maximum constant for pH.
+     */
     public static final double MAXIMUM_PH = 14.0;
+    /**
+     * Default constant for nutrient coefficient.
+     */
     public static final double DEFAULT_NUTRIENT_COEFFICIENT = 0.50;
+    /**
+     * Minimum constant for nutrient coefficient.
+     */
     public static final double MINIMUM_NUTRIENT_COEFFICIENT = 0.0;
+    /**
+     * Maximum constant for nutrient coefficient.
+     */
     public static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
 
     private static int numberOfPools;
@@ -29,11 +59,27 @@ public class Pool {
     private final int identificationNumber;
     private final ArrayList<Guppy> guppiesInPool;
     private final Random randomNumberGenerator;
-    
+
+    /**
+     * Default constructor for the Pool object.
+     */
+
     public Pool() {
         this(DEFAULT_POOL_NAME, 0.0, DEFAULT_POOL_TEMP_CELSIUS,
                 NEUTRAL_PH, DEFAULT_NUTRIENT_COEFFICIENT);
     }
+
+    /**
+     * Constructor for the Pool object.
+     * This constructor is used when arguments are specified.
+     * Will increment numberOfPools by one when called.
+     *
+     * @param name Name of the Pool. String.
+     * @param volumeLitres The Pool's volume in litres. Double.
+     * @param temperatureCelsius The Pool's temperature in celsius. Double.
+     * @param pH The Pool's pH level. Double.
+     * @param nutrientCoefficient The Pool's nutrient coefficient. Double.
+     */
 
     public Pool(String name, double volumeLitres,
                 double temperatureCelsius, double pH, double nutrientCoefficient) {
@@ -75,6 +121,12 @@ public class Pool {
         this.randomNumberGenerator = new Random();
     }
 
+    /**
+     * Sets the current volumeLitres of the Pool to the value passed in the parameter.
+     *
+     * @param volumeLitres The new value that volumeLitres will be set to.
+     */
+
     public void setVolumeLitres(double volumeLitres) {
         if (volumeLitres < 0) {
             this.volumeLitres = 0.0;
@@ -82,6 +134,12 @@ public class Pool {
             this.volumeLitres = volumeLitres;
         }
     }
+
+    /**
+     * Sets the current temperatureCelsius of the Pool to the value passed in the parameter.
+     *
+     * @param temperatureCelsius The new value that temperatureCelsius will be set to.
+     */
 
     public void setTemperatureCelsius(double temperatureCelsius) {
         if (MINIMUM_POOL_TEMP_CELSIUS <= temperatureCelsius
@@ -92,6 +150,12 @@ public class Pool {
         }
     }
 
+    /**
+     * Sets the current pH of the Pool to the value passed in the parameter.
+     *
+     * @param pH The new value that pH will be set to.
+     */
+
     public void setPH(double pH) {
         if (MINIMUM_PH <= pH && pH <= MAXIMUM_PH) {
             this.pH = pH;
@@ -99,6 +163,12 @@ public class Pool {
             this.pH = NEUTRAL_PH;
         }
     }
+
+    /**
+     * Sets the current nutrientCoefficient of the Pool to the value passed in the parameter.
+     *
+     * @param nutrientCoefficient The new value nutrientCoefficient will be set to.
+     */
 
     public void setNutrientCoefficient(double nutrientCoefficient) {
         if (MINIMUM_NUTRIENT_COEFFICIENT <= nutrientCoefficient
@@ -110,29 +180,72 @@ public class Pool {
 
     }
 
+    /**
+     * Gets the current Name of the Pool.
+     *
+     * @return The value that is stored at Name.
+     */
+
     public String getName() {
         return name;
     }
+
+    /**
+     * Gets the current volume litres of the Pool.
+     *
+     * @return The value that is stored at volumeLitres.
+     */
 
     public double getVolumeLitres() {
         return volumeLitres;
     }
 
+    /**
+     * Gets the current temperature celsius of the Pool.
+     *
+     * @return The value that is stored at temperatureCelsius.
+     */
+
     public double getTemperatureCelsius() {
         return temperatureCelsius;
     }
+
+    /**
+     * Gets the current pH of the Pool.
+     *
+     * @return The value that is stored at pH.
+     */
 
     public double getPH() {
         return pH;
     }
 
+    /**
+     * Gets the current nutrient coefficient of the Pool.
+     *
+     * @return The value that is stored at nutrientCoefficient.
+     */
+
     public double getNutrientCoefficient() {
         return nutrientCoefficient;
     }
 
+    /**
+     * Gets the current identification number of the Pool.
+     *
+     * @return The value that is stored at identificationNumber.
+     */
+
     public int getIdentificationNumber() {
         return identificationNumber;
     }
+
+    /**
+     * Changes the nutrient coefficient of the Pool based on the passed in value.
+     * If the value is invalid, it will default to either a minimum or maximum value.
+     *
+     * @param delta The value that is either added or subtracted to the current nutrientCoefficient.
+     */
 
     public void changeNutrientCoefficient(double delta) {
         this.nutrientCoefficient += delta;
@@ -143,6 +256,13 @@ public class Pool {
         }
     }
 
+    /**
+     * Changes the temperature of the Pool based on the passed in value.
+     * If the value is invalid, it will default to either a minimum or maximum value.
+     *
+     * @param delta The value that is either added or subtracted to the current temperatureCelsius.
+     */
+
     public void changeTemperature(double delta) {
         this.temperatureCelsius += delta;
         if (temperatureCelsius <= MINIMUM_POOL_TEMP_CELSIUS) {
@@ -152,9 +272,23 @@ public class Pool {
         }
     }
 
+    /**
+     * Gets the total number of Pools created.
+     *
+     * @return The total number of Pools created.
+     */
+
     public static int getNumberCreated() {
         return numberOfPools;
     }
+
+    /**
+     * Adds a Guppy to the Pool.
+     * If the Guppy is equal to null, it is not added.
+     *
+     * @param guppy The Guppy to be added.
+     * @return A boolean signifying whether or not the Guppy was added successfully.
+     */
 
     public boolean addGuppy(Guppy guppy) {
         if (guppy == null) {
@@ -163,6 +297,12 @@ public class Pool {
         guppiesInPool.add(guppy);
         return true;
     }
+
+    /**
+     * Gets the current amount of living Guppies in the Pool.
+     *
+     * @return The amount of living Guppies in the Pool.
+     */
 
     public int getPopulation() {
         int numberOfAliveGuppies = 0;
@@ -173,6 +313,14 @@ public class Pool {
         }
         return numberOfAliveGuppies;
     }
+
+    /**
+     * Applies the current nutrientCoefficient of the Pool to each Guppy.
+     * This determines if the starve and die or not.
+     * The method will return the amount of Guppies who starved to death.
+     *
+     * @return The amount of Guppies who starved to death.
+     */
 
     public int applyNutrientCoefficient() {
         Iterator<Guppy> guppies = guppiesInPool.iterator();
@@ -188,6 +336,13 @@ public class Pool {
         return starvedGuppies;
     }
 
+    /**
+     * Removes any Guppies that are dead from the Pool.
+     * Returns the amount of Guppies removed from the Pool.
+     *
+     * @return Amount of dead Guppies removed from the Pool.
+     */
+
     public int removeDeadGuppies() {
         Iterator<Guppy> guppies = guppiesInPool.iterator();
         int deadGuppies = 0;
@@ -201,6 +356,12 @@ public class Pool {
         return deadGuppies;
     }
 
+    /**
+     * Gets the amount of water the living Guppies require to survive.
+     *
+     * @return The amount of water all living Guppies need to survive.
+     */
+
     public double getGuppyVolumeRequirementInLitres() {
         final double oneLitre = 1000.0;
         double guppyVolumeRequired = 0.0;
@@ -212,6 +373,12 @@ public class Pool {
         guppyVolumeRequired /= oneLitre;
         return guppyVolumeRequired;
     }
+
+    /**
+     * Gets the average age of all living Guppies in the Pool.
+     *
+     * @return The average age of all living Guppies.
+     */
 
     public double getAverageAgeInWeeks() {
         double averageAgeInWeeks = 0.0;
@@ -228,6 +395,12 @@ public class Pool {
         return averageAgeInWeeks / livingGuppies;
     }
 
+    /**
+     * Gets the average health coefficient of all living Guppies in the Pool.
+     *
+     * @return The average health coefficient of all living Guppies.
+     */
+
     public double getAverageHealthCoefficient() {
         double averageHealthCoefficient = 0.0;
         int livingGuppies = 0;
@@ -243,6 +416,12 @@ public class Pool {
         return averageHealthCoefficient / livingGuppies;
     }
 
+    /**
+     * Gets the percentage of females of all living Guppies in the Pool.
+     *
+     * @return The percentage of females of all living Guppies.
+     */
+
     public double getFemalePercentage() {
         double averageFemalePercentage = 0;
         int livingFemaleGuppies = 0;
@@ -257,6 +436,12 @@ public class Pool {
         }
         return averageFemalePercentage / guppiesInPool.size();
     }
+
+    /**
+     * Gets the median age of all living Guppies in the Pool.
+     *
+     * @return The median age of all living Guppies.
+     */
 
     public double getMedianAge() {
         Iterator<Guppy> guppies = guppiesInPool.iterator();
@@ -279,9 +464,21 @@ public class Pool {
             }
         }
         Arrays.sort(guppyAgeArray);
+        if (guppyAgeArray.length % 2 == 0) {
+            int medianAgeIndex = guppyAgeArray.length / 2;
+            int medianAgeIndexOther = Math.floorDiv(guppyAgeArray.length + 1, 2);
+            return Math.floorDiv(guppyAgeArray[medianAgeIndex] + guppyAgeArray[medianAgeIndexOther], 2);
+        }
         int medianAgeIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
         return guppyAgeArray[medianAgeIndex];
     }
+
+    /**
+     * Converts the attributes in the class into a String object and
+     * displays them in a informative manner.
+     *
+     * @return A String representation of the attributes within Pool.
+     */
 
     @Override
     public String toString() {
@@ -298,6 +495,14 @@ public class Pool {
         return sb.toString();
     }
 
+    /**
+     * Spawns new Guppies if the current Guppy fulfills the requirements to.
+     * It adds all the babies to a separate list and adds that list
+     * into the main list after,
+     *
+     * @return The amount of newly generated baby Guppies.
+     */
+
     public int spawn() {
         int addedBabies = 0;
         ArrayList<Guppy> newBabiesArrayList = new ArrayList<>();
@@ -312,6 +517,13 @@ public class Pool {
         return addedBabies;
     }
 
+    /**
+     * Increments all the ages of each Guppy in the Pool.
+     * If the Guppy exceeds the max age, it will be killed.
+     *
+     * @return The amount of Guppies killed from old age.
+     */
+
     public int incrementAges() {
         int deadGuppies = 0;
         for (Guppy currentGuppy : guppiesInPool) {
@@ -322,6 +534,16 @@ public class Pool {
         }
         return deadGuppies;
     }
+
+    /**
+     * Kills Guppies if the water volume of the current population
+     * exceeds that of the current water volume of the Pool itself.
+     * The Guppy with the lowest health coefficient will be killed first.
+     * Until the required water volume of the Guppies is less than or equal
+     * to the water volume of the Pool itself.
+     *
+     * @return The amount of Guppies killed from overcrowding.
+     */
 
     public int adjustForCrowding() {
         guppiesInPool.sort(Comparator.comparingDouble(Guppy::getHealthCoefficient));
@@ -336,6 +558,18 @@ public class Pool {
         }
         return crowdedGuppies;
     }
+
+    /**
+     * Checks if the object passed into the method is:
+     * 1. Not null.
+     * 2. Same object (Address-wise).
+     * 3. The same object type.
+     * 4. Has the same values within.
+     *
+     * @param o The value being compared with. It is an Object type value.
+     * @return A boolean signifying if the object passed into method is the
+     * same as what it being checked against.
+     */
 
     @Override
     public boolean equals(Object o) {
@@ -355,6 +589,13 @@ public class Pool {
                 && Objects.equals(guppiesInPool, pool.guppiesInPool)
                 && Objects.equals(randomNumberGenerator, pool.randomNumberGenerator);
     }
+
+    /**
+     * Creates the hashcode for each instantiated object.
+     * This hashcode will be based on the attributes in the object.
+     *
+     * @return The hashcode for the current object.
+     */
 
     @Override
     public int hashCode() {

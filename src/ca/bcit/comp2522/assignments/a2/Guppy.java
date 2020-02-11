@@ -395,6 +395,13 @@ public class Guppy {
                 isAlive, healthCoefficient, identificationNumber);
     }
 
+    /**
+     * Creates the hashcode for each instantiated object.
+     * This hashcode will be based on the attributes in the object.
+     *
+     * @return The hashcode for the current object.
+     */
+
     @Override
     public int hashCode() {
         return Objects.hash(genus, species, ageInWeeks, isFemale, generationNumber, isAlive, healthCoefficient, identificationNumber);

@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.quizzes.quiz02;
+package ca.bcit.comp2522.quizzes.quiz01butactuallythe01;
 
 /**
  * @author Kayden Schmidtt
