@@ -58,7 +58,7 @@ public class Guppy {
      */
     public static final double DEAD_GUPPY_WATER_VOL = 0.0;
 
-    private static final Random randomNumber = new Random();
+    private static final Random RANDOM_NUMBER = new Random();
 
     private static int numberOfGuppiesBorn;
 
@@ -319,8 +319,17 @@ public class Guppy {
         }
     }
 
+    /**
+     * Spawns baby Guppies in the range 0 to 100 if they are eligible to.
+     * Will not spawn if th Guppy is not female or less than 7 weeks old.
+     * Baby Guppies are returned as an ArrayList.
+     *
+     * @return The ArrayList of new baby Guppies with randomly generated attributes.
+     */
+
     public ArrayList<Guppy> spawn() {
-        if (!this.isFemale || this.ageInWeeks < 7) {
+        final int minAge = 7;
+        if (!this.isFemale || this.ageInWeeks < minAge) {
             return null;
         }
 
@@ -328,14 +337,14 @@ public class Guppy {
         final double randomChance = 0.50;
         boolean female = true;
         ArrayList<Guppy> babyGuppies = new ArrayList<>();
-        double chanceToSpawn = randomNumber.nextDouble();
-        int babiesBorn = randomNumber.nextInt(upperbound);
+        double chanceToSpawn = RANDOM_NUMBER.nextDouble();
+        int babiesBorn = RANDOM_NUMBER.nextInt(upperbound);
         BigDecimal spawnChance = BigDecimal.valueOf(chanceToSpawn);
         BigDecimal randomChanceBirth = BigDecimal.valueOf(randomChance);
 
         if (spawnChance.compareTo(randomChanceBirth) < 0) {
             for (int babies = 0; babies < babiesBorn; babies++) {
-                final double femaleChance = randomNumber.nextDouble();
+                final double femaleChance = RANDOM_NUMBER.nextDouble();
                 if (femaleChance <= randomChance) {
                     female = false;
                 }
@@ -361,7 +370,7 @@ public class Guppy {
      */
 
     @Override
-    public final boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -404,6 +413,7 @@ public class Guppy {
 
     @Override
     public int hashCode() {
-        return Objects.hash(genus, species, ageInWeeks, isFemale, generationNumber, isAlive, healthCoefficient, identificationNumber);
+        return Objects.hash(genus, species, ageInWeeks, isFemale,
+                generationNumber, isAlive, healthCoefficient, identificationNumber);
     }
 }

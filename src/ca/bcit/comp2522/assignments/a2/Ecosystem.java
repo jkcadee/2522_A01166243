@@ -87,8 +87,10 @@ public class Ecosystem {
         this.addPool(semiahmoo);
     }
 
-    private void guppyGenerator(int guppyAmount, int ageMin, int ageMax, double healthCoefficientMin,
-                                double healthCoefficientMax, double femalePercentage, Pool pool) {
+    private void guppyGenerator(final int guppyAmount, final int ageMin, final int ageMax,
+                                final double healthCoefficientMin,
+                                final double healthCoefficientMax, final double femalePercentage,
+                                final Pool pool) {
         boolean isFemale = false;
         BigDecimal femaleP = new BigDecimal(femalePercentage);
         for (int guppies = 0; guppies < guppyAmount; guppies++) {
@@ -144,14 +146,22 @@ public class Ecosystem {
         }
 
         StringBuilder displayEcosystem = new StringBuilder();
-        displayEcosystem.append("Week: ").append(currentWeek).append("\n");
-        displayEcosystem.append("Number of deaths from old age: ").append(diedOfOldAge).append("\n");
-        displayEcosystem.append("Number of deaths from starvation: ").append(starvedToDeath).append("\n");
-        displayEcosystem.append("Number of deaths from overpopulation: ").append(crowdedOut).append("\n");
-        displayEcosystem.append("Total number of births: ").append(newFry).append("\n");
-        displayEcosystem.append("Pools: ").append(poolNames).append("\n");
-        displayEcosystem.append("Pool populations: ").append(poolPopulations).append("\n");
-        displayEcosystem.append("Total Ecosystem population: ").append(this.getGuppyPopulation()).append("\n");
+        displayEcosystem.append("Week: ").
+                append(currentWeek).append("\n");
+        displayEcosystem.append("Number of deaths from old age: ").
+                append(diedOfOldAge).append("\n");
+        displayEcosystem.append("Number of deaths from starvation: ").
+                append(starvedToDeath).append("\n");
+        displayEcosystem.append("Number of deaths from overpopulation: ").
+                append(crowdedOut).append("\n");
+        displayEcosystem.append("Total number of births: ").
+                append(newFry).append("\n");
+        displayEcosystem.append("Pools: ").
+                append(poolNames).append("\n");
+        displayEcosystem.append("Pool populations: ").
+                append(poolPopulations).append("\n");
+        displayEcosystem.append("Total Ecosystem population: ").
+                append(this.getGuppyPopulation()).append("\n");
 
         System.out.println(displayEcosystem);
         currentWeek++;

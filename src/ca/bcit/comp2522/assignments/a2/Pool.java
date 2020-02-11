@@ -81,8 +81,9 @@ public class Pool {
      * @param nutrientCoefficient The Pool's nutrient coefficient. Double.
      */
 
-    public Pool(String name, double volumeLitres,
-                double temperatureCelsius, double pH, double nutrientCoefficient) {
+    public Pool(final String name, final double volumeLitres,
+                final double temperatureCelsius, final double pH,
+                final double nutrientCoefficient) {
         if (name == null || name.isEmpty() || name.isBlank()) {
             throw new IllegalArgumentException("Name entered is invalid.");
         }
@@ -127,7 +128,7 @@ public class Pool {
      * @param volumeLitres The new value that volumeLitres will be set to.
      */
 
-    public void setVolumeLitres(double volumeLitres) {
+    public void setVolumeLitres(final double volumeLitres) {
         if (volumeLitres < 0) {
             this.volumeLitres = 0.0;
         } else {
@@ -141,7 +142,7 @@ public class Pool {
      * @param temperatureCelsius The new value that temperatureCelsius will be set to.
      */
 
-    public void setTemperatureCelsius(double temperatureCelsius) {
+    public void setTemperatureCelsius(final double temperatureCelsius) {
         if (MINIMUM_POOL_TEMP_CELSIUS <= temperatureCelsius
                 && temperatureCelsius <= MAXIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = temperatureCelsius;
@@ -156,7 +157,7 @@ public class Pool {
      * @param pH The new value that pH will be set to.
      */
 
-    public void setPH(double pH) {
+    public void setPH(final double pH) {
         if (MINIMUM_PH <= pH && pH <= MAXIMUM_PH) {
             this.pH = pH;
         } else {
@@ -170,7 +171,7 @@ public class Pool {
      * @param nutrientCoefficient The new value nutrientCoefficient will be set to.
      */
 
-    public void setNutrientCoefficient(double nutrientCoefficient) {
+    public void setNutrientCoefficient(final double nutrientCoefficient) {
         if (MINIMUM_NUTRIENT_COEFFICIENT <= nutrientCoefficient
                 && nutrientCoefficient <= MAXIMUM_NUTRIENT_COEFFICIENT) {
             this.nutrientCoefficient = nutrientCoefficient;
@@ -247,7 +248,7 @@ public class Pool {
      * @param delta The value that is either added or subtracted to the current nutrientCoefficient.
      */
 
-    public void changeNutrientCoefficient(double delta) {
+    public void changeNutrientCoefficient(final double delta) {
         this.nutrientCoefficient += delta;
         if (nutrientCoefficient <= MINIMUM_NUTRIENT_COEFFICIENT) {
             this.nutrientCoefficient = MINIMUM_NUTRIENT_COEFFICIENT;
@@ -263,7 +264,7 @@ public class Pool {
      * @param delta The value that is either added or subtracted to the current temperatureCelsius.
      */
 
-    public void changeTemperature(double delta) {
+    public void changeTemperature(final double delta) {
         this.temperatureCelsius += delta;
         if (temperatureCelsius <= MINIMUM_POOL_TEMP_CELSIUS) {
             this.temperatureCelsius = MINIMUM_POOL_TEMP_CELSIUS;
@@ -290,7 +291,7 @@ public class Pool {
      * @return A boolean signifying whether or not the Guppy was added successfully.
      */
 
-    public boolean addGuppy(Guppy guppy) {
+    public boolean addGuppy(final Guppy guppy) {
         if (guppy == null) {
             return false;
         }
@@ -467,7 +468,8 @@ public class Pool {
         if (guppyAgeArray.length % 2 == 0) {
             int medianAgeIndex = guppyAgeArray.length / 2;
             int medianAgeIndexOther = Math.floorDiv(guppyAgeArray.length + 1, 2);
-            return Math.floorDiv(guppyAgeArray[medianAgeIndex] + guppyAgeArray[medianAgeIndexOther], 2);
+            return Math.floorDiv(guppyAgeArray[medianAgeIndex]
+                    + guppyAgeArray[medianAgeIndexOther], 2);
         }
         int medianAgeIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
         return guppyAgeArray[medianAgeIndex];
@@ -549,7 +551,8 @@ public class Pool {
         guppiesInPool.sort(Comparator.comparingDouble(Guppy::getHealthCoefficient));
         Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
         int crowdedGuppies = 0;
-        while (this.getGuppyVolumeRequirementInLitres() >= volumeLitres && killingCrowdedGuppies.hasNext()) {
+        while (this.getGuppyVolumeRequirementInLitres()
+                >= volumeLitres && killingCrowdedGuppies.hasNext()) {
             Guppy weakestGuppy = killingCrowdedGuppies.next();
             if (weakestGuppy.getIsAlive()) {
                 weakestGuppy.setIsAlive(false);
@@ -572,7 +575,7 @@ public class Pool {
      */
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
