@@ -5,15 +5,33 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * Creates a realistic simulation of an ecosystem.
+ *
+ * @author Janelle Kwok
+ * @author BCIT
+ * @version 2020
+ */
 public class Ecosystem {
     private static final Random RANDOM_NUMBER = new Random();
     private static int currentWeek = 1;
 
     private ArrayList<Pool> pools;
 
+    /**
+     * Constructs the Ecosystem's ArrayList of Pools.
+     */
+
     public Ecosystem() {
         this.pools = new ArrayList<>();
     }
+
+    /**
+     * Add a new Pool object to the ArrayList of Pools.
+     * If the Pool is null, it is not added.
+     *
+     * @param newPool The Pool object to be added.
+     */
 
     public void addPool(Pool newPool) {
         if (newPool != null) {
@@ -21,9 +39,20 @@ public class Ecosystem {
         }
     }
 
+    /**
+     * Clears the pool that it is called on of all values.
+     */
+
     public void reset() {
         pools.clear();
     }
+
+    /**
+     * Gets the total Guppy population in each Pool.
+     * Adds then and returns them in a total.
+     *
+     * @return The total amount of Guppies in the Ecosystem.
+     */
 
     public int getGuppyPopulation() {
         int totalGuppies = 0;
@@ -33,6 +62,13 @@ public class Ecosystem {
         return totalGuppies;
     }
 
+    /**
+     * Adjusts for crowding in each Pool.
+     * Returns the amount of Guppies killed.
+     *
+     * @return The amount of Guppies killed from overpopulation.
+     */
+
     public int adjustForCrowding() {
         int destroyedGuppies = 0;
         for (Pool currentPool : pools) {
@@ -40,6 +76,11 @@ public class Ecosystem {
         }
         return destroyedGuppies;
     }
+
+    /**
+     * Sets up the simulation by creating three new Pools and populating them.
+     * Each Pool has a different number of Guppies with different values for their attributes.
+     */
 
     public void setupSimulation() {
         final int maxAmountOfGuppies1 = 300;
@@ -87,6 +128,12 @@ public class Ecosystem {
         this.addPool(semiahmoo);
     }
 
+    /*
+    * Generates each unique Guppy for the the Pools.
+    * Takes in the passed in values and generates them based on the parameters
+    * each Pool has.
+    */
+
     private void guppyGenerator(final int guppyAmount, final int ageMin, final int ageMax,
                                 final double healthCoefficientMin,
                                 final double healthCoefficientMax, final double femalePercentage,
@@ -109,12 +156,25 @@ public class Ecosystem {
         }
     }
 
+    /**
+     * Simulates the Ecosystem for however many weeks is specified.
+     *
+     * @param numberOfWeeks The amount of weeks that the Ecosystem will be simulated.
+     */
+
     public void simulate(final int numberOfWeeks) {
         this.setupSimulation();
         for (int week = 0; week < numberOfWeeks; week++) {
             this.simulateOneWeek();
         }
     }
+
+    /**
+     * Simulates one week of the Ecosystem.
+     * Guppies die of old age, starvation or overpopulation and are removed.
+     * New Guppies are born if enough females exist to do so.
+     * This method prints all this information to console.
+     */
 
     public void simulateOneWeek() {
         int diedOfOldAge = 0;

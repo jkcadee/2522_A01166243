@@ -7,6 +7,13 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Arrays;
 
+/**
+ * Creates a realistic simulation of a pool.
+ *
+ * @author Janelle Kwok
+ * @author BCIT
+ * @version 2020
+ */
 public class Pool {
     /**
      * Default constant for pool name.
@@ -329,7 +336,7 @@ public class Pool {
         while (guppies.hasNext()) {
             Guppy currentGuppy = guppies.next();
             double nutrients = randomNumberGenerator.nextDouble();
-            if (nutrients > this.nutrientCoefficient) {
+            if (nutrients > this.nutrientCoefficient && currentGuppy.getIsAlive()) {
                 currentGuppy.setIsAlive(false);
                 starvedGuppies++;
             }
