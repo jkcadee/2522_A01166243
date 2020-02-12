@@ -55,8 +55,10 @@ public class Pool {
      * Maximum constant for nutrient coefficient.
      */
     public static final double MAXIMUM_NUTRIENT_COEFFICIENT = 1.0;
-
-    private static final double ONE_LITRE = 1000.0;
+    /**
+     * One litre.
+     */
+    public static final double ONE_LITRE = 1000.0;
 
     private static int numberOfPools;
     

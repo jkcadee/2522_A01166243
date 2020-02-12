@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -448,16 +450,52 @@ public class PoolTest {
 
     }
 
+    @Test
     public void emptyPoolHasNoMedianAge() {
-
+        assertEquals(0.0, testPool.getMedianAge(), 0.0);
     }
 
+    @Test public void allOldGuppiesDie() {
+        int count = 100;
+        for (int i = 0; i < count; ++i) {
+            Guppy newGuppy = new Guppy(  "Poecilia",
+                    "elegans",
+                    49,
+                    true,
+                    3,
+                    0.75);
+            testPool.addGuppy(newGuppy);
+            newGuppy.setAgeInWeeks(50);
+        }
+        assertEquals(100, testPool.incrementAges(), 0.0);
+    }
+
+    @Test
     public void medianAgeIsCalculatedCorrectly() {
         Random random = new Random();
         int count = 100;
+        double medianAge;
+        ArrayList<Integer> ageArray = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
-
+            int randomAge = random.nextInt(50);
+            Guppy newGuppy = new Guppy(  "Poecilia",
+                    "elegans",
+                    randomAge,
+                    true,
+                    3,
+                    0.75);
+            testPool.addGuppy(newGuppy);
+            ageArray.add(randomAge);
         }
+        Collections.sort(ageArray);
+        if (ageArray.size() % 2 == 0) {
+            int medianAgeIndex = ageArray.size() / 2;
+            int medianAgeIndexOther = Math.floorDiv(ageArray.size() + 1, 2);
+            medianAge = Math.floorDiv(ageArray.get(medianAgeIndex) + ageArray.get(medianAgeIndexOther), 2);
+        } else {
+            int medianAgeIndex = Math.floorDiv(ageArray.size() + 1, 2);
+            medianAge = ageArray.get(medianAgeIndex);
+        }
+        assertEquals(medianAge, testPool.getMedianAge(), 0.05);
     }
-
 }
