@@ -562,7 +562,7 @@ public class Pool {
         Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
         int crowdedGuppies = 0;
         double volumeRequirement = this.getGuppyVolumeRequirementInLitres();
-        while (volumeRequirement >= volumeLitres && killingCrowdedGuppies.hasNext()) {
+        while (volumeRequirement > volumeLitres && killingCrowdedGuppies.hasNext()) {
             Guppy weakestGuppy = killingCrowdedGuppies.next();
             if (weakestGuppy.getIsAlive()) {
                 volumeRequirement -= weakestGuppy.getVolumeNeeded() / ONE_LITRE;
