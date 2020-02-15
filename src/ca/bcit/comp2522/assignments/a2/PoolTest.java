@@ -518,4 +518,30 @@ public class PoolTest {
         }
         assertEquals(medianAge, testPool.getMedianAge(), 0.05);
     }
+
+    @Test
+    public void weakGuppiesDieFromOvercrowding() {
+        int count = 50;
+        for (int i = 0; i < count; ++i) {
+            Guppy newGuppy = new Guppy(  "Poecilia",
+                    "elegans",
+                    15,
+                    true,
+                    3,
+                    0.9);
+            testPool.addGuppy(newGuppy);
+        }
+        for (int i = 0; i < count; ++i) {
+            Guppy newGuppy = new Guppy(  "Poecilia",
+                    "elegans",
+                    15,
+                    true,
+                    3,
+                    0.5);
+            testPool.addGuppy(newGuppy);
+        }
+        testPool.setVolumeLitres(100.0);
+        int dead = testPool.adjustForCrowding();
+        assertEquals(dead, testPool.adjustForCrowding(), 0.05);
+    }
 }
