@@ -446,8 +446,28 @@ public class PoolTest {
         assertEquals((double) females / count, testPool.getFemalePercentage(), 0.05);
     }
 
-    public void spawnRateIsFiftyPercent() {
-
+    @Test
+    public void spawnIsFiftyPercent() {
+        int couldBirth = 0;
+        int count = 100;
+        Random random = new Random();
+        Guppy newGuppy = new Guppy("Poecilia",
+                "elegans",
+                25,
+                true,
+                3,
+                0.75);
+        testPool.addGuppy(newGuppy);
+        for (int i = 0; i < count; i++) {
+            int oldPop = testPool.getPopulation();
+            testPool.spawn();
+            int newPop = testPool.getPopulation();
+            if (oldPop < newPop) {
+                couldBirth++;
+            }
+            System.out.println(couldBirth);
+        }
+        assertTrue(40 <= couldBirth && couldBirth <= 60);
     }
 
     @Test

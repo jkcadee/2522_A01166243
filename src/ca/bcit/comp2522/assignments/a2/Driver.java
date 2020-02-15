@@ -26,5 +26,6 @@ public class Driver {
         int amountOfWeeks = input.nextInt();
 
         ecosystem.simulate(amountOfWeeks);
+        input.close();
     }
 }
