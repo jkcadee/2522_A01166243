@@ -16,56 +16,29 @@ public class Stack {
     }
 
     public int size() {
-        for (int value : stackValues) {
-            if (value > 1) {
-                count++;
-            }
-        }
         return count;
     }
 
     public int unused() {
-        int unusedSpace = 0;
-        for (int value : stackValues) {
-            if (value == 0) {
-                unusedSpace++;
-            }
-        }
-        return unusedSpace;
+        return capacity() - size();
     }
 
     public void push(int value) throws StackOverflowException{
         if (unused() == 0) {
             throw new StackOverflowException("The stack is full!");
         }
-        for (int index = 0; index < stackValues.length; index++) {
-            if (stackValues[index] == 0) {
-                stackValues[index] = value;
-                break;
-            }
-        }
+        stackValues[count] = value;
+        count++;
     }
 
     public int pop() throws StackUnderflowException{
         if (size() == 0) {
-            count = 0;
             throw new StackUnderflowException("Cannot call Stack.pop() on an empty stack!");
         }
         int poppedValue;
-        for (int index = 0; index < stackValues.length; index++) {
-            if (index == stackValues.length - 1) {
-                poppedValue = stackValues[index];
-                stackValues[index] = 0;
-                return poppedValue;
-            }
-
-            if (stackValues[index + 1] == 0) {
-                poppedValue = stackValues[index];
-                stackValues[index] = 0;
-                return poppedValue;
-            }
-        }
-        return 0;
+        poppedValue = stackValues[count - 1];
+        count--;
+        return poppedValue;
     }
 
     public int peek() throws StackUnderflowException{
@@ -74,6 +47,6 @@ public class Stack {
             throw new StackUnderflowException("Cannot call Stack.peek() on an empty stack!");
         }
         count = 0;
-        return stackValues[size() - 1];
+        return stackValues[size()];
     }
 }

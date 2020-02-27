@@ -33,7 +33,7 @@ public class RPNCalculator {
         return this.getResult();
     }
 
-    void push (final int operand) throws StackOverflowException{
+    private void push (final int operand) throws StackOverflowException{
         if (stack.unused() == 0) {
             throw new StackOverflowException("Cannot push to a full stack!");
         }
