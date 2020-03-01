@@ -29,7 +29,7 @@ public class Race {
      * @param length The length of the race. It is an integer type value.
      */
 
-    public Race(int length) {
+    public Race(final int length) {
         this.length = length;
         hare = new Hare();
         tortoise = new Tortoise();
@@ -99,7 +99,7 @@ public class Race {
 
     private String race() {
         do {
-            int generateRandomNum = randomNumber.nextInt(RANGE);
+            final int generateRandomNum = randomNumber.nextInt(RANGE);
 
             if (generateRandomNum <= FIFTY_PERCENT) {
                 hare.move();

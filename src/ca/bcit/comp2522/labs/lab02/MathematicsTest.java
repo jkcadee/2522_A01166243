@@ -52,7 +52,7 @@ public class MathematicsTest {
      */
     @Test
     public void testGetCircleArea1() {
-        double area = math.getCircleArea(1.0);
+        final double area = math.getCircleArea(1.0);
         assertEquals(3.14159, area, 0.00001);
     }
 
@@ -61,7 +61,7 @@ public class MathematicsTest {
      */
     @Test
     public void testGetCircleArea2() {
-        double area = math.getCircleArea(15.0);
+        final double area = math.getCircleArea(15.0);
         assertEquals(706.85775, area, 0.00001);
     }
 
@@ -70,7 +70,7 @@ public class MathematicsTest {
      */
     @Test
     public void testGetSquareArea1() {
-        double area = math.getSquareArea(2.0);
+        final double area = math.getSquareArea(2.0);
         assertEquals(4.0, area, 0.1);
     }
 
@@ -79,7 +79,7 @@ public class MathematicsTest {
      */
     @Test
     public void testGetSquareArea2() {
-        double area = math.getSquareArea(32.0);
+        final double area = math.getSquareArea(32.0);
         assertEquals(1024.0, area, 0.1);
     }
 
@@ -88,7 +88,7 @@ public class MathematicsTest {
      */
     @Test
     public void testAdd1() {
-        double sum = math.add(6.0, 7.0);
+        final double sum = math.add(6.0, 7.0);
         assertEquals(13.0, sum, 0.1);
     }
 
@@ -97,7 +97,7 @@ public class MathematicsTest {
      */
     @Test
     public void testAdd2() {
-        double sum = math.add(-6.0, 6.0);
+        final double sum = math.add(-6.0, 6.0);
         assertEquals(0.0, sum, 0.1);
     }
 
@@ -106,7 +106,7 @@ public class MathematicsTest {
      */
     @Test
     public void testMultiply1() {
-        double product = math.multiply(1.0, 5.0);
+        final double product = math.multiply(1.0, 5.0);
         assertEquals(5.0, product, 0.1);
     }
 
@@ -115,7 +115,7 @@ public class MathematicsTest {
      */
     @Test
     public void testMultiply2() {
-        double product = math.multiply(20.0, 20.0);
+        final double product = math.multiply(20.0, 20.0);
         assertEquals(400.0, product, 0.1);
     }
 
@@ -124,7 +124,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSubtract1() {
-        double difference = math.subtract(0.0, 20.0);
+        final double difference = math.subtract(0.0, 20.0);
         assertEquals(-20.0, difference, 0.1);
     }
 
@@ -133,7 +133,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSubtract2() {
-        double difference = math.subtract(20.0, 20.0);
+        final double difference = math.subtract(20.0, 20.0);
         assertEquals(0.0, difference, 0.1);
     }
 
@@ -142,7 +142,7 @@ public class MathematicsTest {
      */
     @Test
     public void testDivide1() {
-        double division = math.divide(20, 10);
+        final double division = math.divide(20, 10);
         assertEquals(2.0, division, 0.00001);
     }
 
@@ -151,7 +151,7 @@ public class MathematicsTest {
      */
     @Test
     public void testDivide2() {
-        double division = math.divide(20, 0);
+        final double division = math.divide(20, 0);
         assertEquals(0.0, division, 0.00001);
     }
 
@@ -160,7 +160,7 @@ public class MathematicsTest {
      */
     @Test
     public void testAbsolute1() {
-        int abs = math.absoluteValue(1);
+        final int abs = math.absoluteValue(1);
         assertEquals(1, abs);
     }
 
@@ -169,7 +169,7 @@ public class MathematicsTest {
      */
     @Test
     public void testAbsolute2() {
-        int abs = math.absoluteValue(-5000);
+        final int abs = math.absoluteValue(-5000);
         assertEquals(5000, abs);
     }
 
@@ -178,13 +178,13 @@ public class MathematicsTest {
      */
     @Test
     public void testRandomNumberBetweenTenAndTwentyButNotFifteen() {
-        HashSet<Integer> values = new HashSet<Integer>();
+        final HashSet<Integer> values = new HashSet<Integer>();
 
         for (int i = 0; i < 10000; i++) {
-            int number = math.getRandomNumberBetweenTenAndTwentyButNotFifteen();
-            boolean lessThanTen = number < 10;
-            boolean greaterThanTwenty = number > 20;
-            boolean notFifteen = number == 15;
+            final int number = math.getRandomNumberBetweenTenAndTwentyButNotFifteen();
+            final boolean lessThanTen = number < 10;
+            final boolean greaterThanTwenty = number > 20;
+            final boolean notFifteen = number == 15;
 
             assertFalse(lessThanTen);
             assertFalse(greaterThanTwenty);
@@ -200,7 +200,7 @@ public class MathematicsTest {
      */
     @Test
     public void testFootToKM1() {
-        double km = math.convertFeetToKilometres(1.0);
+        final double km = math.convertFeetToKilometres(1.0);
         assertEquals(0.0003048, km, 0.1);
     }
 
@@ -209,7 +209,7 @@ public class MathematicsTest {
      */
     @Test
     public void testFootToKM2() {
-        double km = math.convertFeetToKilometres(892.0);
+        final double km = math.convertFeetToKilometres(892.0);
         assertEquals(0.272186, km, 0.1);
     }
 
@@ -219,7 +219,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfInts() {
-        int sumOfInts = math.sumOfInts(0);
+        final int sumOfInts = math.sumOfInts(0);
         assertEquals(0, sumOfInts);
     }
 
@@ -229,7 +229,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfInts2() {
-        int sumOfInts = math.sumOfInts(10);
+        final int sumOfInts = math.sumOfInts(10);
         assertEquals(55, sumOfInts);
     }
 
@@ -239,7 +239,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfInts3() {
-        int sumOfInts = math.sumOfInts(49);
+        final int sumOfInts = math.sumOfInts(49);
         assertEquals(1225, sumOfInts);
     }
 
@@ -249,7 +249,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfInts4() {
-        int sumOfInts = math.sumOfInts(-49);
+        final int sumOfInts = math.sumOfInts(-49);
         assertEquals(0, sumOfInts);
     }
 
@@ -259,7 +259,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsPositive() {
-        boolean isPositive = math.isPositive(2);
+        final boolean isPositive = math.isPositive(2);
         assertEquals(true, isPositive);
     }
 
@@ -269,7 +269,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsPositive2() {
-        boolean isPositive = math.isPositive(-2);
+        final boolean isPositive = math.isPositive(-2);
         assertEquals(false, isPositive);
     }
 
@@ -279,7 +279,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsPositive3() {
-        boolean isPositive = math.isPositive(0);
+        final boolean isPositive = math.isPositive(0);
         assertEquals(false, isPositive);
     }
 
@@ -289,7 +289,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsEven() {
-        boolean isEven = math.isEven(0);
+        final boolean isEven = math.isEven(0);
         assertEquals(true, isEven);
     }
 
@@ -299,7 +299,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsEven2() {
-        boolean isEven = math.isEven(1);
+        final boolean isEven = math.isEven(1);
         assertEquals(false, isEven);
     }
 
@@ -309,7 +309,7 @@ public class MathematicsTest {
      */
     @Test
     public void testIsEven3() {
-        boolean isEven = math.isEven(2);
+        final boolean isEven = math.isEven(2);
         assertEquals(true, isEven);
     }
 
@@ -319,7 +319,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfEvens() {
-        int sumOfEvens = math.sumOfEvens(0);
+        final int sumOfEvens = math.sumOfEvens(0);
         assertEquals(0, sumOfEvens);
     }
 
@@ -329,7 +329,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfEvens2() {
-        int sumOfEvens = math.sumOfEvens(10);
+        final int sumOfEvens = math.sumOfEvens(10);
         assertEquals(30, sumOfEvens);
     }
 
@@ -339,7 +339,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfEvens3() {
-        int sumOfEvens = math.sumOfEvens(-10);
+        final int sumOfEvens = math.sumOfEvens(-10);
         assertEquals(-30, sumOfEvens);
     }
 
@@ -350,7 +350,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfProducts() {
-        int sumOfProducts = math.sumOfProducts(10, 3);
+        final int sumOfProducts = math.sumOfProducts(10, 3);
         assertEquals(18, sumOfProducts); // 3 + 6 + 9
     }
 
@@ -361,7 +361,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfProducts2() {
-        int sumOfProducts = math.sumOfProducts(-10, 3);
+        final int sumOfProducts = math.sumOfProducts(-10, 3);
         assertEquals(-18, sumOfProducts); // -3 + -6 + -9
     }
 
@@ -372,7 +372,7 @@ public class MathematicsTest {
      */
     @Test
     public void testSumOfProducts3() {
-        int sumOfProducts = math.sumOfProducts(40, 5);
+        final int sumOfProducts = math.sumOfProducts(40, 5);
         assertEquals(180, sumOfProducts); // 5 + 10 + ... + 40
     }
 

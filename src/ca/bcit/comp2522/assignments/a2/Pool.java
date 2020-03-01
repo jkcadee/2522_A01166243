@@ -318,7 +318,7 @@ public class Pool {
 
     public int getPopulation() {
         int numberOfAliveGuppies = 0;
-        for (Guppy aliveGuppy : guppiesInPool) {
+        for (final Guppy aliveGuppy : guppiesInPool) {
             if (aliveGuppy.getIsAlive()) {
                 numberOfAliveGuppies++;
             }
@@ -335,11 +335,11 @@ public class Pool {
      */
 
     public int applyNutrientCoefficient() {
-        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        final Iterator<Guppy> guppies = guppiesInPool.iterator();
         int starvedGuppies = 0;
         while (guppies.hasNext()) {
-            Guppy currentGuppy = guppies.next();
-            double nutrients = randomNumberGenerator.nextDouble();
+            final Guppy currentGuppy = guppies.next();
+            final double nutrients = randomNumberGenerator.nextDouble();
             if (nutrients > this.nutrientCoefficient && currentGuppy.getIsAlive()) {
                 currentGuppy.setIsAlive(false);
                 starvedGuppies++;
@@ -356,10 +356,10 @@ public class Pool {
      */
 
     public int removeDeadGuppies() {
-        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        final Iterator<Guppy> guppies = guppiesInPool.iterator();
         int deadGuppies = 0;
         while (guppies.hasNext()) {
-            Guppy currentGuppy = guppies.next();
+            final Guppy currentGuppy = guppies.next();
             if (!currentGuppy.getIsAlive()) {
                 guppies.remove();
                 deadGuppies++;
@@ -376,7 +376,7 @@ public class Pool {
 
     public double getGuppyVolumeRequirementInLitres() {
         double guppyVolumeRequired = 0.0;
-        for (Guppy aliveGuppies : guppiesInPool) {
+        for (final Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 guppyVolumeRequired += aliveGuppies.getVolumeNeeded();
            }
@@ -394,7 +394,7 @@ public class Pool {
     public double getAverageAgeInWeeks() {
         double averageAgeInWeeks = 0.0;
         int livingGuppies = 0;
-        for (Guppy aliveGuppies : guppiesInPool) {
+        for (final Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 averageAgeInWeeks += aliveGuppies.getAgeInWeeks();
                 livingGuppies++;
@@ -415,7 +415,7 @@ public class Pool {
     public double getAverageHealthCoefficient() {
         double averageHealthCoefficient = 0.0;
         int livingGuppies = 0;
-        for (Guppy aliveGuppies : guppiesInPool) {
+        for (final Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive()) {
                 averageHealthCoefficient += aliveGuppies.getHealthCoefficient();
                 livingGuppies++;
@@ -436,7 +436,7 @@ public class Pool {
     public double getFemalePercentage() {
         double averageFemalePercentage = 0;
         int livingFemaleGuppies = 0;
-        for (Guppy aliveGuppies : guppiesInPool) {
+        for (final Guppy aliveGuppies : guppiesInPool) {
             if (aliveGuppies.getIsAlive() && aliveGuppies.getIsFemale()) {
                 averageFemalePercentage++;
                 livingFemaleGuppies++;
@@ -455,9 +455,9 @@ public class Pool {
      */
 
     public double getMedianAge() {
-        Iterator<Guppy> guppies = guppiesInPool.iterator();
+        final Iterator<Guppy> guppies = guppiesInPool.iterator();
         int aliveGuppies = 0;
-        for (Guppy aliveGuppy: guppiesInPool) {
+        for (final Guppy aliveGuppy: guppiesInPool) {
             if (aliveGuppy.getIsAlive()) {
                 aliveGuppies++;
             }
@@ -465,10 +465,10 @@ public class Pool {
         if (aliveGuppies == 0) {
             return 0.0;
         }
-        int[] guppyAgeArray = new int[aliveGuppies];
+        final int[] guppyAgeArray = new int[aliveGuppies];
         int guppyAmount = 0;
         while (guppies.hasNext()) {
-            Guppy currentGuppy = guppies.next();
+            final Guppy currentGuppy = guppies.next();
             if (currentGuppy.getIsAlive()) {
                 guppyAgeArray[guppyAmount] = currentGuppy.getAgeInWeeks();
                 guppyAmount++;
@@ -476,12 +476,12 @@ public class Pool {
         }
         Arrays.sort(guppyAgeArray);
         if (guppyAgeArray.length % 2 == 0) {
-            int medianAgeIndex = guppyAgeArray.length / 2;
-            int medianAgeIndexOther = Math.floorDiv(guppyAgeArray.length + 1, 2);
+            final int medianAgeIndex = guppyAgeArray.length / 2;
+            final int medianAgeIndexOther = Math.floorDiv(guppyAgeArray.length + 1, 2);
             return Math.floorDiv(guppyAgeArray[medianAgeIndex]
                     + guppyAgeArray[medianAgeIndexOther], 2);
         }
-        int medianAgeIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
+        final int medianAgeIndex = Math.floorDiv(guppyAgeArray.length + 1, 2);
         return guppyAgeArray[medianAgeIndex];
     }
 
@@ -517,9 +517,9 @@ public class Pool {
 
     public int spawn() {
         int addedBabies = 0;
-        ArrayList<Guppy> newBabiesArrayList = new ArrayList<>();
-        for (Guppy currentGuppy : guppiesInPool) {
-            ArrayList<Guppy> newBabies = currentGuppy.spawn();
+        final ArrayList<Guppy> newBabiesArrayList = new ArrayList<>();
+        for (final Guppy currentGuppy : guppiesInPool) {
+            final ArrayList<Guppy> newBabies = currentGuppy.spawn();
             if (newBabies != null) {
                 newBabiesArrayList.addAll(newBabies);
             }
@@ -538,7 +538,7 @@ public class Pool {
 
     public int incrementAges() {
         int deadGuppies = 0;
-        for (Guppy currentGuppy : guppiesInPool) {
+        for (final Guppy currentGuppy : guppiesInPool) {
             currentGuppy.incrementAge();
             if (!currentGuppy.getIsAlive()) {
                 deadGuppies++;
@@ -559,11 +559,11 @@ public class Pool {
 
     public int adjustForCrowding() {
         guppiesInPool.sort(Comparator.comparingDouble(Guppy::getHealthCoefficient));
-        Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
+        final Iterator<Guppy> killingCrowdedGuppies = guppiesInPool.iterator();
         int crowdedGuppies = 0;
         double volumeRequirement = this.getGuppyVolumeRequirementInLitres();
         while (volumeRequirement > volumeLitres && killingCrowdedGuppies.hasNext()) {
-            Guppy weakestGuppy = killingCrowdedGuppies.next();
+            final Guppy weakestGuppy = killingCrowdedGuppies.next();
             if (weakestGuppy.getIsAlive()) {
                 volumeRequirement -= weakestGuppy.getVolumeNeeded() / ONE_LITRE;
                 weakestGuppy.setIsAlive(false);
@@ -593,7 +593,7 @@ public class Pool {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Pool pool = (Pool) o;
+        final Pool pool = (Pool) o;
         return Double.compare(pool.volumeLitres, volumeLitres) == 0
                 && Double.compare(pool.temperatureCelsius, temperatureCelsius) == 0
                 && Double.compare(pool.pH, pH) == 0

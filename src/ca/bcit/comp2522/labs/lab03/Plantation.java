@@ -62,24 +62,24 @@ public class Plantation {
     public int seed() {
         final int previousSize = farm.size();
 
-        int generateRandomNumber = RANDOM_NUMBER.nextInt((MAX - MIN + 1)) + MIN;
+        final int generateRandomNumber = RANDOM_NUMBER.nextInt((MAX - MIN + 1)) + MIN;
 
         for (int treesPlanted = 0; treesPlanted < generateRandomNumber; treesPlanted++) {
             Species randomTreeType = null;
-            int generateTreeType = RANDOM_NUMBER.nextInt(TREE_TYPE_VALUE);
-            int generateAge = RANDOM_NUMBER.nextInt(MAX);
-            double generateTreeCircumference = CIRCUMFERENCE_MIN
+            final int generateTreeType = RANDOM_NUMBER.nextInt(TREE_TYPE_VALUE);
+            final int generateAge = RANDOM_NUMBER.nextInt(MAX);
+            final double generateTreeCircumference = CIRCUMFERENCE_MIN
                     + (CIRCUMFERENCE_MAX - CIRCUMFERENCE_MIN)
                     * RANDOM_NUMBER.nextDouble();
 
-            for (Species treeSpecies : Species.values()) {
+            for (final Species treeSpecies : Species.values()) {
                 if (treeSpecies.getValue() == generateTreeType) {
                     randomTreeType = treeSpecies;
                     break;
                 }
             }
 
-            Tree newTree = new Tree(randomTreeType, generateAge, generateTreeCircumference);
+            final Tree newTree = new Tree(randomTreeType, generateAge, generateTreeCircumference);
             farm.add(newTree);
 
         }
@@ -97,7 +97,7 @@ public class Plantation {
 
     public int harvestCount(final double cutOffCircumference) {
         int treesReadyForHarvest = 0;
-        for (Tree tree : farm) {
+        for (final Tree tree : farm) {
             if (tree.getTrunkCircumference() >= cutOffCircumference) {
                     treesReadyForHarvest++;
             }
@@ -125,7 +125,7 @@ public class Plantation {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Plantation that = (Plantation) obj;
+        final Plantation that = (Plantation) obj;
         return farm.equals(that.farm);
     }
 

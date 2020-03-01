@@ -1,18 +1,56 @@
 package ca.bcit.comp2522.assignments.a3;
 
-public class PowerOperation extends AbstractOperation{
+/**
+ * Class that simulates a Power Operation.
+ *
+ * @author Janelle Kwok
+ * @author BCIT
+ * @version 2020
+ */
+
+public class PowerOperation extends AbstractOperation {
     private static final char POWER_CODE = '^';
+
+    /**
+     * Constructs the PowerOperation object.
+     */
 
     public PowerOperation() {
         super(POWER_CODE);
     }
 
+    /**
+     * Performs a power operation with the operands.
+     *
+     * @param operandA First operand to be used.
+     * @param operandB Second operand to be used.
+     * @return The result of the power operation.
+     */
+
     @Override
-    public int perform(int operandA, int operandB) {
-        int originalOperandA = operandA;
-        for (int pow = 0; pow < operandB; pow++) {
-            operandA *= originalOperandA;
+    public int perform(int operandA, final int operandB) {
+        if (operandB == 0) {
+            return 1;
         }
+
+        for (int pow = 1; pow < operandB; pow++) {
+            operandA *= operandB;
+        }
+
         return operandA;
      }
+
+    /**
+     * Converts the attributes in the class into a String object and
+     * displays them in a informative manner.
+     *
+     * @return A String representation of the attributes within PowerOperation.
+     */
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PowerOperation{");
+        sb.append('}');
+        return sb.toString();
+    }
 }

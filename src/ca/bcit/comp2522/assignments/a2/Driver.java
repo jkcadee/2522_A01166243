@@ -18,12 +18,12 @@ public class Driver {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
-        Ecosystem ecosystem = new Ecosystem();
-        Scanner input = new Scanner(System.in);
+    public static void main(final String[] args) {
+        final Ecosystem ecosystem = new Ecosystem();
+        final Scanner input = new Scanner(System.in);
 
         System.out.println("How many weeks would you like simulated?");
-        int amountOfWeeks = input.nextInt();
+        final int amountOfWeeks = input.nextInt();
 
         ecosystem.simulate(amountOfWeeks);
         input.close();

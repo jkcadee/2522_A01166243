@@ -55,7 +55,7 @@ public class Hare {
             randomNumber = new Random();
         }
 
-        int generateRandomNum = randomNumber.nextInt(RANGE);
+        final int generateRandomNum = randomNumber.nextInt(RANGE);
 
         if (generateRandomNum <= TWENTY_PERCENT) {
             return position;
@@ -95,7 +95,7 @@ public class Hare {
             return false;
         }
 
-        Hare object = (Hare) obj;
+        final Hare object = (Hare) obj;
 
         return object.getPosition() == this.position;
     }

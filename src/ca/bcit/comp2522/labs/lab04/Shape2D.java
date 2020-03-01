@@ -11,7 +11,7 @@ class Rectangle extends Shape2D{
     private double width;
     private double height;
 
-    public Rectangle(double width, double height) {
+    public Rectangle(final double width, final double height) {
         super();
         this.width = width;
         this.height = height;
@@ -36,7 +36,7 @@ class Rectangle extends Shape2D{
 class Circle extends Shape2D{
     private double radius;
 
-    public Circle(double radius) {
+    public Circle(final double radius) {
         super();
         this.radius = radius;
     }
@@ -59,7 +59,7 @@ class Circle extends Shape2D{
 
 abstract class Polygon extends Shape2D{
     protected int numberOfSides;
-    public Polygon(int numberOfSides) {
+    public Polygon(final int numberOfSides) {
         this.numberOfSides = numberOfSides;
     }
 }
@@ -68,7 +68,7 @@ class RegularPolygon extends Polygon {
     public int length;
     public double apothem;
 
-    public RegularPolygon(int length, double apothem, int numberOfSides) {
+    public RegularPolygon(final int length, final double apothem, final int numberOfSides) {
         super(numberOfSides);
         this.length = length;
         this.apothem = apothem;

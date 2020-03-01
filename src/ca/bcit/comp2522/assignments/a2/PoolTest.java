@@ -75,7 +75,7 @@ public class PoolTest {
         final int numberAlreadyCreated = Pool.getNumberCreated();
         final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Pool aPool = new Pool();
+            final Pool aPool = new Pool();
         }
         assertEquals(numberAlreadyCreated + numberCreated, Pool.getNumberCreated());
     }
@@ -114,22 +114,22 @@ public class PoolTest {
 
     @Test
     public void identificationNumbersAreSequentialAndUniqueInDefaultConstruction() {
-        Pool first = new Pool();
-        int firstID = first.getIdentificationNumber() + 1;
-        int numberCreated = 100;
+        final Pool first = new Pool();
+        final int firstID = first.getIdentificationNumber() + 1;
+        final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Pool littlePool = new Pool();
+            final Pool littlePool = new Pool();
             assertEquals(firstID + i, littlePool.getIdentificationNumber());
         }
     }
 
     @Test
     public void identificationNumbersAreSequentialAndUniqueInMultiParamConstruction() {
-        Pool first = new Pool();
-        int firstID = first.getIdentificationNumber() + 1;
-        int numberCreated = 100;
+        final Pool first = new Pool();
+        final int firstID = first.getIdentificationNumber() + 1;
+        final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Pool newPool = new Pool("Skookumchuk",
+            final Pool newPool = new Pool("Skookumchuk",
                     1000.0,
                     Pool.DEFAULT_POOL_TEMP_CELSIUS,
                     Pool.NEUTRAL_PH,
@@ -140,7 +140,7 @@ public class PoolTest {
 
     @Test
     public void poolNameIsCorrectlyFormattedAndStored() {
-        Pool newPool = new Pool("     ohmy     ",
+        final Pool newPool = new Pool("     ohmy     ",
                 1000.0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
@@ -151,7 +151,7 @@ public class PoolTest {
     @Test
     public void createExceptionWithWhitespaceName() {
         thrown.expect(IllegalArgumentException.class);
-        Pool newPool = new Pool("           ",
+        final Pool newPool = new Pool("           ",
                 1000.0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
@@ -160,7 +160,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsZeroForNegativeVolume() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 -1.0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
@@ -170,7 +170,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsDEFAULTForNegativeTemperature() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 -1.0,
                 Pool.NEUTRAL_PH,
@@ -180,7 +180,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubDEFAULTForOverlyHighTemperature() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 1000.0,
                 Pool.NEUTRAL_PH,
@@ -190,7 +190,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsNEUTRALForNegativePH() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 -1,
@@ -200,7 +200,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsNEUTRALForOverlargePH() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 15,
@@ -210,7 +210,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsDEFAULTForNegativeNutrientCoefficient() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
@@ -220,7 +220,7 @@ public class PoolTest {
 
     @Test
     public void multiParamConstructorSubsDEFAULTForOverlargeNutrientCoefficient() {
-        Pool newPool = new Pool("Skookumchuk",
+        final Pool newPool = new Pool("Skookumchuk",
                 0,
                 Pool.DEFAULT_POOL_TEMP_CELSIUS,
                 Pool.NEUTRAL_PH,
@@ -254,49 +254,49 @@ public class PoolTest {
 
     @Test
     public void volumeMutatorIgnoresNegativeArguments() {
-        double volume = defaultPool.getVolumeLitres();
+        final double volume = defaultPool.getVolumeLitres();
         defaultPool.setVolumeLitres(-0.01);
         assertEquals(volume, defaultPool.getVolumeLitres(), 0.0);
     }
 
     @Test
     public void temperatureMutatorIgnoresNegativeArguments() {
-        double temperature = defaultPool.getTemperatureCelsius();
+        final double temperature = defaultPool.getTemperatureCelsius();
         defaultPool.setTemperatureCelsius(Pool.MINIMUM_POOL_TEMP_CELSIUS - 0.01);
         assertEquals(temperature, defaultPool.getTemperatureCelsius(), 0.0);
     }
 
     @Test
     public void temperatureMutatorIgnoresOverlargeArguments() {
-        double temperature = defaultPool.getTemperatureCelsius();
+        final double temperature = defaultPool.getTemperatureCelsius();
         defaultPool.setTemperatureCelsius(Pool.MAXIMUM_POOL_TEMP_CELSIUS + 0.01);
         assertEquals(temperature, defaultPool.getTemperatureCelsius(), 0.0);
     }
 
     @Test
     public void pHMutatorIgnoresNegativeArguments() {
-        double pH = defaultPool.getPH();
+        final double pH = defaultPool.getPH();
         defaultPool.setPH(-0.01);
         assertEquals(pH, defaultPool.getPH(), 0.0);
     }
 
     @Test
     public void pHMutatorIgnoresOverlargeArguments() {
-        double pH = defaultPool.getPH();
+        final double pH = defaultPool.getPH();
         defaultPool.setPH(14.01);
         assertEquals(pH, defaultPool.getPH(), 0.0);
     }
 
     @Test
     public void nutrientCoefficientMutatorIgnoresNegativeArguments() {
-        double nutrientCoefficient = defaultPool.getNutrientCoefficient();
+        final double nutrientCoefficient = defaultPool.getNutrientCoefficient();
         defaultPool.setNutrientCoefficient(-0.01);
         assertEquals(nutrientCoefficient, defaultPool.getNutrientCoefficient(), 0.0);
     }
 
     @Test
     public void nutrientCoefficientMutatorIgnoresOverlargeArguments() {
-        double nutrientCoefficient = defaultPool.getNutrientCoefficient();
+        final double nutrientCoefficient = defaultPool.getNutrientCoefficient();
         defaultPool.setNutrientCoefficient(1.01);
         assertEquals(nutrientCoefficient, defaultPool.getNutrientCoefficient(), 0.0);
     }
@@ -341,7 +341,7 @@ public class PoolTest {
 
     @Test
     public void removeDeadGuppiesCullsDeadGuppies() {
-        Guppy deadGuppy = new Guppy();
+        final Guppy deadGuppy = new Guppy();
         deadGuppy.setIsAlive(false);
         assertTrue(testPool.addGuppy(deadGuppy));
         assertEquals(0, testPool.getPopulation());
@@ -352,7 +352,7 @@ public class PoolTest {
     @Test
     public void deadGuppiesNeedNoWater() {
         for (int i = 0; i < 100; ++i) {
-            Guppy deadGuppy = new Guppy();
+            final Guppy deadGuppy = new Guppy();
             deadGuppy.setIsAlive(false);
             assertTrue(testPool.addGuppy(deadGuppy));
         }
@@ -366,13 +366,13 @@ public class PoolTest {
 
     @Test
     public void poolOfLivingGuppiesCalculatesCorrectAverageAge() {
-        Random random = new Random();
-        int count = 100;
+        final Random random = new Random();
+        final int count = 100;
         double ageSum = 0;
         for (int i = 0; i < count; ++i) {
-            int randomAge = random.nextInt(50);
+            final int randomAge = random.nextInt(50);
             ageSum += randomAge;
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     randomAge,
                     true,
@@ -386,7 +386,7 @@ public class PoolTest {
     @Test
     public void deadGuppiesAreNotCountedWhenCalculatingAverageAge() {
         for (int i = 0; i < 100; ++i) {
-            Guppy deadGuppy = new Guppy();
+            final Guppy deadGuppy = new Guppy();
             deadGuppy.setIsAlive(false);
             assertTrue(testPool.addGuppy(deadGuppy));
         }
@@ -396,7 +396,7 @@ public class PoolTest {
     @Test
     public void deadGuppiesAreNotCountedWhenCalculatingAverageHealthCoefficient() {
         for (int i = 0; i < 100; ++i) {
-            Guppy deadGuppy = new Guppy();
+            final Guppy deadGuppy = new Guppy();
             deadGuppy.setIsAlive(false);
             assertTrue(testPool.addGuppy(deadGuppy));
         }
@@ -405,13 +405,13 @@ public class PoolTest {
 
     @Test
     public void calculatesAverageHealthCoefficientCorrectly() {
-        Random random = new Random();
-        int count = 100;
+        final Random random = new Random();
+        final int count = 100;
         double healthCoefficientSum = 0;
         for (int i = 0; i < count; ++i) {
-            double randomHealthCoefficient = random.nextDouble();
+            final double randomHealthCoefficient = random.nextDouble();
             healthCoefficientSum += randomHealthCoefficient;
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     0,
                     true,
@@ -429,13 +429,13 @@ public class PoolTest {
 
     @Test
     public void mixedPoolCalculatesFemalePercentageCorrectly() {
-        Random random = new Random();
-        int count = 100;
+        final Random random = new Random();
+        final int count = 100;
         int females = 0;
         for (int i = 0; i < count; ++i) {
-            boolean female = random.nextBoolean();
+            final boolean female = random.nextBoolean();
             if (female) { females++; }
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     0,
                     female,
@@ -449,9 +449,9 @@ public class PoolTest {
     @Test
     public void spawnIsFiftyPercent() {
         int couldBirth = 0;
-        int count = 100;
-        Random random = new Random();
-        Guppy newGuppy = new Guppy("Poecilia",
+        final int count = 100;
+        final Random random = new Random();
+        final Guppy newGuppy = new Guppy("Poecilia",
                 "elegans",
                 25,
                 true,
@@ -459,9 +459,9 @@ public class PoolTest {
                 0.75);
         testPool.addGuppy(newGuppy);
         for (int i = 0; i < count; i++) {
-            int oldPop = testPool.getPopulation();
+            final int oldPop = testPool.getPopulation();
             testPool.spawn();
-            int newPop = testPool.getPopulation();
+            final int newPop = testPool.getPopulation();
             if (oldPop < newPop) {
                 couldBirth++;
             }
@@ -476,9 +476,9 @@ public class PoolTest {
     }
 
     @Test public void allOldGuppiesDie() {
-        int count = 100;
+        final int count = 100;
         for (int i = 0; i < count; ++i) {
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     49,
                     true,
@@ -492,13 +492,13 @@ public class PoolTest {
 
     @Test
     public void medianAgeIsCalculatedCorrectly() {
-        Random random = new Random();
-        int count = 100;
-        double medianAge;
-        ArrayList<Integer> ageArray = new ArrayList<>();
+        final Random random = new Random();
+        final int count = 100;
+        final double medianAge;
+        final ArrayList<Integer> ageArray = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
-            int randomAge = random.nextInt(50);
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final int randomAge = random.nextInt(50);
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     randomAge,
                     true,
@@ -509,11 +509,11 @@ public class PoolTest {
         }
         Collections.sort(ageArray);
         if (ageArray.size() % 2 == 0) {
-            int medianAgeIndex = ageArray.size() / 2;
-            int medianAgeIndexOther = Math.floorDiv(ageArray.size() + 1, 2);
+            final int medianAgeIndex = ageArray.size() / 2;
+            final int medianAgeIndexOther = Math.floorDiv(ageArray.size() + 1, 2);
             medianAge = Math.floorDiv(ageArray.get(medianAgeIndex) + ageArray.get(medianAgeIndexOther), 2);
         } else {
-            int medianAgeIndex = Math.floorDiv(ageArray.size() + 1, 2);
+            final int medianAgeIndex = Math.floorDiv(ageArray.size() + 1, 2);
             medianAge = ageArray.get(medianAgeIndex);
         }
         assertEquals(medianAge, testPool.getMedianAge(), 0.05);
@@ -521,9 +521,9 @@ public class PoolTest {
 
     @Test
     public void weakGuppiesDieFromOvercrowding() {
-        int count = 50;
+        final int count = 50;
         for (int i = 0; i < count; ++i) {
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     15,
                     true,
@@ -532,7 +532,7 @@ public class PoolTest {
             testPool.addGuppy(newGuppy);
         }
         for (int i = 0; i < count; ++i) {
-            Guppy newGuppy = new Guppy(  "Poecilia",
+            final Guppy newGuppy = new Guppy(  "Poecilia",
                     "elegans",
                     15,
                     true,
@@ -541,7 +541,7 @@ public class PoolTest {
             testPool.addGuppy(newGuppy);
         }
         testPool.setVolumeLitres(100.0);
-        int dead = testPool.adjustForCrowding();
+        final int dead = testPool.adjustForCrowding();
         assertEquals(dead, testPool.adjustForCrowding(), 0.05);
     }
 }

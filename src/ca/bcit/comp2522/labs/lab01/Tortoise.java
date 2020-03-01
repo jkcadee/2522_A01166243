@@ -53,7 +53,7 @@ public class Tortoise {
             randomNumber = new Random();
         }
 
-        int generateRandomNum = randomNumber.nextInt(RANGE);
+        final int generateRandomNum = randomNumber.nextInt(RANGE);
 
         if (generateRandomNum <= FIFTY_PERCENT) {
             position += SMALL_TROT;
@@ -88,7 +88,7 @@ public class Tortoise {
             return false;
         }
 
-        Tortoise object = (Tortoise) obj;
+        final Tortoise object = (Tortoise) obj;
 
         return object.getPosition() == this.position;
     }

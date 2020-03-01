@@ -243,7 +243,7 @@ public class Guppy {
      * @param alive The only parameter for this method. It is an boolean type value.
      */
 
-    public final void setIsAlive(boolean alive) {
+    public final void setIsAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -336,11 +336,11 @@ public class Guppy {
         final int upperbound = 101;
         final double randomChance = 0.50;
         boolean female = true;
-        ArrayList<Guppy> babyGuppies = new ArrayList<>();
-        double chanceToSpawn = RANDOM_NUMBER.nextDouble();
-        int babiesBorn = RANDOM_NUMBER.nextInt(upperbound);
-        BigDecimal spawnChance = BigDecimal.valueOf(chanceToSpawn);
-        BigDecimal randomChanceBirth = BigDecimal.valueOf(randomChance);
+        final ArrayList<Guppy> babyGuppies = new ArrayList<>();
+        final double chanceToSpawn = RANDOM_NUMBER.nextDouble();
+        final int babiesBorn = RANDOM_NUMBER.nextInt(upperbound);
+        final BigDecimal spawnChance = BigDecimal.valueOf(chanceToSpawn);
+        final BigDecimal randomChanceBirth = BigDecimal.valueOf(randomChance);
 
         if (spawnChance.compareTo(randomChanceBirth) < 0) {
             for (int babies = 0; babies < babiesBorn; babies++) {
@@ -348,7 +348,7 @@ public class Guppy {
                 if (femaleChance <= randomChance) {
                     female = false;
                 }
-                Guppy baby = new Guppy(this.genus, this.species, 0, female,
+                final Guppy baby = new Guppy(this.genus, this.species, 0, female,
                         this.generationNumber++, ((1.0 + this.healthCoefficient) / 2.0));
                 babyGuppies.add(baby);
                 female = true;
@@ -377,7 +377,7 @@ public class Guppy {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        Guppy object = (Guppy) obj;
+        final Guppy object = (Guppy) obj;
         return object.getAgeInWeeks() == this.getAgeInWeeks()
                 && object.getGenerationNumber() == this.generationNumber
                 && object.getGenus().equals(this.genus)

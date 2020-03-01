@@ -236,7 +236,7 @@ public class Guppy {
      * @param alive The only parameter for this method. It is an boolean type value.
      */
 
-    public final void setAlive(boolean alive) {
+    public final void setAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -325,14 +325,14 @@ public class Guppy {
      */
 
     @Override
-    public final boolean equals(Object obj) {
+    public final boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        Guppy object = (Guppy) obj;
+        final Guppy object = (Guppy) obj;
         return object.getAgeInWeeks() == this.getAgeInWeeks()
                 && object.getGenerationNumber() == this.generationNumber
                 && object.getGenus().equals(this.genus)

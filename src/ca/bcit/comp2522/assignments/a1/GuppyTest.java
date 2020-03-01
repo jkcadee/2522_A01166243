@@ -77,7 +77,7 @@ public class GuppyTest {
         final int numberAlreadyCreated = Guppy.getNumberOfGuppiesBorn();
         final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Guppy someGuppy = new Guppy();
+            final Guppy someGuppy = new Guppy();
         }
         assertEquals(numberAlreadyCreated + numberCreated, Guppy.getNumberOfGuppiesBorn());
     }
@@ -120,22 +120,22 @@ public class GuppyTest {
 
     @Test
     public void identificationNumbersAreSequentialAndUniqueInDefaultConstruction() {
-        Guppy first = new Guppy();
-        int firstID = first.getIdentificationNumber() + 1;
-        int numberCreated = 100;
+        final Guppy first = new Guppy();
+        final int firstID = first.getIdentificationNumber() + 1;
+        final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Guppy fry = new Guppy();
+            final Guppy fry = new Guppy();
             assertEquals(firstID + i, fry.getIdentificationNumber());
         }
     }
 
     @Test
     public void identificationNumbersAreSequentialAndUniqueInMultiParamConstruction() {
-        Guppy first = new Guppy();
-        int firstID = first.getIdentificationNumber() + 1;
-        int numberCreated = 100;
+        final Guppy first = new Guppy();
+        final int firstID = first.getIdentificationNumber() + 1;
+        final int numberCreated = 100;
         for (int i = 0; i < numberCreated; ++i) {
-            Guppy fry = new Guppy("Poecilia",
+            final Guppy fry = new Guppy("Poecilia",
                     "elegans",
                     1,
                     true,
@@ -147,7 +147,7 @@ public class GuppyTest {
 
     @Test
     public void genusAndSpeciesAreCorrectlyFormattedAndStored() {
-        Guppy fry = new Guppy("  poECILIA    ",
+        final Guppy fry = new Guppy("  poECILIA    ",
                 "  ELEgans   ",
                 1,
                 true,
@@ -160,7 +160,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithNoGenus() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy(null,
+        final Guppy fry = new Guppy(null,
                 "a",
                 0,
                 true,
@@ -171,7 +171,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithEmptyGenus() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("    ",
+        final Guppy fry = new Guppy("    ",
                 "a",
                 0,
                 true,
@@ -182,7 +182,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithNoSpecies() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 null,
                 0,
                 true,
@@ -193,7 +193,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithEmptySpecies() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "    ",
                 0,
                 true,
@@ -204,7 +204,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithNegativeAgeInWeeks() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "b",
                 -1,
                 true,
@@ -215,7 +215,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithMaximumAgeInWeeks() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "b",
                 50,
                 true,
@@ -226,7 +226,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithNegativeGenerationNumber() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "b",
                 0,
                 true,
@@ -237,7 +237,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithNegativeHealthCoefficient() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "b",
                 0,
                 true,
@@ -248,7 +248,7 @@ public class GuppyTest {
     @Test
     public void createExceptionWithOverlargeHealthCoefficient() {
         thrown.expect(IllegalArgumentException.class);
-        Guppy fry = new Guppy("a",
+        final Guppy fry = new Guppy("a",
                 "b",
                 0,
                 true,
@@ -258,9 +258,9 @@ public class GuppyTest {
 
     @Test
     public void testIncrementAge() {
-        int oldAge = testGuppy.getAgeInWeeks();
+        final int oldAge = testGuppy.getAgeInWeeks();
         testGuppy.incrementAge();
-        int newAge = testGuppy.getAgeInWeeks();
+        final int newAge = testGuppy.getAgeInWeeks();
         assertTrue(newAge == (oldAge + 1));
     }
 
@@ -273,7 +273,7 @@ public class GuppyTest {
 
     @Test
     public void ageMutatorIgnoresInvalidArguments() {
-        int age = defaultGuppy.getAgeInWeeks();
+        final int age = defaultGuppy.getAgeInWeeks();
         defaultGuppy.setAgeInWeeks(-1);
         assertEquals(age, defaultGuppy.getAgeInWeeks());
 
@@ -283,7 +283,7 @@ public class GuppyTest {
 
     @Test
     public void ageMutatorAcceptsValidArguments() {
-        int age = testGuppy.getAgeInWeeks();
+        final int age = testGuppy.getAgeInWeeks();
         testGuppy.setAgeInWeeks(0);
         assertEquals(0, testGuppy.getAgeInWeeks());
 
@@ -296,7 +296,7 @@ public class GuppyTest {
 
     @Test
     public void healthCoefficientMutatorIgnoresInvalidArguments() {
-        double healthCoefficient = defaultGuppy.getHealthCoefficient();
+        final double healthCoefficient = defaultGuppy.getHealthCoefficient();
         defaultGuppy.setHealthCoefficient(-0.01);
         assertEquals(healthCoefficient, defaultGuppy.getHealthCoefficient(), 0.0);
 
@@ -306,7 +306,7 @@ public class GuppyTest {
 
     @Test
     public void healthCoefficientMutatorAcceptsValidArguments() {
-        double healthCoefficient = testGuppy.getHealthCoefficient();
+        final double healthCoefficient = testGuppy.getHealthCoefficient();
         testGuppy.setHealthCoefficient(0.0);
         assertEquals(0.0, testGuppy.getHealthCoefficient(), 0.0);
 
@@ -319,7 +319,7 @@ public class GuppyTest {
 
     @Test
     public void babyFishNeedMinimalVolumeOfWater() {
-        Guppy fry = new Guppy();
+        final Guppy fry = new Guppy();
         for (int i = 0; i < Guppy.YOUNG_FISH_AGE_IN_WEEKS; ++i) {
             fry.setAgeInWeeks(i);
             assertEquals(Guppy.MINIMUM_WATER_VOLUME_ML, fry.getVolumeNeeded(), 0.0);
@@ -328,27 +328,27 @@ public class GuppyTest {
 
     @Test
     public void youngFishNeedCorrectVolumeOfWater() {
-        Guppy fry = new Guppy();
+        final Guppy fry = new Guppy();
         for (int i = Guppy.YOUNG_FISH_AGE_IN_WEEKS; i <= Guppy.MATURE_FISH_AGE_IN_WEEKS; ++i) {
             fry.setAgeInWeeks(i);
-            double volumeNeeded = Guppy.MINIMUM_WATER_VOLUME_ML * fry.getAgeInWeeks() / Guppy.YOUNG_FISH_AGE_IN_WEEKS;
+            final double volumeNeeded = Guppy.MINIMUM_WATER_VOLUME_ML * fry.getAgeInWeeks() / Guppy.YOUNG_FISH_AGE_IN_WEEKS;
             assertEquals(volumeNeeded, fry.getVolumeNeeded(), 0.001);
         }
     }
 
     @Test
     public void matureFishNeedCorrectVolumeOfWater() {
-        Guppy fry = new Guppy();
+        final Guppy fry = new Guppy();
         for (int i = Guppy.MATURE_FISH_AGE_IN_WEEKS + 1; i <= Guppy.MAXIMUM_AGE_IN_WEEKS; ++i) {
             fry.setAgeInWeeks(i);
-            double volumeNeeded = Guppy.MINIMUM_WATER_VOLUME_ML * 1.5;
+            final double volumeNeeded = Guppy.MINIMUM_WATER_VOLUME_ML * 1.5;
             assertEquals(volumeNeeded, fry.getVolumeNeeded(), 0.001);
         }
     }
 
     @Test
     public void deadFishNeedNoWater() {
-        Guppy fry = new Guppy();
+        final Guppy fry = new Guppy();
         fry.setAgeInWeeks(50);
         fry.incrementAge();
         assertEquals(0.0, fry.getVolumeNeeded(), 0.0);

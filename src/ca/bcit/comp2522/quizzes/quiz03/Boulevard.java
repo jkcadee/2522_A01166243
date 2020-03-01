@@ -55,7 +55,7 @@ public class Boulevard extends Road {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Boulevard boulevard = (Boulevard) o;
+        final Boulevard boulevard = (Boulevard) o;
         return medianHasTrees == boulevard.medianHasTrees;
     }
 

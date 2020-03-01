@@ -55,7 +55,7 @@ public class Road {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Road road = (Road) o;
+        final Road road = (Road) o;
         return Objects.equals(name, road.name) &&
                 direction == road.direction;
     }

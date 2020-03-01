@@ -14,17 +14,17 @@ public class RoadMaker {
      *
      * @param args command-line arguments
      */
-    public static void main(String[] args) {
-        Road mainStreet = new Road("Main Street", Direction.NORTH);
-        Boulevard niagaraBoulevard = new Boulevard("Niagara Boulevard", Direction.SOUTH, true);
-        Highway transCanada = new Highway("TransCanada", Direction.EAST, true);
+    public static void main(final String[] args) {
+        final Road mainStreet = new Road("Main Street", Direction.NORTH);
+        final Boulevard niagaraBoulevard = new Boulevard("Niagara Boulevard", Direction.SOUTH, true);
+        final Highway transCanada = new Highway("TransCanada", Direction.EAST, true);
 
-        ArrayList<Road> roads = new ArrayList<>();
+        final ArrayList<Road> roads = new ArrayList<>();
         roads.add(mainStreet);
         roads.add(niagaraBoulevard);
         roads.add(transCanada);
 
-        for (Road road : roads) {
+        for (final Road road : roads) {
             System.out.println(road.toString());
         }
     }

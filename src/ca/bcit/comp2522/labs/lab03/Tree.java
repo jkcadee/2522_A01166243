@@ -136,7 +136,7 @@ public class Tree {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Tree tree = (Tree) obj;
+        final Tree tree = (Tree) obj;
         return ageInYears == tree.ageInYears
                 && Double.compare(tree.trunkCircumference, trunkCircumference) == 0
                 && treeType == tree.treeType;

@@ -11,7 +11,7 @@ public class Calendar {
      * @param daysOfWeek The second parameter. It is an integer type value.
      */
 
-    public Calendar(int days, int daysOfWeek) {
+    public Calendar(final int days, final int daysOfWeek) {
         this.days = days;
         this.daysOfWeek = daysOfWeek;
     }
@@ -43,8 +43,8 @@ public class Calendar {
      * @param args Not used.
      */
 
-    public static void main(String[] args) {
-        Calendar cal = new Calendar(30, 5);
+    public static void main(final String[] args) {
+        final Calendar cal = new Calendar(30, 5);
         System.out.println(cal.toString());
     }
 }

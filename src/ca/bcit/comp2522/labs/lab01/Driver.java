@@ -26,7 +26,7 @@ public class Driver {
      */
 
     public static String simulateRaces(final int numOfRaces, final int lengthOfRace) {
-        Race race = new Race(lengthOfRace);
+        final Race race = new Race(lengthOfRace);
 
         for (int races = 0; races < numOfRaces; races++) {
             race.simulateRace();
@@ -41,8 +41,8 @@ public class Driver {
      * @param args The only parameter for this method. It is not used.
      */
 
-    public static void main(String[] args) {
-        Race oneRace = new Race(LENGTH_100);
+    public static void main(final String[] args) {
+        final Race oneRace = new Race(LENGTH_100);
 
         String resultOneRace = oneRace.simulateRace();
 

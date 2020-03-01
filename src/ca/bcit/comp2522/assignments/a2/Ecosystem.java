@@ -33,7 +33,7 @@ public class Ecosystem {
      * @param newPool The Pool object to be added.
      */
 
-    public void addPool(Pool newPool) {
+    public void addPool(final Pool newPool) {
         if (newPool != null) {
             pools.add(newPool);
         }
@@ -56,7 +56,7 @@ public class Ecosystem {
 
     public int getGuppyPopulation() {
         int totalGuppies = 0;
-        for (Pool currentPool : pools) {
+        for (final Pool currentPool : pools) {
             totalGuppies += currentPool.getPopulation();
         }
         return totalGuppies;
@@ -71,7 +71,7 @@ public class Ecosystem {
 
     public int adjustForCrowding() {
         int destroyedGuppies = 0;
-        for (Pool currentPool : pools) {
+        for (final Pool currentPool : pools) {
             destroyedGuppies += currentPool.adjustForCrowding();
         }
         return destroyedGuppies;
@@ -139,17 +139,17 @@ public class Ecosystem {
                                 final double healthCoefficientMax, final double femalePercentage,
                                 final Pool pool) {
         boolean isFemale = false;
-        BigDecimal femaleP = new BigDecimal(femalePercentage);
+        final BigDecimal femaleP = new BigDecimal(femalePercentage);
         for (int guppies = 0; guppies < guppyAmount; guppies++) {
-            int generateRandomAge = RANDOM_NUMBER.nextInt((ageMax - ageMin + 1)) + ageMin;
-            double generateRandomNutrientCoefficient = healthCoefficientMin
+            final int generateRandomAge = RANDOM_NUMBER.nextInt((ageMax - ageMin + 1)) + ageMin;
+            final double generateRandomNutrientCoefficient = healthCoefficientMin
                     + (healthCoefficientMax - healthCoefficientMin) * RANDOM_NUMBER.nextDouble();
-            double generateFemaleChance = RANDOM_NUMBER.nextDouble();
-            BigDecimal genFemaleP = new BigDecimal(generateFemaleChance);
+            final double generateFemaleChance = RANDOM_NUMBER.nextDouble();
+            final BigDecimal genFemaleP = new BigDecimal(generateFemaleChance);
             if (genFemaleP.compareTo(femaleP) < 0) {
                 isFemale = true;
             }
-            Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS, Guppy.DEFAULT_SPECIES, generateRandomAge,
+            final Guppy guppy = new Guppy(Guppy.DEFAULT_GENUS, Guppy.DEFAULT_SPECIES, generateRandomAge,
                     isFemale, 1, generateRandomNutrientCoefficient);
             pool.addGuppy(guppy);
             isFemale = false;
@@ -182,10 +182,10 @@ public class Ecosystem {
         int starvedToDeath = 0;
         int newFry = 0;
         int crowdedOut = 0;
-        ArrayList<String> poolNames = new ArrayList<>();
-        ArrayList<Integer> poolPopulations = new ArrayList<>();
+        final ArrayList<String> poolNames = new ArrayList<>();
+        final ArrayList<Integer> poolPopulations = new ArrayList<>();
 
-        for (Pool pool : pools) {
+        for (final Pool pool : pools) {
             diedOfOldAge += pool.incrementAges();
             numberRemoved += pool.removeDeadGuppies();
             starvedToDeath += pool.applyNutrientCoefficient();
@@ -205,7 +205,7 @@ public class Ecosystem {
             System.out.println("Logic Error!");
         }
 
-        StringBuilder displayEcosystem = new StringBuilder();
+        final StringBuilder displayEcosystem = new StringBuilder();
         displayEcosystem.append("Week: ").
                 append(currentWeek).append("\n");
         displayEcosystem.append("Number of deaths from old age: ").
@@ -240,14 +240,14 @@ public class Ecosystem {
      */
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Ecosystem ecosystem = (Ecosystem) o;
+        final Ecosystem ecosystem = (Ecosystem) o;
         return pools.equals(ecosystem.pools);
     }
 

@@ -20,7 +20,7 @@ public class Driver {
      *
      * @param args Not used.
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final int seeding = 5;
         final Plantation lotuslandLumber = new Plantation();
 
@@ -36,10 +36,10 @@ public class Driver {
 
         System.out.println("What the minimum harvest circumference? "
                 + "(Input a floating point number from 10.0 to 100.0)");
-        double minimumHarvestCircumference = scanner.nextDouble();
+        final double minimumHarvestCircumference = scanner.nextDouble();
         scanner.close();
 
-        int treesReadyForHarvest = lotuslandLumber.harvestCount(minimumHarvestCircumference);
+        final int treesReadyForHarvest = lotuslandLumber.harvestCount(minimumHarvestCircumference);
         System.out.printf("The amount of trees ready for harvest is: %d.\n", treesReadyForHarvest);
     }
 }
