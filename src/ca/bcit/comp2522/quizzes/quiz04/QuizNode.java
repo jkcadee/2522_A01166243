@@ -2,6 +2,13 @@ package ca.bcit.comp2522.quizzes.quiz04;
 
 import java.util.Objects;
 
+/**
+ * A class that simulates a Node.
+ *
+ * @author Janelle Kwok A01166243
+ * @author Kayden Schmidt A01174919
+ */
+
 public class QuizNode {
     private Object data;
     private QuizNode next;
