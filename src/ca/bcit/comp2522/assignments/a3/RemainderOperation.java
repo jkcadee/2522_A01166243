@@ -7,14 +7,12 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class RemainderOperation extends AbstractOperation {
     private static final char REMAINDER_CODE = '%';
 
     /**
      * Constructs the remainder operation.
      */
-
     public RemainderOperation() {
         super(REMAINDER_CODE);
     }
@@ -26,7 +24,6 @@ public class RemainderOperation extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the remainder operation.
      */
-
     @Override
     public int perform(final int operandA, final int operandB) {
         return operandA % operandB;
@@ -38,7 +35,6 @@ public class RemainderOperation extends AbstractOperation {
      *
      * @return A String representation of the attributes within RemainderOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("RemainderOperation{");

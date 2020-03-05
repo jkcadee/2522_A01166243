@@ -7,14 +7,12 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class PowerOperation extends AbstractOperation {
     private static final char POWER_CODE = '^';
 
     /**
      * Constructs the PowerOperation object.
      */
-
     public PowerOperation() {
         super(POWER_CODE);
     }
@@ -26,7 +24,6 @@ public class PowerOperation extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the power operation.
      */
-
     @Override
     public int perform(int operandA, final int operandB) {
         if (operandB == 0) {
@@ -46,7 +43,6 @@ public class PowerOperation extends AbstractOperation {
      *
      * @return A String representation of the attributes within PowerOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PowerOperation{");

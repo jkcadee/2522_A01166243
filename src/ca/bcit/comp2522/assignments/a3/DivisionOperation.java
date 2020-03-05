@@ -7,14 +7,12 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class DivisionOperation extends AbstractOperation {
     private static final char DIVISION_CODE = '/';
 
     /**
-     * Constructs the DivisionOperation object.
+     * Constructs a DivisionOperation object.
      */
-
     public DivisionOperation() {
         super(DIVISION_CODE);
     }
@@ -26,7 +24,6 @@ public class DivisionOperation extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the division operation.
      */
-
     @Override
     public int perform(final int operandA, final int operandB) {
         return operandA / operandB;
@@ -38,7 +35,6 @@ public class DivisionOperation extends AbstractOperation {
      *
      * @return A String representation of the attributes within DivisionOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("DivisionOperation{");

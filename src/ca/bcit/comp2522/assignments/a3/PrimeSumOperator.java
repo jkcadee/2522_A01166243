@@ -7,14 +7,12 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class PrimeSumOperator extends AbstractOperation {
     private static final char PRIMESUM_CODE = '@';
 
     /**
      * Constructs the PrimeSumOperator object.
      */
-
     public PrimeSumOperator() {
         super(PRIMESUM_CODE);
     }
@@ -26,7 +24,6 @@ public class PrimeSumOperator extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the prime sum operation.
      */
-
     @Override
     public int perform(final int operandA, final int operandB) {
         int sum = 0;
@@ -56,7 +53,6 @@ public class PrimeSumOperator extends AbstractOperation {
      *
      * @return A String representation of the attributes within PrimeSumOperator.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PrimeSumOperator{");

@@ -7,10 +7,12 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class AdditionOperation extends AbstractOperation {
     private static final char ADDITION_CODE = '+';
 
+    /**
+     * Constructs an AdditionOperation object.
+     */
     public AdditionOperation() {
         super(ADDITION_CODE);
     }
@@ -22,7 +24,6 @@ public class AdditionOperation extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the addition operation.
      */
-
     @Override
     public int perform(final int operandA, final int operandB) {
         return operandA + operandB;
@@ -34,7 +35,6 @@ public class AdditionOperation extends AbstractOperation {
      *
      * @return A String representation of the attributes within AdditionOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AdditionOperation{");

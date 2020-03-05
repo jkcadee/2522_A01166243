@@ -21,7 +21,6 @@ public class Stack {
      *
      * @param arraySize The size of the array that holds the values within the Stack.
      */
-
     public Stack(final int arraySize) {
         if (arraySize < 1) {
             throw new IllegalArgumentException("Array size value is too low.");
@@ -34,7 +33,6 @@ public class Stack {
      *
      * @return The length of the stackValues array.
      */
-
     public int capacity() {
         return stackValues.length;
     }
@@ -44,7 +42,6 @@ public class Stack {
      *
      * @return The count of elements in the stackValues array.
      */
-
     public int size() {
         return count;
     }
@@ -56,7 +53,6 @@ public class Stack {
      *
      * @return The unused space in the stackValues array.
      */
-
     public int unused() {
         return capacity() - size();
     }
@@ -68,7 +64,6 @@ public class Stack {
      * @param value The value to be put into the Stack.
      * @throws StackOverflowException Throws this exception if there is no space in stackValues.
      */
-
     public void push(final int value) throws StackOverflowException {
         if (unused() == 0) {
             throw new StackOverflowException("The stack is full!");
@@ -85,7 +80,6 @@ public class Stack {
      * @throws StackUnderflowException Throws this exception if there are no elements within
      * stackValues.
      */
-
     public int pop() throws StackUnderflowException {
         if (size() == 0) {
             throw new StackUnderflowException("Cannot call Stack.pop() on an empty stack!");
@@ -104,7 +98,6 @@ public class Stack {
      * @throws StackUnderflowException Throws this exception if there are no elements within
      * stackValues.
      */
-
     public int peek() throws StackUnderflowException {
         if (size() == 0) {
             throw new StackUnderflowException("Cannot call Stack.peek() on an empty stack!");
@@ -124,7 +117,6 @@ public class Stack {
      * @return A boolean signifying if the object passed into method is the
      * same as what it being checked against.
      */
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -144,7 +136,6 @@ public class Stack {
      *
      * @return The hashcode for the current object.
      */
-
     @Override
     public int hashCode() {
         int result = Objects.hash(count);
@@ -158,7 +149,6 @@ public class Stack {
      *
      * @return A String representation of the attributes within Stack.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Stack{");

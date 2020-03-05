@@ -14,7 +14,6 @@ public class SubtractionOperation extends AbstractOperation {
     /**
      * Constructs the SubtractionOperation object.
      */
-
     public SubtractionOperation() {
         super(SUBTRACTION_CODE);
     }
@@ -26,7 +25,6 @@ public class SubtractionOperation extends AbstractOperation {
      * @param operandB Second operand to be used.
      * @return The result of the subtraction operation.
      */
-
     @Override
     public int perform(final int operandA, final int operandB) {
         return operandA - operandB;
@@ -38,7 +36,6 @@ public class SubtractionOperation extends AbstractOperation {
      *
      * @return A String representation of the attributes within SubtractionOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SubtractionOperation{");

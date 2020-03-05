@@ -8,7 +8,6 @@ package ca.bcit.comp2522.assignments.a3;
  * @author BCIT
  * @version 2020
  */
-
 public class StackOverflowException extends Exception {
 
     public StackOverflowException() {

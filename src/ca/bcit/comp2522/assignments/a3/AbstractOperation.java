@@ -10,7 +10,6 @@ import java.util.Objects;
  * @author BCIT
  * @version 2020
  */
-
 public abstract class AbstractOperation implements Operation {
     protected char operationType;
 
@@ -20,7 +19,6 @@ public abstract class AbstractOperation implements Operation {
      *
      * @param operationType The symbol for the operation to be used.
      */
-
     public AbstractOperation(final char operationType) {
         this.operationType = operationType;
     }
@@ -30,7 +28,6 @@ public abstract class AbstractOperation implements Operation {
      *
      * @return Returns the symbol.
      */
-
     @Override
     public final char getSymbol() {
         return this.operationType;
@@ -47,7 +44,6 @@ public abstract class AbstractOperation implements Operation {
      * @return A boolean signifying if the object passed into method is the
      * same as what it being checked against.
      */
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -66,7 +62,6 @@ public abstract class AbstractOperation implements Operation {
      *
      * @return The hashcode for the current object.
      */
-
     @Override
     public int hashCode() {
         return Objects.hash(operationType);
@@ -78,7 +73,6 @@ public abstract class AbstractOperation implements Operation {
      *
      * @return A String representation of the attributes within AbstractOperation.
      */
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AbstractOperation{");
