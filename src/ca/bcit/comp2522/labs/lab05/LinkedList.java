@@ -60,7 +60,7 @@ public class LinkedList {
             if (headIterator == null) {
                 throw new IndexOutOfBoundsException();
             }
-            
+
         }
     }
 
@@ -82,14 +82,14 @@ public class LinkedList {
     }
 
     public Object get (int index) {
-        if (index < size() - 1 || index > size() - 1) {
+        if (index < 0 || index > size() - 1) {
             throw new IndexOutOfBoundsException();
         }
         Node headIterator = head;
         for (int currentIndex = 0; currentIndex < index; currentIndex++) {
             headIterator = headIterator.getNext();
         }
-        return headIterator;
+        return headIterator.getObject();
     }
 
     @Override
@@ -104,9 +104,6 @@ public class LinkedList {
 class LinkedListDriver {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        Node node1 = new Node(4);
-        Node node2 = new Node(5);
-        Node node3 = new Node(6);
 
         linkedList.append(4);
         linkedList.append(5);
