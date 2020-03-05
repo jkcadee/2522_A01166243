@@ -66,11 +66,13 @@ public class RPNCalculator {
         return this.getResult();
     }
 
-    /*
-    * Pushes the operand into the stack. Will throw a StackOverflowException if the stack is full.
-    */
+    /**
+     * Pushes the operand into the stack. Will throw a StackOverflowException if the stack is full.
+     *
+     * @param operand The value to be pushed into the stack.
+     */
 
-    private void push(final int operand) throws StackOverflowException {
+    public void push(final int operand) throws StackOverflowException {
         if (stack.unused() == 0) {
             throw new StackOverflowException("Cannot push to a full stack!");
         }
@@ -96,6 +98,8 @@ public class RPNCalculator {
                 return new RemainderOperation();
             case '^':
                 return new PowerOperation();
+            case '@':
+                return new PrimeSumOperator();
             default:
                 throw new InvalidOperationTypeException("Invalid operation symbol.");
         }
@@ -116,18 +120,20 @@ public class RPNCalculator {
         return stack.peek();
     }
 
-    /*
+    /**
      * Performs the operation using the requisite Operation object and the last two values in the
      * Stack.
+     *
+     * @param operation The operation that will be applied to the two operands.
      */
 
-    private void perform(final Operation operation) throws StackUnderflowException,
+    public void perform(final Operation operation) throws StackUnderflowException,
             StackOverflowException {
         if (operation == null) {
             throw new IllegalArgumentException("Operation cannot be null!");
         }
-        final int operandOne = stack.pop();
         final int operandTwo = stack.pop();
+        final int operandOne = stack.pop();
 
         final int result = operation.perform(operandOne, operandTwo);
         this.push(result);
@@ -195,7 +201,7 @@ public class RPNCalculator {
      * @param argv - the command line arguments are the size of the Stack
      * to be created followed by the expression to evaluate.
      */
-    public static void main(final String[] argv) {
+    public static void main(final String[] argv) throws StackUnderflowException {
         // Checks for correct number of command line arguments.
         if (argv.length != 2) {
             System.err.println("Usage: Main <stack size> <formula>");
