@@ -8,7 +8,7 @@ package ca.bcit.comp2522.assignments.a3;
  * @version 2020
  */
 
-public class PrimeSumOperator extends AbstractOperation{
+public class PrimeSumOperator extends AbstractOperation {
     private static final char PRIMESUM_CODE = '@';
 
     /**
