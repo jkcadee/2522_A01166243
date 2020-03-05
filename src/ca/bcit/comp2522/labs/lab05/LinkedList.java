@@ -9,7 +9,6 @@ import java.util.Objects;
  * @author BCIT
  * @version 2020
  */
-
 public class LinkedList {
     private Node head;
 

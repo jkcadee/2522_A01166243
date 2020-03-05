@@ -2,27 +2,59 @@ package ca.bcit.comp2522.labs.lab05;
 
 import java.util.Objects;
 
+/**
+ * A class that simulates a Node and it's requisite methods.
+ *
+ * @author Janelle Kwok
+ * @author BCIT
+ * @version 2020
+ */
 public class Node {
     private Object data;
     private Node next;
 
+    /**
+     * Constructs the Node.
+     *
+     * @param data The data that the Node holds.
+     */
     public Node(final Object data) {
         this.data = data;
         this.next = null;
     }
 
+    /**
+     * Sets the Node's current next value to whatever Node is passed in the parameter.
+     *
+     * @param next The Node that the current Node will point to.
+     */
     public void setNext(Node next) {
         this.next = next;
     }
 
+    /**
+     * Sets the data within the selected Node to whatever Object is passed in the parameter.
+     *
+     * @param data The Object data the current Node is to hold.
+     */
     public void setData(Object data) {
         this.data = data;
     }
 
+    /**
+     * Gets the Object within the selected Node.
+     *
+     * @return The Object data the current Node has.
+     */
     public Object getObject() {
         return this.data;
     }
 
+    /**
+     * Gets the Node within the current Node.
+     *
+     * @return The Node the current Node is pointing to.
+     */
     public Node getNext() {
         return this.next;
     }
