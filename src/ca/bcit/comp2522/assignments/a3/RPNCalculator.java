@@ -45,7 +45,7 @@ public class RPNCalculator {
      * the Stack.
      */
 
-    public int processFormula(final String formula) throws StackOverflowException,
+    final public int processFormula(final String formula) throws StackOverflowException,
             InvalidOperationTypeException, StackUnderflowException {
         if (formula == null || formula.length() == 0) {
             throw new IllegalArgumentException();
@@ -72,7 +72,7 @@ public class RPNCalculator {
      * @param operand The value to be pushed into the stack.
      */
 
-    public void push(final int operand) throws StackOverflowException {
+    final public void push(final int operand) throws StackOverflowException {
         if (stack.unused() == 0) {
             throw new StackOverflowException("Cannot push to a full stack!");
         }
@@ -113,7 +113,7 @@ public class RPNCalculator {
      * the Stack.
      */
 
-    public int getResult() throws StackUnderflowException {
+    final public int getResult() throws StackUnderflowException {
         if (stack.size() == 0) {
             throw new StackUnderflowException("There are no operands!");
         }
@@ -127,7 +127,7 @@ public class RPNCalculator {
      * @param operation The operation that will be applied to the two operands.
      */
 
-    public void perform(final Operation operation) throws StackUnderflowException,
+    final public void perform(final Operation operation) throws StackUnderflowException,
             StackOverflowException {
         if (operation == null) {
             throw new IllegalArgumentException("Operation cannot be null!");

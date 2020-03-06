@@ -25,7 +25,7 @@ public class PowerOperation extends AbstractOperation {
      * @return The result of the power operation.
      */
     @Override
-    public int perform(int operandA, final int operandB) {
+    final public int perform(int operandA, final int operandB) {
         if (operandB == 0) {
             return 1;
         }

@@ -25,7 +25,7 @@ public class RemainderOperation extends AbstractOperation {
      * @return The result of the remainder operation.
      */
     @Override
-    public int perform(final int operandA, final int operandB) {
+    final public int perform(final int operandA, final int operandB) {
         return operandA % operandB;
     }
 

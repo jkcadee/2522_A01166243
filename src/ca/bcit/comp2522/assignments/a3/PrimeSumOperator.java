@@ -25,7 +25,7 @@ public class PrimeSumOperator extends AbstractOperation {
      * @return The result of the prime sum operation.
      */
     @Override
-    public int perform(final int operandA, final int operandB) {
+    final public int perform(final int operandA, final int operandB) {
         int sum = 0;
 
         if (operandA > operandB) {

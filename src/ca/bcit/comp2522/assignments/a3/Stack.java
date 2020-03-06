@@ -33,7 +33,7 @@ public class Stack {
      *
      * @return The length of the stackValues array.
      */
-    public int capacity() {
+    final public int capacity() {
         return stackValues.length;
     }
 
@@ -42,7 +42,7 @@ public class Stack {
      *
      * @return The count of elements in the stackValues array.
      */
-    public int size() {
+    final public int size() {
         return count;
     }
 
@@ -53,7 +53,7 @@ public class Stack {
      *
      * @return The unused space in the stackValues array.
      */
-    public int unused() {
+    final public int unused() {
         return capacity() - size();
     }
 
@@ -64,7 +64,7 @@ public class Stack {
      * @param value The value to be put into the Stack.
      * @throws StackOverflowException Throws this exception if there is no space in stackValues.
      */
-    public void push(final int value) throws StackOverflowException {
+    final public void push(final int value) throws StackOverflowException {
         if (unused() == 0) {
             throw new StackOverflowException("The stack is full!");
         }
@@ -80,7 +80,7 @@ public class Stack {
      * @throws StackUnderflowException Throws this exception if there are no elements within
      * stackValues.
      */
-    public int pop() throws StackUnderflowException {
+    final public int pop() throws StackUnderflowException {
         if (size() == 0) {
             throw new StackUnderflowException("Cannot call Stack.pop() on an empty stack!");
         }
@@ -98,7 +98,7 @@ public class Stack {
      * @throws StackUnderflowException Throws this exception if there are no elements within
      * stackValues.
      */
-    public int peek() throws StackUnderflowException {
+    final public int peek() throws StackUnderflowException {
         if (size() == 0) {
             throw new StackUnderflowException("Cannot call Stack.peek() on an empty stack!");
         }
