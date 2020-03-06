@@ -286,7 +286,7 @@ public class RPNCalculatorTest {
     }
 
     @Test
-    public void processFormulaModuloOne() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+    public void processFormulaModuloExOne() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         calculator = new RPNCalculator(3);
         final int expected = 0;
         String input = "11 3 2 % %";
@@ -295,7 +295,7 @@ public class RPNCalculatorTest {
     }
 
     @Test
-    public void processFormulaModuloTwo() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+    public void processFormulaModuloExTwo() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         calculator = new RPNCalculator(3);
         final int expected = 28;
         String input = "10 12 % 18 +";
@@ -304,10 +304,55 @@ public class RPNCalculatorTest {
     }
 
     @Test
-    public void processFormulaModuloThree() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+    public void processFormulaModuloExThree() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
         calculator = new RPNCalculator(4);
         final int expected = -9;
         String input = "9 3 6 7 % * -";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaModuloOne() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(4);
+        final int expected = 0;
+        String input = "9 1 %";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaPowerOne() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(3);
+        final int expected = 8;
+        String input = "2 3 ^";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaPowerTwo() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 992;
+        String input = "10 3 ^ 8 -";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaPowerThree() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(10);
+        final int expected = 6561;
+        String input = "3 2 ^ 2 ^ 2 ^";
+        final int actual = calculator.processFormula(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void processFormulaPowerZero() throws InvalidOperationTypeException, StackUnderflowException, StackOverflowException {
+        calculator = new RPNCalculator(3);
+        final int expected = 1;
+        String input = "2 0 ^";
         final int actual = calculator.processFormula(input);
         assertEquals(expected, actual);
     }

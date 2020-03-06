@@ -30,11 +30,13 @@ public class PowerOperation extends AbstractOperation {
             return 1;
         }
 
-        for (int pow = 1; pow < operandB; pow++) {
-            operandA *= operandB;
+        int powerProduct = 1;
+
+        for (int pow = 0; pow < operandB; pow++) {
+            powerProduct *= operandA;
         }
 
-        return operandA;
+        return powerProduct;
      }
 
     /**
