@@ -11,6 +11,9 @@ import java.util.Objects;
  * @version 2020
  */
 public abstract class AbstractOperation implements Operation {
+    /**
+     * The character representing the operation.
+     */
     protected char operationType;
 
     /**
