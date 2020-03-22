@@ -94,7 +94,7 @@ public class LinkedList<T> {
          * @post Checks if the object passed in is equal.
          */
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (this == o) {
                 return true;
             }
@@ -155,7 +155,7 @@ public class LinkedList<T> {
      * @pre Must have the same type of object inputted as data as the linked list.
      * @post Adds the object to the front of the linked list.
      */
-    public void prepend(T data) {
+    public void prepend(final T data) {
         Node<T> newNode = new Node<>(data);
         if (head != null) {
             newNode.setNext(head);
@@ -170,7 +170,7 @@ public class LinkedList<T> {
      * @pre Must have the same type of object inputted as data as the linked list.
      * @post Adds the object to the end of the linked list.
      */
-    public void append(T data) {
+    public void append(final T data) {
         if (head == null) {
             head = new Node<>(data);
         } else {
@@ -195,7 +195,7 @@ public class LinkedList<T> {
      * must not go out of range.
      * @post Adds the object at the specified index.
      */
-    public void add(T data, int index) {
+    public void add(final T data, final int index) {
         if (head == null) {
             head = new Node<>(data);
         } else {
@@ -263,7 +263,7 @@ public class LinkedList<T> {
      * @post Gets the data at the specified index.
      */
 
-    public T get(int index) {
+    public T get(final int index) {
         if (index < 0 || index > size() - 1) {
             throw new IndexOutOfBoundsException();
         }
@@ -286,7 +286,7 @@ public class LinkedList<T> {
      * must not go out of range.
      * @post Removes the Node at the specified index.
      */
-    public T remove(int index) {
+    public T remove(final int index) {
         if (index < 0 || index > size() - 1) {
             throw new IndexOutOfBoundsException();
         }
@@ -322,7 +322,7 @@ public class LinkedList<T> {
      * @pre Must have the same type of object inputted as data as the linked list.
      * @post Gets the amount of times the specified data can be found in the linked list.
      */
-    public int count(T o) throws EmptyListException {
+    public int count(final T o) throws EmptyListException {
         if (o == null) {
             throw new IllegalArgumentException();
         }
@@ -358,7 +358,7 @@ public class LinkedList<T> {
      * @post Checks if the object passed in is equal.
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -402,7 +402,6 @@ public class LinkedList<T> {
 /**
  * Drives the program. Primarily for testing.
  */
-
 class LinkedListDriver {
 
     /**

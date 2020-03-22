@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Tests the LinkedList class.
  *
+ * @author Janelle Kwok
  * @author BCIT
  * @version 2020
  */
@@ -82,13 +83,11 @@ public class LinkedListTest {
 
     @Test
     public void sizeIntegerList() {
-        linkedListInteger.size();
         assertEquals(22, linkedListInteger.size());
     }
 
     @Test
     public void sizeStringList() {
-        linkedListString.size();
         assertEquals(16, linkedListString.size());
     }
 
