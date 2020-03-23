@@ -12,39 +12,79 @@ import java.util.Objects;
  */
 public class LinkedList<T> {
 
-    /**
-     * A class that simulates a Node and it's requisite methods.
-     *
-     * @author Janelle Kwok
-     * @author BCIT
-     * @version 2020
-     * @param <T> The type of element the LinkedList can hold.
-     */
     public static class Node<T> {
         private T data;
         private Node<T> next;
 
+        /**
+         * Constructs the Node.
+         *
+         * @param data The data that the Node holds.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Constructs the object.
+         */
          Node(final T data) {
             this.data = data;
             this.next = null;
         }
 
+        /**
+         * Sets the Node's current next value to whatever Node is passed in the parameter.
+         *
+         * @param next The Node that the current Node will point to.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Sets the Node.
+         */
         public void setNext(Node<T> next) {
             this.next = next;
         }
 
+        /**
+         * Sets the data within the selected Node to whatever Object is passed in the parameter.
+         *
+         * @param data The Object data the current Node is to hold.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Sets the data.
+         */
         public void setData(T data) {
             this.data = data;
         }
 
+        /**
+         * Gets the data within the selected Node.
+         *
+         * @return The T typed data the current Node has.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Gets the object.
+         */
         public T getObject() {
             return this.data;
         }
 
+        /**
+         * Gets the Node within the current Node.
+         *
+         * @return The Node the current Node is pointing to.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Gets the Node.
+         */
         public Node<T> getNext() {
             return this.next;
         }
 
+        /**
+         * Checks if the object passed into the method is:
+         * 1. Not null.
+         * 2. Same object (Address-wise).
+         * 3. The same object type.
+         * 4. Has the same values within.
+         *
+         * @param o The value being compared with. It is an Object type value.
+         * @return A boolean signifying if the object passed into method is the
+         * same as what it being checked against.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Checks if the object passed in is equal.
+         */
         @Override
         public boolean equals(final Object o) {
             if (this == o) {
@@ -58,11 +98,27 @@ public class LinkedList<T> {
                     && Objects.equals(next, node.next);
         }
 
+        /**
+         * Creates the hashcode for each instantiated object.
+         * This hashcode will be based on the attributes in the object.
+         *
+         * @return The hashcode for the current object.
+         * @pre All instance variables must have values.
+         * @post Creates a hashcode for the object.
+         */
         @Override
         public int hashCode() {
             return Objects.hash(data, next);
         }
 
+        /**
+         * Converts the attributes in the class into a String object and
+         * displays them in a informative manner.
+         *
+         * @return A String representation of the attributes within Node.
+         * @pre Must have the same type of object inputted as data as the linked list.
+         * @post Constructs a string representation the object.
+         */
         @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder("Node{");
@@ -138,7 +194,6 @@ public class LinkedList<T> {
             if (index < 0) {
                 throw new IndexOutOfBoundsException();
             }
-
             if (index == 0) {
                 prepend(data);
                 return;
