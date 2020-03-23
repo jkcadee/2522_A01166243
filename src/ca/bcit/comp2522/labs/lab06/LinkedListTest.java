@@ -160,16 +160,34 @@ public class LinkedListTest {
     }
 
     @Test
-    public void countIntegerList() throws EmptyListException, IllegalArgumentException{
+    public void countIntegerList() throws EmptyListException, IllegalArgumentException {
         final Integer number = linkedListInteger.count(7);
         final Integer expected = 2;
         assertEquals(expected, number);
     }
 
     @Test
-    public void countStringList() throws EmptyListException, IllegalArgumentException{
+    public void countStringList() throws EmptyListException, IllegalArgumentException {
         final Integer number = linkedListString.count("3");
         final Integer expected = 2;
         assertEquals(expected, number);
+    }
+
+    @Test
+    public void addThrowsException() throws IndexOutOfBoundsException {
+        thrown.expect(IndexOutOfBoundsException.class);
+        linkedListInteger.add(3, -1);
+    }
+
+    @Test
+    public void getThrowsException() throws IndexOutOfBoundsException {
+        thrown.expect(IndexOutOfBoundsException.class);
+        linkedListString.get(-2);
+    }
+
+    @Test
+    public void removeThrowsException() throws IndexOutOfBoundsException {
+        thrown.expect(IndexOutOfBoundsException.class);
+        linkedListString.remove(-200);
     }
 }
