@@ -190,4 +190,16 @@ public class LinkedListTest {
         thrown.expect(IndexOutOfBoundsException.class);
         linkedListString.remove(-200);
     }
+
+    @Test
+    public void equalsInteger() {
+        final Integer checking = 2;
+        assertEquals(linkedListInteger.get(2), checking);
+    }
+
+    @Test
+    public void equalsString() {
+        final String checking = "1";
+        assertEquals(linkedListString.get(1), checking);
+    }
 }
