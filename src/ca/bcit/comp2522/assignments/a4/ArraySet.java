@@ -74,8 +74,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         if (size() == capacity) {
                 resize();
         }
-        if (collection[size()] == null) {
-            collection[size()] = element;
+        if (collection[elementCount] == null) {
+            collection[elementCount] = element;
             return true;
         }
         return true;
@@ -95,14 +95,10 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         if (element == null || !contains(element)) {
             return false;
         }
-        int index = -1;
-        SetIterator<E> iterator = iterator();
-        while (iterator.hasNext()) {
-            index++;
-            E nextElement = iterator.next();
-            if (nextElement.equals(element)) {
-                collection[index] = collection[size()- 1];
-                collection[size() - 1] = null;
+        for (int index = 0; index < elementCount; index++) {
+            if (collection[index].equals(element)) {
+                collection[index] = collection[elementCount - 1];
+                collection[elementCount - 1] = null;
                 return true;
             }
         }
@@ -131,7 +127,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * @return true if element is in the ArraySet, and false otherwise.
      */
     public boolean contains(final E element) {
-        // Your code goes here.nm,
+        // Your code goes here
         if (element == null || size() == 0) {
             return false;
         }
@@ -187,8 +183,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     public Object[] toArray() {
         // Your code goes here
         Object[] array = new Object[size()];
-        for (int index = 0; index < size(); index++) {
-            array[index] = collection[index];
+        if (size() >= 0) {
+            System.arraycopy(collection, 0, array, 0, size());
         }
         return array;
     }
@@ -253,16 +249,5 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
             }
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        ArraySet<Integer> arraySet = new ArraySet<>();
-
-        for (int i = 0; i < 20; i++) {
-            arraySet.add(i);
-        }
-        System.out.println(arraySet.toString());
-        arraySet.remove(4);
-        System.out.println(arraySet.contains(4));
     }
 }
