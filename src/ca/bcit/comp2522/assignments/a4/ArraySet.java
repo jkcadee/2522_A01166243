@@ -76,6 +76,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         }
         if (collection[elementCount] == null) {
             collection[elementCount] = element;
+            elementCount++;
             return true;
         }
         return true;
@@ -99,6 +100,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
             if (collection[index].equals(element)) {
                 collection[index] = collection[elementCount - 1];
                 collection[elementCount - 1] = null;
+                elementCount--;
                 return true;
             }
         }
@@ -116,6 +118,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         // Your code goes here
         Arrays.fill(collection, null);
         capacity = size();
+        elementCount = 0;
     }
 
     /**
@@ -152,12 +155,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      */
     public int size() {
         // Your code goes here
-        elementCount = 0;
-        for (E element : collection) {
-            if (element != null) {
-                elementCount++;
-            }
-        }
+        elementCount = capacity - (capacity - elementCount);
         return elementCount;
     }
 
