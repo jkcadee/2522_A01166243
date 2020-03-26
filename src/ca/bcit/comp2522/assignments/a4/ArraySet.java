@@ -1,9 +1,7 @@
 package ca.bcit.comp2522.assignments.a4;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-
-;
+import java.util.Objects;
 
 /**
  * <p>ArraySet is a resizeable-array implementation of the Set interface. It
@@ -187,13 +185,57 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         return array;
     }
 
+    /**
+     * Checks if the object passed into the method is:
+     * 1. Not null.
+     * 2. Same object (Address-wise).
+     * 3. The same object type.
+     * 4. Has the same values within.
+     *
+     * @param o The value being compared with. It is an Object type value.
+     * @return A boolean signifying if the object passed into method is the
+     * same as what it being checked against.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ArraySet<?> arraySet = (ArraySet<?>) o;
+        return capacity == arraySet.capacity
+                && elementCount == arraySet.elementCount
+                && Arrays.equals(collection, arraySet.collection);
+    }
+
+    /**
+     * Creates the hashcode for each instantiated object.
+     * This hashcode will be based on the attributes in the object.
+     *
+     * @return The hashcode for the current object.
+     */
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(capacity, elementCount);
+        result = 31 * result + Arrays.hashCode(collection);
+        return result;
+    }
+
+    /**
+     * Converts the attributes in the class into a String object and
+     * displays them in a informative manner.
+     *
+     * @return A String representation of the attributes within ArraySet.
+     */
     @Override
     public String toString() {
-        return "ArraySet{" +
-                "capacity=" + capacity +
-                ", elementCount=" + elementCount +
-                ", collection=" + Arrays.toString(collection) +
-                '}';
+        return "ArraySet{"
+                + "capacity=" + capacity
+                + ", elementCount=" + elementCount
+                + ", collection=" + Arrays.toString(collection)
+                + '}';
     }
 
     /**
