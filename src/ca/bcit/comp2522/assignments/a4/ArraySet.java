@@ -216,6 +216,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      */
     private class SetIterator<E> implements MyIterator<E> {
 
+        private int position = 0;
+
         /**
          * Returns true if the iteration has more elements.
          * 
@@ -223,8 +225,6 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
          * @post true
          * @return true if the iteration has more elements, false otherwise.
          */
-        private int position = 0;
-
         @Override
         public boolean hasNext() {
             // Your code goes here
