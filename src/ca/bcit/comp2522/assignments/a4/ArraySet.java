@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.assignments.a4;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * <p>ArraySet is a resizeable-array implementation of the Set interface. It
@@ -186,6 +185,62 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
     }
 
     /**
+     * Calculates the symmetric difference of two ArraySets.
+     *
+     * @param first The first ArraySet.
+     * @param second The second ArraySet.
+     * @param <E> The type of ArraySet that is returned.
+     * @pre true
+     * @post true
+     * @return The symmetric difference of the two ArraySets.
+     */
+    public static <E> ArraySet<E> difference(ArraySet<E> first, ArraySet<E> second) {
+        ArraySet<E> newSet = new ArraySet<>();
+
+        for (Object element : first.toArray()) {
+            newSet.add((E) element);
+        }
+
+        for (int index = 0; index < second.elementCount; index++) {
+            if (first.toArray()[index].getClass() != second.toArray()[index].getClass()) {
+                return null;
+            }
+            if (!newSet.contains((E) second.toArray()[index])) {
+                newSet.add((E) second.toArray()[index]);
+            } else {
+                newSet.remove((E) second.toArray()[index]);
+            }
+        }
+
+        return newSet;
+    }
+
+    /**
+     * Determines whether or not the passed in ArraySet is a subset of the ArraySet the method is being called on.
+     *
+     * @param candidate The ArraySet to be compared to, and determined if it is a subset of the ArraySet you are
+     * comparing it against.
+     * @pre true
+     * @post true
+     * @return A boolean determining whether or not the ArraySet passed in is a subset or not.
+     */
+    public boolean isSubset(ArraySet<E> candidate) {
+        int counter = 0;
+
+        for (Object element : candidate.toArray()) {
+            if (this.contains((E) element)) {
+                counter++;
+            }
+            if (counter == candidate.elementCount) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    /**
      * Checks if the object passed into the method is:
      * 1. Not null.
      * 2. Same object (Address-wise).
@@ -193,6 +248,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * 4. Has the same values within.
      *
      * @param o The value being compared with. It is an Object type value.
+     * @pre true
+     * @post true
      * @return A boolean signifying if the object passed into method is the
      * same as what it being checked against.
      */
@@ -214,6 +271,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * Creates the hashcode for each instantiated object.
      * This hashcode will be based on the attributes in the object.
      *
+     * @pre true
+     * @post true
      * @return The hashcode for the current object.
      */
     @Override
@@ -227,6 +286,8 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
      * Converts the attributes in the class into a String object and
      * displays them in a informative manner.
      *
+     * @pre true
+     * @post true
      * @return A String representation of the attributes within ArraySet.
      */
     @Override
