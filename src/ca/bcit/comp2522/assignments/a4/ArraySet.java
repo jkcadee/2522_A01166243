@@ -237,9 +237,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
         }
         return false;
     }
-
-
-
+    
     /**
      * Checks if the object passed into the method is:
      * 1. Not null.
