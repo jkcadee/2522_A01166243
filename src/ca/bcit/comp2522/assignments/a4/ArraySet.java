@@ -13,8 +13,8 @@ import java.util.*;
  * <p>ArraySet contains a SetIterator that permits access to the elements in the
  * ArraySet one at a time.</p>
  * 
- * @author Your name
- * @version Date
+ * @author Janelle Kwok
+ * @version 2020
  * @invariant The ArraySet never contains duplicate elements.
  * @invariant The ArraySet never contains nulls.
  */

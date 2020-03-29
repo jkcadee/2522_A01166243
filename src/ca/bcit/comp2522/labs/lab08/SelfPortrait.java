@@ -13,8 +13,21 @@ import javafx.scene.transform.Shear;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
+/**
+ * Class that creates a Self Portrait in JavaFX.
+ * @author Janelle Kwok
+ * @version 2020
+ */
 public class SelfPortrait extends Application {
 
+    /**
+     * Constructs the self portrait.
+     *
+     * @param stage The Stage object to run the JavaFX application.
+     * @pre true
+     * @post Will display the JavaFX application.
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Ellipse head = new Ellipse(250, 120, 85, 100);
@@ -38,6 +51,9 @@ public class SelfPortrait extends Application {
         Arc hair2 = new Arc(90, 130, 100, 90, 50, -90);
         hair2.setFill(Color.BLACK);
 
+        Group hairFront = new Group(bangs1, bangs2, bangs4, bangs3);
+        Group hairBack = new Group(hair2, hair1);
+
         Rectangle neck = new Rectangle(219, 210, 60, 70);
         neck.setFill(Color.rgb(250, 216, 175));
 
@@ -59,6 +75,8 @@ public class SelfPortrait extends Application {
         Ellipse armRight = new Ellipse(347, 350, 40, 90);
         armRight.setFill(Color.rgb(12, 12, 66));
 
+        Group body = new Group(neck, shoulderLeft, shoulderRight, armLeft, armRight, torso, collar);
+
         Rectangle zipper1 = new Rectangle(220, 250, 5, 80);
         zipper1.setFill(Color.rgb(183, 188, 188));
 
@@ -68,6 +86,11 @@ public class SelfPortrait extends Application {
         Rectangle zipper3 = new Rectangle(247.5, 227.5, 5, 120);
         zipper3.setFill(Color.rgb(183, 188, 188));
         zipper3.getTransforms().add(new Shear(0, 0, 0.2, 0.3));
+
+        Line jacketZipper = new Line(250.0, 400.0, 250.0, 226.0);
+        jacketZipper.setFill(Color.rgb(183, 188, 188));
+
+        Group zippers = new Group(zipper1, zipper2, zipper3, jacketZipper);
 
         Polygon nose = new Polygon();
         nose.getPoints().addAll(
@@ -83,8 +106,7 @@ public class SelfPortrait extends Application {
         mouth.getTransforms().add(new Rotate(250, 200, 40));
         mouth.getTransforms().add(new Translate(30, 10));
 
-        Line jacketZipper = new Line(250.0, 400.0, 250.0, 226.0);
-        jacketZipper.setFill(Color.rgb(183, 188, 188));
+        Group face = new Group(head, nose, mouth);
 
         Rectangle glassesLensLeft = new Rectangle(185, 110, 50, 30);
         glassesLensLeft.setFill(Color.rgb(227, 232, 232));
@@ -109,17 +131,19 @@ public class SelfPortrait extends Application {
         Rectangle glassesFrameMiddle = new Rectangle(238, 120, 19, 7.5);
         glassesFrameMiddle.setFill(Color.rgb(37, 41, 41));
 
+        Group glasses = new Group(glassesFrameLeft, glassesFrameRight, glassesFrameMiddle, glassesLensLeft,
+                glassesLensRight, glassesLensLeftShine, glassesLensRightShine);
+
         Image image = new Image("https://www.atlus.com/holiday2015/img/bottom-stars.jpg");
 
-        ImageView imageView = new ImageView(image);
-        imageView.setX(0);
-        imageView.setY(0);
-        imageView.setFitHeight(350);
-        imageView.setFitWidth(550);
+        ImageView background = new ImageView(image);
+        background.setX(0);
+        background.setY(0);
+        background.setFitHeight(350);
+        background.setFitWidth(550);
 
-        Group root = new Group(imageView, hair2, hair1, neck, shoulderLeft, shoulderRight, armLeft, armRight, torso, collar,
-                zipper1, zipper2, zipper3, jacketZipper, head, nose, mouth, glassesFrameLeft, glassesFrameRight, glassesFrameMiddle, glassesLensLeft,
-                glassesLensRight, glassesLensLeftShine, glassesLensRightShine, bangs1, bangs2, bangs4, bangs3);
+        Group root = new Group(background, hairBack, body,
+                zippers, face, glasses, hairFront);
 
         Scene scene = new Scene(root, 500, 350, Color.LIGHTCORAL);
 
@@ -127,6 +151,14 @@ public class SelfPortrait extends Application {
         stage.show();
     }
 
+
+    /**
+     * Runs the JavaFX program.
+     *
+     * @pre true
+     * @post true
+     * @param args Uses any command line arguments passed in.
+     */
     public static void main(String[] args) {
         launch(args);
     }
