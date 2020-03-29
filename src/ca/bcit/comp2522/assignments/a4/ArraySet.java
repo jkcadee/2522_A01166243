@@ -214,7 +214,7 @@ public class ArraySet<E> implements Set<E>, MyIterable<E> {
 
         return newSet;
     }
-
+    
     /**
      * Determines whether or not the passed in ArraySet is a subset of the ArraySet the method is being called on.
      *
