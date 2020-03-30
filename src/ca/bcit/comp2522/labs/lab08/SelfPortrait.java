@@ -152,8 +152,7 @@ public class SelfPortrait extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
+    
     /**
      * Runs the JavaFX program.
      *
