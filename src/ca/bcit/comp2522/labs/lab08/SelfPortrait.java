@@ -134,6 +134,8 @@ public class SelfPortrait extends Application {
         Group glasses = new Group(glassesFrameLeft, glassesFrameRight, glassesFrameMiddle, glassesLensLeft,
                 glassesLensRight, glassesLensLeftShine, glassesLensRightShine);
 
+        Circle circle = new Circle(120, Color.ORANGE);
+
         Image image = new Image("https://www.atlus.com/holiday2015/img/bottom-stars.jpg");
 
         ImageView background = new ImageView(image);
@@ -142,7 +144,7 @@ public class SelfPortrait extends Application {
         background.setFitHeight(350);
         background.setFitWidth(550);
 
-        Group root = new Group(background, hairBack, body,
+        Group root = new Group(background, circle, hairBack, body,
                 zippers, face, glasses, hairFront);
 
         Scene scene = new Scene(root, 500, 350, Color.LIGHTCORAL);
