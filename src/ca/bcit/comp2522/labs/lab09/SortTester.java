@@ -175,8 +175,13 @@ public class SortTester {
     public void averageQuadraticTime(final int arraySize, final SortTester sortTester) {
         final int amountOfTestCases = 10;
         long overallTime = 0;
+
         for (int index = 0; index < amountOfTestCases; index++) {
             int[] array = SortTester.createArray(arraySize);
+            if (arraySize == SIZE_TEN_MILLION) {
+                overallTime += sortTester.quadraticSort(array);
+                index = 10;
+            }
             overallTime += sortTester.quadraticSort(array);
         }
         System.out.println("For length: " + arraySize

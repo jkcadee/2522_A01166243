@@ -21,9 +21,6 @@ public class Driver {
 
         for (int arraySize : sizes) {
             sortTester.averageLogTime(arraySize, sortTester);
-            if (arraySize == SortTester.SIZE_TEN_MILLION) {
-                sortTester.averageQuadraticTime(arraySize, sortTester);
-            }
             sortTester.averageQuadraticTime(arraySize, sortTester);
         }
     }
