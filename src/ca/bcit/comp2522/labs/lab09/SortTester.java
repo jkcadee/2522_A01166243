@@ -106,18 +106,29 @@ public class SortTester {
      * @param array An array of integers to be sorted.
      * @param lowerBound The lowest index in the array.
      * @param upperBound The highest index in the array.
-     * @return The time it takes for the array to be sorted, as well as the sorted array.
      */
-    public long logarithmicSort(final int[] array, final int lowerBound, final int upperBound) {
-        long beginning = System.nanoTime();
-
+    public void logarithmicSort(final int[] array, final int lowerBound, final int upperBound) {
         if (lowerBound < upperBound) {
             int p = partition(array, lowerBound, upperBound);
             logarithmicSort(array, lowerBound, p - 1);
             logarithmicSort(array, p + 1, upperBound);
         }
+    }
 
-        return (System.nanoTime() - beginning);
+    /**
+     * Gets the time of the logarithmic sort.
+     *
+     * @pre Array has elements.
+     * @post Array is sorted and the time for it to be sorted is returned.
+     * @param array Integer array.
+     * @param lowerBound The lowest index in the array.
+     * @param upperBound The highest index in the array.
+     * @return The time it takes for the array to be sorted, as well as the sorted array.
+     */
+    public long getLogarithmicSortTime(final int[] array, final int lowerBound, final int upperBound) {
+        long beginning = System.nanoTime();
+        logarithmicSort(array, lowerBound, upperBound);
+        return System.nanoTime() - beginning;
     }
 
     /*
@@ -146,7 +157,7 @@ public class SortTester {
         long overallTime = 0;
         for (int index = 0; index < amountOfTestCases; index++) {
             int[] array = SortTester.createArray(arraySize);
-            overallTime += sortTester.logarithmicSort(array, 0, array.length - 1);
+            overallTime += sortTester.getLogarithmicSortTime(array, 0, array.length - 1);
         }
         System.out.println("For length: " + arraySize
                 + ", the average time to complete 10 calls of this "

@@ -19,11 +19,11 @@ public class Driver {
 
         SortTester sortTester = new SortTester();
 
-        // Buffer Tester, as there is a spike in time during the first call.
-        sortTester.averageLogTime(SortTester.SIZE_TEN, sortTester);
-
         for (int arraySize : sizes) {
             sortTester.averageLogTime(arraySize, sortTester);
+            if (arraySize == SortTester.SIZE_TEN_MILLION) {
+                sortTester.averageQuadraticTime(arraySize, sortTester);
+            }
             sortTester.averageQuadraticTime(arraySize, sortTester);
         }
     }
