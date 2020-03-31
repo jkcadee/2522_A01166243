@@ -2,50 +2,82 @@ package ca.bcit.comp2522.labs.lab09;
 
 import java.util.Random;
 
+/**
+ * Tests the running time of a quadratic sort and logarithmic sort algorithm. Quadratic sort is insertion sort, and
+ * logarithmic sort is quick sort.
+ *
+ * @author Janelle Kwok
+ * @version 2020
+ */
 public class SortTester {
 
+    /**
+     * Constant signifying the size an array size of 10.
+     */
     public static final int SIZE_TEN = 10;
+    /**
+     * Constant signifying the size an array size of 100.
+     */
     public static final int SIZE_HUNDRED = 100;
+    /**
+     * Constant signifying the size an array size of 1000.
+     */
     public static final int SIZE_THOUSAND = 1_000;
+    /**
+     * Constant signifying the size an array size of 10000.
+     */
     public static final int SIZE_TEN_THOUSAND = 10_000;
+    /**
+     * Constant signifying the size an array size of 100000.
+     */
     public static final int SIZE_ONE_HUNDRED_THOUSAND = 100_000;
+    /**
+     * Constant signifying the size an array size of 1000000.
+     */
     public static final int SIZE_ONE_MILLION = 1_000_000;
+    /**
+     * Constant signifying the size an array size of 10000000.
+     */
     public static final int SIZE_TEN_MILLION = 10_000_000;
 
     /**
+     * Sorts an array of integers in quadratic time. Also times the process.
      *
+     * https://www.geeksforgeeks.org/insertion-sort/
      * https://www.hackerearth.com/practice/algorithms/sorting/insertion-sort/tutorial/
      * https://www.tutorialspoint.com/data_structures_algorithms/insertion_sort_algorithm.htm
      *
-     * @param array
-     * @return
+     * @pre The array has elements.
+     * @post The array is sorted.
+     * @param array An array of integers to be sorted.
+     * @return The time it takes for the array to be sorted, as well as the sorted array.
      */
-    public long quadraticSort(int[] array) {
+    public long quadraticSort(final int[] array) {
         long time = System.nanoTime();
 
-        for (int index = 0; index < array.length; index++) {
-            int pickedValue = array[index];
-            int indexTwo = index;
-            while (indexTwo > 0 && pickedValue >= array[index - 1]) {
-                    array[indexTwo] = array[indexTwo - 1];
-                    indexTwo--;
-            }
-            array[indexTwo] = pickedValue;
-        }
+        int n = array.length;
+        for (int i = 1; i < n; ++i) {
+            int key = array[i];
+            int j = i - 1;
 
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j = j - 1;
+            }
+            array[j + 1] = key;
+        }
         return System.nanoTime() - time;
     }
 
-    /**
-     *
-     * https://www.geeksforgeeks.org/quick-sort/
-     *
-     * @param array
-     * @param lowerBound
-     * @param upperBound
-     * @return
+    /*
+     * Determines the partition point for quick sort.
+     * For each call of the logarithmic sort method, it will go up to the returned index -1,
+     * or start at the returned index +1.
      */
-    private int partition(int[] array, int lowerBound, int upperBound) {
+    private int partition(final int[] array, final int lowerBound, final int upperBound) {
         int pivot = array[upperBound];
         int smallestIndex = (lowerBound - 1);
 
@@ -64,8 +96,19 @@ public class SortTester {
         return smallestIndex + 1;
     }
 
-
-    public long logarithmicSort(int[] array, int lowerBound, int upperBound) {
+    /**
+     * Sorts an array of integers in logarithmic time. Also times the process.
+     *
+     * https://www.geeksforgeeks.org/quick-sort/
+     *
+     * @pre The array has elements.
+     * @post The array is sorted.
+     * @param array An array of integers to be sorted.
+     * @param lowerBound The lowest index in the array.
+     * @param upperBound The highest index in the array.
+     * @return The time it takes for the array to be sorted, as well as the sorted array.
+     */
+    public long logarithmicSort(final int[] array, final int lowerBound, final int upperBound) {
         long beginning = System.nanoTime();
 
         if (lowerBound < upperBound) {
@@ -77,6 +120,10 @@ public class SortTester {
         return (System.nanoTime() - beginning);
     }
 
+    /*
+     * Creates a new array based on the size inputted.
+     * Fills it with random numbers from 0 to ten million.
+     */
     private static int[] createArray(int size) {
         int[] newArray = new int[size];
         final Random randomNumberGenerator = new Random();
@@ -86,7 +133,15 @@ public class SortTester {
         return newArray;
     }
 
-    private void averageLogTime(int arraySize, SortTester sortTester) {
+    /**
+     * Gets the average time of ten logarithmic sorts. Prints the time and the length for each.
+     *
+     * @pre The array has elements.
+     * @post The array is sorted and the time is printed.
+     * @param arraySize The array size to create an array to be created from.
+     * @param sortTester The SortTester object.
+     */
+    public void averageLogTime(final int arraySize, final SortTester sortTester) {
         final int amountOfTestCases = 10;
         long overallTime = 0;
         for (int index = 0; index < amountOfTestCases; index++) {
@@ -97,7 +152,15 @@ public class SortTester {
                 "logarithmic algorithm is " + overallTime / amountOfTestCases);
     }
 
-    private void averageQuadraticTime(int arraySize, SortTester sortTester) {
+    /**
+     * Gets the average time of ten quadratic sorts. Prints the time and the length for each.
+     *
+     * @pre The array has elements.
+     * @post The array is sorted and the time is printed.
+     * @param arraySize The array size to create an array to be created from.
+     * @param sortTester The SortTester object.
+     */
+    public void averageQuadraticTime(final int arraySize, final SortTester sortTester) {
         final int amountOfTestCases = 10;
         long overallTime = 0;
         for (int index = 0; index < amountOfTestCases; index++) {
