@@ -14,8 +14,8 @@ public class Driver {
      */
     public static void main(String[] args) {
         int[] sizes = {SortTester.SIZE_TEN, SortTester.SIZE_HUNDRED, SortTester.SIZE_THOUSAND,
-                SortTester.SIZE_TEN_THOUSAND,
-                SortTester.SIZE_ONE_HUNDRED_THOUSAND, SortTester.SIZE_ONE_MILLION, SortTester.SIZE_TEN_MILLION};
+                SortTester.SIZE_TEN_THOUSAND, SortTester.SIZE_ONE_HUNDRED_THOUSAND,
+                SortTester.SIZE_ONE_MILLION, SortTester.SIZE_TEN_MILLION};
 
         SortTester sortTester = new SortTester();
 

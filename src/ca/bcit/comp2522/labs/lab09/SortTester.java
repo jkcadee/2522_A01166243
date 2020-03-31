@@ -3,8 +3,8 @@ package ca.bcit.comp2522.labs.lab09;
 import java.util.Random;
 
 /**
- * Tests the running time of a quadratic sort and logarithmic sort algorithm. Quadratic sort is insertion sort, and
- * logarithmic sort is quick sort.
+ * Tests the running time of a quadratic sort and logarithmic sort algorithm.
+ * Quadratic sort is insertion sort, and logarithmic sort is quick sort.
  *
  * @author Janelle Kwok
  * @version 2020
@@ -148,8 +148,9 @@ public class SortTester {
             int[] array = SortTester.createArray(arraySize);
             overallTime += sortTester.logarithmicSort(array, 0, array.length - 1);
         }
-        System.out.println("For length: " + arraySize + ", the average time to complete 10 calls of this " +
-                "logarithmic algorithm is " + overallTime / amountOfTestCases);
+        System.out.println("For length: " + arraySize
+                + ", the average time to complete 10 calls of this "
+                + "logarithmic algorithm is " + overallTime / amountOfTestCases);
     }
 
     /**
@@ -167,22 +168,15 @@ public class SortTester {
             int[] array = SortTester.createArray(arraySize);
             overallTime += sortTester.quadraticSort(array);
         }
-        System.out.println("For length: " + arraySize + ", the average time to complete 10 sorts of calls " +
-                "quadratic algorithm is " + overallTime / amountOfTestCases);
+        System.out.println("For length: " + arraySize
+                + ", the average time to complete 10 sorts of calls "
+                + "quadratic algorithm is " + overallTime / amountOfTestCases);
     }
 
-    public static void main(String[] args) {
-        int[] sizes = {SIZE_TEN, SIZE_HUNDRED, SIZE_THOUSAND, SIZE_TEN_THOUSAND,
-                SIZE_ONE_HUNDRED_THOUSAND, SIZE_ONE_MILLION, SIZE_TEN_MILLION};
-
-        SortTester sortTester = new SortTester();
-
-        // Buffer Tester, as there is a spike in time during the first call.
-        sortTester.averageLogTime(SIZE_TEN, sortTester);
-
-        for (int arraySize : sizes) {
-            sortTester.averageLogTime(arraySize, sortTester);
-            sortTester.averageQuadraticTime(arraySize, sortTester);
-        }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SortTester{");
+        sb.append('}');
+        return sb.toString();
     }
 }
