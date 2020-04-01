@@ -178,10 +178,11 @@ public class SortTester {
 
         for (int index = 0; index < amountOfTestCases; index++) {
             int[] array = SortTester.createArray(arraySize);
-            if (arraySize == SIZE_TEN_MILLION) {
-                overallTime += sortTester.quadraticSort(array);
-                index = 10;
-            }
+            // To test the size of running one sort of an array of a size of ten million.
+//            if (arraySize == SIZE_TEN_MILLION) {
+//                overallTime += sortTester.quadraticSort(array);
+//                index = 10;
+//            }
             overallTime += sortTester.quadraticSort(array);
         }
         System.out.println("For length: " + arraySize
