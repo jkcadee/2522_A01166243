@@ -1,7 +1,5 @@
 package ca.bcit.comp2522.assignments.a5;
 
-import javafx.scene.image.Image;
-
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
