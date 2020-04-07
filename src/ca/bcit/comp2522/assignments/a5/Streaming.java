@@ -114,10 +114,13 @@ public class Streaming {
     public static void lazyStream(final List<String> lazyStringList) {
         final int minStringLength = 10;
 
-        lazyStringList.stream()
+        Stream<String> lazyStringStream = lazyStringList.stream()
+                .peek(e -> System.out.println("Passed in and not filtered."))
                 .filter(e -> e.length() > minStringLength)
-                .peek(System.out::println)
-                .count();
+                .peek(e -> System.out.println("It's filtered."));
+
+        System.out.println("Using a terminal operation to prove .filter() is lazy.");
+        lazyStringStream.forEach(System.out::println);
     }
 
     /**
@@ -156,7 +159,8 @@ public class Streaming {
         List<String> stringList = new ArrayList<>();
         stringList.add("Not 10");
         stringList.add("Is over length 10, definitely.");
-        stringList.add("Also over length 10");
+        stringList.add("Also over length 10.");
+        stringList.add("Valorant Beta Access?");
 
         lazyStream(stringList);
 
