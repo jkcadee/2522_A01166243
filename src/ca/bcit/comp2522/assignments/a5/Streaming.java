@@ -99,8 +99,8 @@ public class Streaming {
      */
     public static List<Character> descendingSortNoDuplicates(List<Character> characterList) {
         return characterList.stream()
-                .distinct()
                 .sorted(Comparator.reverseOrder())
+                .distinct()
                 .collect(Collectors.toList());
     }
 
@@ -141,9 +141,15 @@ public class Streaming {
      * @param args Not used.
      */
     public static void main(String[] args) {
+        System.out.println("Ascending: ");
+
         ascendingSort(words()).forEach(System.out::println);
 
+        System.out.println("Descending: ");
+
         descendingSort(words()).forEach(System.out::println);
+
+        System.out.println("No copies: ");
 
         descendingSortNoDuplicates(words()).forEach(System.out::println);
 
