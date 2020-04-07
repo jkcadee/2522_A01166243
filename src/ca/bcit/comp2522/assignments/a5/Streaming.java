@@ -1,6 +1,9 @@
 package ca.bcit.comp2522.assignments.a5;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,52 +31,129 @@ import java.util.stream.Stream;
  * Collections Framework, only accepts Objects. You could turn the stream into the Object version of
  * the primitive type, or you could do the stream operations first, and place the elements into a
  * collection like a List and turn that list into an array of the primitive type.
+ *
+ * Runs various answers to questions asked about streaming in Java.
+ *
+ * @author Janelle Kwok
+ * @version 2020
  */
 public class Streaming {
+    /**
+     * Creates a List object of Characters from ASCII values 97 to 122.
+     *
+     * @pre true.
+     * @post characterList is not null.
+     * @return A List of Characters.
+     */
     public static List<Character> words() {
         Random random = new Random();
         List<Character> characterList = new ArrayList<>();
 
         final int numberOfCharacters = 30;
+        final int boundForNextInt = 26;
+        final int addingForASCII = 97;
 
         for (int index = 0; index < numberOfCharacters; index++) {
-            characterList.add((char) (97 + random.nextInt(26)));
+            characterList.add((char) (addingForASCII + random.nextInt(boundForNextInt)));
         }
 
         return characterList;
     }
 
+    /**
+     * Sorts a List of Characters in ascending order.
+     *
+     * @pre characterList is not null.
+     * @post characterList is sorted and not null.
+     * @param characterList A list of Character Objects.
+     * @return A sorted list of Character Objects.
+     */
     public static List<Character> ascendingSort(List<Character> characterList) {
         return characterList.stream()
                 .sorted(Character::compareTo)
                 .collect(Collectors.toList());
     }
 
-    public static List<Character> descendingOrder(List<Character> characterList) {
+    /**
+     * Sorts a List of Characters in descending order.
+     *
+     * @pre characterList is not null.
+     * @post characterList is sorted and not null.
+     * @param characterList A list of Character Objects.
+     * @return A sorted list of Character Objects.
+     */
+    public static List<Character> descendingSort(List<Character> characterList) {
         return characterList.stream()
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
 
-    public static List<Character> descendingOrderNoDuplicates(List<Character> characterList) {
+    /**
+     * Sorts a List of Characters in descending order. It will get rid of any duplicates and will
+     * not return them in the final List.
+     *
+     * @pre characterList is not null.
+     * @post characterList is sorted and not null.
+     * @param characterList A list of Character Objects.
+     * @return A sorted list of Character Objects with no duplicates.
+     */
+    public static List<Character> descendingSortNoDuplicates(List<Character> characterList) {
         return characterList.stream()
                 .distinct()
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
 
-    public static void lazyStream(List<String> lazyStringList) {
+    /**
+     * Prints out every instance of a String element that has a length of > 10.
+     *
+     * @pre lazyStringList is not null.
+     * @post lazyStringList is not null.
+     * @param lazyStringList A List of String Objects.
+     */
+    public static void lazyStream(final List<String> lazyStringList) {
+        final int minStringLength = 10;
+
         lazyStringList.stream()
-                .filter(e -> e.length() > 10)
-                .forEach(System.out::println);
+                .filter(e -> e.length() > minStringLength)
+                .peek(System.out::println)
+                .count();
     }
 
+    /**
+     * Returns a Stream of all Characters contained with a passed in String.
+     *
+     * @pre input is not null.
+     * @post input is not null.
+     * @param input The String Object.
+     * @return A Stream of Characters containing the characters of the string passed in.
+     */
     public static Stream<Character> characterStream(String input) {
         return input.chars()
                 .mapToObj(e -> (char) e);
     }
 
+    /**
+     * Used to run the program. Test cases are tested here.
+     *
+     * @pre true.
+     * @post true.
+     * @param args Not used.
+     */
     public static void main(String[] args) {
+        ascendingSort(words()).forEach(System.out::println);
+
+        descendingSort(words()).forEach(System.out::println);
+
+        descendingSortNoDuplicates(words()).forEach(System.out::println);
+
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Not 10");
+        stringList.add("Is over length 10, definitely.");
+        stringList.add("Also over length 10");
+
+        lazyStream(stringList);
+
         String string = "New string";
 
         characterStream(string).forEach(System.out::println);
