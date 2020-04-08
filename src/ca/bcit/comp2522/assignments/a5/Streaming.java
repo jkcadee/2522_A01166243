@@ -27,10 +27,10 @@ import java.util.stream.Stream;
  * be sequential, and contain the same elements as the collection that was passed into it as a
  * parameter.
  *
- * It is not directly possible to create a Stream<int>, this is because Streams, like the
- * Collections Framework, only accepts Objects. You could turn the stream into the Object version of
- * the primitive type, or you could do the stream operations first, and place the elements into a
- * collection like a List and turn that list into an array of the primitive type.
+ * It is not directly possible to create a Stream<int>, this is because Stream, like the
+ * Collections Framework, only accepts Objects. It is possible however, to create an IntStream and
+ * use the .of() in IntStream to create a Stream of primitive int values. We can also use
+ * Arrays.stream() as well to create an IntStream.
  *
  * Runs various answers to questions asked about streaming in Java.
  *
