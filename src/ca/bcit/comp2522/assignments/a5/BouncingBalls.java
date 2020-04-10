@@ -29,19 +29,18 @@ public class BouncingBalls extends Application {
         Pane canvas = new Pane();
         Scene scene = new Scene(canvas, 500, 500);
         List<Ball> ballList = new ArrayList<>();
-        Ball ballSingle = new Ball(250, 250);
 
         System.out.println("How many balls would you like?");
         int amountOfBalls = scanner.nextInt();
-//
+
         for (int index = 0; index < amountOfBalls; index++) {
             Ball newBall = new Ball(random.nextInt(500), random.nextInt(500));
             ballList.add(newBall);
         }
 
-//        canvas.getChildren().add(ballSingle);
-
         for (Ball ball : ballList) {
+            if (ball.getBallList() == null)
+                ball.setBallList(ballList);
             canvas.getChildren().add(ball);
         }
 
@@ -49,9 +48,6 @@ public class BouncingBalls extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-//        Thread bounce = new Thread(ballSingle);
-//        bounce.setDaemon(true);
-//        bounce.start();
 
         for (Ball ball : ballList) {
             Thread bouncer = new Thread(ball);

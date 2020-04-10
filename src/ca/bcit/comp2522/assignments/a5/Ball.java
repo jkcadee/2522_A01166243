@@ -3,7 +3,9 @@ package ca.bcit.comp2522.assignments.a5;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,11 +15,12 @@ import java.util.Random;
  * @version 2020
  */
 public class Ball extends Circle implements Runnable {
+    private static List<Ball> ballList;
 
     private static final Random generator = new Random();
 
-    private final int MAX_X = 500; // horizontal edge of enclosing Panel
-    private final int MAX_Y = 500; // vertical edge of enclosing Panel
+    private static final int MAX_X = 500; // horizontal edge of enclosing Panel
+    private static final int MAX_Y = 500; // vertical edge of enclosing Panel
 
     private int dx; // change in horizontal position of ball
     private int dy; // change in vertical position of ball
@@ -33,7 +36,18 @@ public class Ball extends Circle implements Runnable {
         this.setCenterX(xPosition);
         this.setCenterY(yPosition);
         dx = generator.nextInt(5); // change in x (0 - 4 pixels)
-        dy = generator.nextInt(5); // change in y (0 - 4 pixels)
+        if (dx != 0)
+            dy = generator.nextInt(5); // change in y (0 - 4 pixels)
+        else
+            dy = generator.nextInt((5 - 1) + 1) + 1;
+    }
+
+    public void setBallList(List<Ball> newBallList) {
+        ballList = newBallList;
+    }
+
+    public List<Ball> getBallList() {
+        return ballList;
     }
 
     /**
@@ -66,6 +80,24 @@ public class Ball extends Circle implements Runnable {
                 if (this.getCenterX() <= 0 || this.getCenterX() >= MAX_X)
                     dx *= -1; // reverses velocity in x direction
 
+                for (Ball ball : ballList) {
+                    if (!ball.equals(this)) {
+                        Shape intersect = Shape.intersect(ball, this);
+                        if (intersect.getBoundsInLocal().getWidth() != -1) {
+                            if (dx == 0) {
+                                dx = 1;
+                                dx *= -1;
+                            }
+                            else if (dy == 0) {
+                                dy = 1;
+                                dy *= -1;
+                            }
+                            dx *= -1;
+                            dy *= -1;
+                        }
+                    }
+
+                }
 
                 this.setCenterX(this.getCenterX() + dx); // determines new x-position
                 this.setCenterY(this.getCenterY() + dy); // determines new y-position
