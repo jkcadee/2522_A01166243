@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,16 +14,10 @@ import java.util.Random;
  * @version 2020
  */
 public class Ball extends Circle implements Runnable {
-    private static List<Ball> ballList;
-
     private static final Random generator = new Random();
-
-    private static final int MAX_X = 500; // horizontal edge of enclosing Panel
-    private static final int MAX_Y = 500; // vertical edge of enclosing Panel
 
     private int dx; // change in horizontal position of ball
     private int dy; // change in vertical position of ball
-
 
     /**
      * Constructs an object of type Ball.
@@ -42,12 +35,38 @@ public class Ball extends Circle implements Runnable {
             dy = generator.nextInt((5 - 1) + 1) + 1;
     }
 
-    public void setBallList(List<Ball> newBallList) {
-        ballList = newBallList;
-    }
+    /**
+     * Determines and calculates the collision of each Ball in BALL_LIST.
+     *
+     * @pre BALL_LIST is not null and has values inside of it.
+     * @post If there is a collision, the balls switch their dx and dy values.
+     */
+    private void collision() {
+        BouncingBalls.getBallList().forEach(ball -> {
+            if (!ball.equals(this)) {
+                Shape intersect = Shape.intersect(ball, this);
+                if (intersect.getBoundsInLocal().getWidth() != -1
+                        && intersect.getBoundsInLocal().getHeight() != -1) {
+                    if (dx == 0) {
+                        dx = 1;
+                        dx *= -1;
+                    }
+                    else if (dy == 0) {
+                        dy = 1;
+                        dy *= -1;
+                    }
 
-    public List<Ball> getBallList() {
-        return ballList;
+                    final int tempX = this.dx;
+                    final int tempY = this.dy;
+
+                    this.dx = ball.dx;
+                    this.dy = ball.dy;
+
+                    ball.dx = tempX;
+                    ball.dy = tempY;
+                }
+            }
+        });
     }
 
     /**
@@ -73,31 +92,14 @@ public class Ball extends Circle implements Runnable {
              */
             Platform.runLater( () -> {
                 // if bounce off top or bottom of Panel
-                if (this.getCenterY() <= 0 || this.getCenterY() >= MAX_Y)
+                if (this.getCenterY() <= 0 || this.getCenterY() >= BouncingBalls.MAX_Y)
                     dy *= -1; // reverses velocity in y direction
 
                 // if bounce off left or right of Panel
-                if (this.getCenterX() <= 0 || this.getCenterX() >= MAX_X)
+                if (this.getCenterX() <= 0 || this.getCenterX() >= BouncingBalls.MAX_X)
                     dx *= -1; // reverses velocity in x direction
 
-                for (Ball ball : ballList) {
-                    if (!ball.equals(this)) {
-                        Shape intersect = Shape.intersect(ball, this);
-                        if (intersect.getBoundsInLocal().getWidth() != -1) {
-                            if (dx == 0) {
-                                dx = 1;
-                                dx *= -1;
-                            }
-                            else if (dy == 0) {
-                                dy = 1;
-                                dy *= -1;
-                            }
-                            dx *= -1;
-                            dy *= -1;
-                        }
-                    }
-
-                }
+                collision();
 
                 this.setCenterX(this.getCenterX() + dx); // determines new x-position
                 this.setCenterY(this.getCenterY() + dy); // determines new y-position

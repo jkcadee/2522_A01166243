@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * BouncingBalls, an introduction to threading and JavaFX.
@@ -19,41 +19,70 @@ import java.util.Scanner;
  * @version 2020
  */
 public class BouncingBalls extends Application {
+    private static final List<Ball> BALL_LIST = new ArrayList<>();
+
+    private static final Random random = new Random();
+    /**
+     * Max X space for the scene.
+     */
+    public static final int MAX_X = 500; // horizontal edge of enclosing Panel
+    /**
+     * Max Y space for the scene.
+     */
+    public static final int MAX_Y = 500; // vertical edge of enclosing Panel
+
+    /**
+     * Getter for BALL_LIST.
+     *
+     * @pre true
+     * @post true
+     * @return The List of created Balls.
+     */
+    public static List<Ball> getBallList() {
+        return BALL_LIST;
+    }
+
+    /*
+     * Populates the BALL_LIST and the canvas simultaneously.
+     */
+    private void populatingTheListAndCanvas(Pane canvas, int amountOfBalls) {
+        for (int index = 0; index < amountOfBalls; index++) {
+            final Ball newBall = new Ball(random.nextInt(MAX_X), random.nextInt(MAX_Y));
+            canvas.getChildren().add(newBall);
+            BALL_LIST.add(newBall);
+        }
+    }
+
+    /*
+     * Starts the Thread for each Ball object in BALL_LIST.
+     */
+    private void startingTheThreads() {
+        BALL_LIST.forEach(ball -> {
+            final Thread bouncer = new Thread(ball);
+            bouncer.setDaemon(true);
+            bouncer.start();
+        });
+    }
+
     /**
      * Demonstrates threading in JavaFX.
      * @param primaryStage contains the Scene
      */
     public void start(Stage primaryStage) {
         final Scanner scanner = new Scanner(System.in);
-        final Random random = new Random();
-        Pane canvas = new Pane();
-        Scene scene = new Scene(canvas, 500, 500);
-        List<Ball> ballList = new ArrayList<>();
+
+        final Pane canvas = new Pane();
+        final Scene scene = new Scene(canvas, MAX_X, MAX_Y);
 
         System.out.println("How many balls would you like?");
-        int amountOfBalls = scanner.nextInt();
 
-        for (int index = 0; index < amountOfBalls; index++) {
-            Ball newBall = new Ball(random.nextInt(500), random.nextInt(500));
-            ballList.add(newBall);
-        }
-
-        for (Ball ball : ballList) {
-            if (ball.getBallList() == null)
-                ball.setBallList(ballList);
-            canvas.getChildren().add(ball);
-        }
+        populatingTheListAndCanvas(canvas, scanner.nextInt());
 
         primaryStage.setTitle("Threads and Balls");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-        for (Ball ball : ballList) {
-            Thread bouncer = new Thread(ball);
-            bouncer.setDaemon(true);
-            bouncer.start();
-        }
+        startingTheThreads();
     }
 
     /**
