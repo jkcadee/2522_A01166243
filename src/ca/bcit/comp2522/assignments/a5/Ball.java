@@ -14,7 +14,10 @@ import java.util.Random;
  * @version 2020
  */
 public class Ball extends Circle implements Runnable {
-    private static final Random generator = new Random();
+    private static final Random GENERATOR = new Random();
+    private static final int BALL_SIZE = 10;
+    private static final int DX_CHANGE = 5;
+    private static final int DY_CHANGE = 5;
 
     private int dx; // change in horizontal position of ball
     private int dy; // change in vertical position of ball
@@ -25,14 +28,18 @@ public class Ball extends Circle implements Runnable {
      * @param yPosition an int
      */
     public Ball(int xPosition, int yPosition) {
-        super(10, Color.RED);
+        super(BALL_SIZE, Color.RED);
+
         this.setCenterX(xPosition);
         this.setCenterY(yPosition);
-        dx = generator.nextInt(5); // change in x (0 - 4 pixels)
-        if (dx != 0)
-            dy = generator.nextInt(5); // change in y (0 - 4 pixels)
-        else
-            dy = generator.nextInt((5 - 1) + 1) + 1;
+
+        dx = GENERATOR.nextInt(DX_CHANGE); // change in x (0 - 4 pixels)
+        if (dx != 0) {
+            dy = GENERATOR.nextInt(DY_CHANGE); // change in y (0 - 4 pixels)
+        } else {
+            dy = GENERATOR.nextInt((DY_CHANGE - 1) + 1) + 1;
+        }
+
     }
 
     /**
@@ -50,8 +57,7 @@ public class Ball extends Circle implements Runnable {
                     if (dx == 0) {
                         dx = 1;
                         dx *= -1;
-                    }
-                    else if (dy == 0) {
+                    } else if (dy == 0) {
                         dy = 1;
                         dy *= -1;
                     }
@@ -73,9 +79,10 @@ public class Ball extends Circle implements Runnable {
      * Bounces the Ball perpetually.
      */
     public void run() {
+        final int threadSleepTime = 20;
         while (true) {
             try {
-                Thread.sleep(20); // sleep for 20 milliseconds
+                Thread.sleep(threadSleepTime); // sleep for 20 milliseconds
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
@@ -90,14 +97,17 @@ public class Ball extends Circle implements Runnable {
                Platform.runLater can be used to execute those updates on the
                JavaFX application thread.
              */
-            Platform.runLater( () -> {
+            Platform.runLater(() -> {
                 // if bounce off top or bottom of Panel
-                if (this.getCenterY() <= 0 || this.getCenterY() >= BouncingBalls.MAX_Y)
+                if (this.getCenterY() <= 0 || this.getCenterY() >= BouncingBalls.MAX_Y) {
                     dy *= -1; // reverses velocity in y direction
+                }
+
 
                 // if bounce off left or right of Panel
-                if (this.getCenterX() <= 0 || this.getCenterX() >= BouncingBalls.MAX_X)
+                if (this.getCenterX() <= 0 || this.getCenterX() >= BouncingBalls.MAX_X) {
                     dx *= -1; // reverses velocity in x direction
+                }
 
                 collision();
 

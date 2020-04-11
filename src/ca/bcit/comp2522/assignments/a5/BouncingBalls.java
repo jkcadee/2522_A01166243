@@ -19,9 +19,6 @@ import java.util.Random;
  * @version 2020
  */
 public class BouncingBalls extends Application {
-    private static final List<Ball> BALL_LIST = new ArrayList<>();
-
-    private static final Random random = new Random();
     /**
      * Max X space for the scene.
      */
@@ -31,6 +28,9 @@ public class BouncingBalls extends Application {
      */
     public static final int MAX_Y = 500; // vertical edge of enclosing Panel
 
+    private static final List<Ball> BALL_LIST = new ArrayList<>();
+    private static final Random RANDOM = new Random();
+    
     /**
      * Getter for BALL_LIST.
      *
@@ -47,7 +47,7 @@ public class BouncingBalls extends Application {
      */
     private void populatingTheListAndCanvas(Pane canvas, int amountOfBalls) {
         for (int index = 0; index < amountOfBalls; index++) {
-            final Ball newBall = new Ball(random.nextInt(MAX_X), random.nextInt(MAX_Y));
+            final Ball newBall = new Ball(RANDOM.nextInt(MAX_X), RANDOM.nextInt(MAX_Y));
             canvas.getChildren().add(newBall);
             BALL_LIST.add(newBall);
         }
