@@ -18,8 +18,8 @@ public class Ball extends Circle implements Runnable {
     private static final int DX_CHANGE = 5;
     private static final int DY_CHANGE = 5;
 
-    private int dx; // change in horizontal position of ball
-    private int dy; // change in vertical position of ball
+    private double dx; // change in horizontal position of ball
+    private double dy; // change in vertical position of ball
 
     /**
      * Constructs an object of type Ball.
@@ -32,16 +32,27 @@ public class Ball extends Circle implements Runnable {
         this.setCenterX(xPosition);
         this.setCenterY(yPosition);
 
-        dx = GENERATOR.nextInt(DX_CHANGE); // change in x (0 - 4 pixels)
-        if (dx != 0) {
-            dy = GENERATOR.nextInt(DY_CHANGE); // change in y (0 - 4 pixels)
-        } else {
-            dy = GENERATOR.nextInt((DY_CHANGE - 1) + 1) + 1;
-        }
+        this.dx = 1 + (5 - 1) * GENERATOR.nextDouble();
+        this.dy = 1 + (5 - 1) * GENERATOR.nextDouble();
 
     }
 
-    /**
+    private void bouncingBalls(Ball ball1, Ball ball2, final double differenceX, final double differenceY) {
+        final double ballDistance = Math.sqrt(differenceX * differenceX + differenceY * differenceY);
+        final double x = differenceX / ballDistance;
+        final double y = differenceY / ballDistance;
+        final double ball1NewVelocityX = ball1.dx - (ball1.dx * x + ball1.dy * y) * x;
+        final double ball1NewVelocityY = ball1.dy - (ball1.dx * x + ball1.dy * y) * y;
+        final double ball2NewVelocityX = ball2.dx - (ball2.dx * x + ball2.dy * y) * x;
+        final double ball2NewVelocityY = ball2.dy - (ball2.dx * x + ball2.dy * y) * y;
+
+        ball1.dx = (x + ball1NewVelocityX);
+        ball1.dy = (y + ball1NewVelocityY);
+        ball2.dx = (x + ball2NewVelocityX);
+        ball2.dy = (y + ball2NewVelocityY);
+    }
+
+    /*
      * Determines and calculates the collision of each Ball in BALL_LIST.
      *
      * @pre BALL_LIST is not null and has values inside of it.
@@ -49,26 +60,13 @@ public class Ball extends Circle implements Runnable {
      */
     private void collision() {
         BouncingBalls.getBallList().forEach(ball -> {
-            if (!ball.equals(this)) {
-                if (Math.pow((this.getCenterX() - ball.getCenterX()), 2)
-                        + Math.pow((this.getCenterY() - ball.getCenterY()), 2)
-                        <= Math.pow((this.getRadius() + ball.getRadius()), 2)) {
-                    if (dx == 0) {
-                        dx = 1;
-                        dx *= -1;
-                    } else if (dy == 0) {
-                        dy = 1;
-                        dy *= -1;
-                    }
+            double deltaX = this.getCenterX() - ball.getCenterX();
+            double deltaY = this.getCenterY() - ball.getCenterY();
+            double sumOfRadius = this.getRadius() + ball.getRadius();
 
-                    final int tempX = this.dx;
-                    final int tempY = this.dy;
-
-                    this.dx = ball.dx;
-                    this.dy = ball.dy;
-
-                    ball.dx = tempX;
-                    ball.dy = tempY;
+            if (deltaX * deltaX + deltaY * deltaY <= sumOfRadius * sumOfRadius) {
+                if (deltaX * (this.dx - ball.dx) + deltaY * (this.dy - ball.dy) < 0) {
+                    bouncingBalls(this, ball, deltaX, deltaY);
                 }
             }
         });
@@ -85,6 +83,8 @@ public class Ball extends Circle implements Runnable {
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
             }
+
+            collision();
 
             /* Long-running operations must not be run on the JavaFX application
                thread, since this prevents JavaFX from updating the UI, resulting
@@ -107,8 +107,6 @@ public class Ball extends Circle implements Runnable {
                 if (this.getCenterX() <= 0 || this.getCenterX() >= BouncingBalls.MAX_X) {
                     dx *= -1; // reverses velocity in x direction
                 }
-
-                collision();
 
                 this.setCenterX(this.getCenterX() + dx); // determines new x-position
                 this.setCenterY(this.getCenterY() + dy); // determines new y-position
