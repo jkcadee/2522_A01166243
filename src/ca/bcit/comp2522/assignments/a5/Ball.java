@@ -3,7 +3,6 @@ package ca.bcit.comp2522.assignments.a5;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
 
 import java.util.Random;
 
@@ -51,9 +50,9 @@ public class Ball extends Circle implements Runnable {
     private void collision() {
         BouncingBalls.getBallList().forEach(ball -> {
             if (!ball.equals(this)) {
-                Shape intersect = Shape.intersect(ball, this);
-                if (intersect.getBoundsInLocal().getWidth() != -1
-                        && intersect.getBoundsInLocal().getHeight() != -1) {
+                if (Math.pow((this.getCenterX() - ball.getCenterX()), 2)
+                        + Math.pow((this.getCenterY() - ball.getCenterY()), 2)
+                        <= Math.pow((this.getRadius() + ball.getRadius()), 2)) {
                     if (dx == 0) {
                         dx = 1;
                         dx *= -1;
