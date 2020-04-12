@@ -32,12 +32,16 @@ public class Ball extends Circle implements Runnable {
         this.setCenterX(xPosition);
         this.setCenterY(yPosition);
 
-        this.dx = 1 + (5 - 1) * GENERATOR.nextDouble();
-        this.dy = 1 + (5 - 1) * GENERATOR.nextDouble();
+        this.dx = 1 + (DX_CHANGE - 1) * GENERATOR.nextDouble();
+        this.dy = 1 + (DY_CHANGE - 1) * GENERATOR.nextDouble();
 
     }
 
-    private void bouncingBalls(Ball ball1, Ball ball2, final double differenceX, final double differenceY) {
+    /*
+     * Calculates the collision of the balls in a realistic manner.
+     */
+    private void bouncingBalls(Ball ball1, Ball ball2, final double differenceX,
+                               final double differenceY) {
         final double ballDistance = Math.sqrt(differenceX * differenceX + differenceY * differenceY);
         final double x = differenceX / ballDistance;
         final double y = differenceY / ballDistance;
@@ -60,9 +64,9 @@ public class Ball extends Circle implements Runnable {
      */
     private void collision() {
         BouncingBalls.getBallList().forEach(ball -> {
-            double deltaX = this.getCenterX() - ball.getCenterX();
-            double deltaY = this.getCenterY() - ball.getCenterY();
-            double sumOfRadius = this.getRadius() + ball.getRadius();
+            double deltaX = this.getCenterX() - ball.getCenterX(); // difference between each ball X
+            double deltaY = this.getCenterY() - ball.getCenterY(); // difference between each ball Y
+            double sumOfRadius = this.getRadius() + ball.getRadius(); // sum of both radii
 
             if (deltaX * deltaX + deltaY * deltaY <= sumOfRadius * sumOfRadius) {
                 if (deltaX * (this.dx - ball.dx) + deltaY * (this.dy - ball.dy) < 0) {
